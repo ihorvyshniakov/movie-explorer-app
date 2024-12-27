@@ -4,6 +4,7 @@ import Grid from '@mui/material/Grid2'
 import './App.css'
 
 import Header from './components/Header'
+import MovieCard from './components/MovieCard'
 
 // TODO 👇
 // * Pages
@@ -42,6 +43,25 @@ function App() {
                                 id="search"
                                 margin="normal"
                             />
+                        </Grid>
+                    </Grid>
+                    <Grid
+                        container
+                        spacing={2}
+                        columns={{ xs: 4, sm: 8, md: 12 }}
+                        sx={{ margin: '0 0 4rem' }}
+                    >
+                        <Grid size={4} display="flex" justifyContent="center">
+                            <MovieCard />
+                        </Grid>
+                        <Grid size={4} display="flex" justifyContent="center">
+                            <MovieCard />
+                        </Grid>
+                        <Grid size={4} display="flex" justifyContent="center">
+                            <MovieCard />
+                        </Grid>
+                        <Grid size={4} display="flex" justifyContent="center">
+                            <MovieCard />
                         </Grid>
                     </Grid>
                 </Container>
