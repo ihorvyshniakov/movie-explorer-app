@@ -2,6 +2,8 @@ import { Typography } from '@mui/material'
 
 import './App.css'
 
+import Header from './components/Header'
+
 // TODO 👇
 // * Pages
 // - Home page (popular/trend movies)
@@ -20,6 +22,7 @@ import './App.css'
 function App() {
     return (
         <>
+            <Header />
             <main>
                 <Typography variant="h3" component="h3">
                     Home page
