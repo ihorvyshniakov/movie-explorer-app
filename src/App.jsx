@@ -1,4 +1,4 @@
-import Button from '@mui/material/Button'
+import { Typography } from '@mui/material'
 
 import './App.css'
 
@@ -20,8 +20,11 @@ import './App.css'
 function App() {
     return (
         <>
-            <h1>Movie Explorer</h1>
-            <Button variant="contained">Hello world</Button>
+            <main>
+                <Typography variant="h3" component="h3">
+                    Home page
+                </Typography>
+            </main>
         </>
     )
 }
