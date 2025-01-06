@@ -6,28 +6,39 @@ import CardActionArea from '@mui/material/CardActionArea'
 import Grid from '@mui/material/Grid2'
 import StarsIcon from '@mui/icons-material/Stars'
 
-import MatrixImg from '/matrix.jpg'
+// import MatrixImg from '/matrix.jpg'
 
-const MovieCard = () => {
+const MovieCard = ({
+    title,
+    overview,
+    poster_path,
+    vote_average,
+    release_date,
+}) => {
     return (
         <Card sx={{ maxWidth: 345 }}>
             <CardActionArea>
                 <CardMedia
                     component="img"
-                    image={MatrixImg}
+                    image={poster_path}
                     alt="movie title"
+                    height="400"
                 />
                 <CardContent>
-                    <Typography gutterBottom variant="h5">
-                        Matrix
+                    <Typography
+                        gutterBottom
+                        variant="h5"
+                        sx={{ height: '4rem' }}
+                    >
+                        {title}
                     </Typography>
                     <Typography
                         gutterBottom
                         variant="body2"
-                        sx={{ color: 'text.secondary' }}
+                        sx={{ color: 'text.secondary', marginBottom: '1rem' }}
+                        className="ellipsis-4-lines"
                     >
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                        Officiis, totam!
+                        {overview}
                     </Typography>
                     <Grid
                         container
@@ -40,7 +51,7 @@ const MovieCard = () => {
                             <Stack direction="row" alignItems="center" gap={1}>
                                 <StarsIcon sx={{ color: 'orange' }} />
                                 <Typography variant="h6" component="p">
-                                    8.2
+                                    {vote_average.toFixed(2)}
                                 </Typography>
                             </Stack>
                         </Grid>
@@ -50,7 +61,7 @@ const MovieCard = () => {
                                 component="p"
                                 align="right"
                             >
-                                2003
+                                {release_date.slice(0, 4)}
                             </Typography>
                         </Grid>
                     </Grid>
