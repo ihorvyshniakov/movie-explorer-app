@@ -31,7 +31,6 @@ import Home from './pages/Home/Home'
 // preloader for cards
 
 function App() {
-    // "Spirited Away".toLowerCase().replaceAll(' ', '-')
     return (
         <>
             <Header />
@@ -39,14 +38,12 @@ function App() {
                 <Container maxWidth="md">
                     <Routes>
                         <Route index element={<Home />} />
-                        <Route
-                            path="/movie/129/spirited-away"
-                            element={<MoviePage />}
-                        />
-
-                        {/* <Route path="movie">
-                            <Route path=":movie-title" element={<City />} />
-                        </Route> */}
+                        <Route path="movie">
+                            <Route
+                                path=":movieId/:movieTitle?"
+                                element={<MoviePage />}
+                            />
+                        </Route>
                     </Routes>
                 </Container>
             </main>

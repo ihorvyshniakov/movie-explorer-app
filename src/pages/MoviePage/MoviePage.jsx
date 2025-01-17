@@ -1,8 +1,8 @@
 import { Alert, AlertTitle, Paper, Stack, Typography } from '@mui/material'
 import Grid from '@mui/material/Grid2'
 import StarsIcon from '@mui/icons-material/Stars'
-import { useEffect, useRef, useState } from 'react'
-import { useLocation } from 'react-router'
+import { useEffect, useState } from 'react'
+import { useParams } from 'react-router'
 
 import { getMovieDetailsById } from '../../store/https'
 import CircleLoader from '../../components/CircleLoader/CircleLoader'
@@ -12,19 +12,12 @@ const MoviePage = () => {
     const [isLoading, setIsLoading] = useState(false)
     const [error, setError] = useState(null)
 
-    let { pathname, ...location } = useLocation()
-    const movieID = useRef(null)
+    const { movieId } = useParams()
 
     useEffect(() => {
-        if (pathname.length) {
-            movieID.current = pathname.split('/')[2] || null
-        }
-    }, [location, pathname])
-
-    useEffect(() => {
-        if (movieID) {
+        if (movieId) {
             setIsLoading(true)
-            getMovieDetailsById(movieID.current)
+            getMovieDetailsById(movieId)
                 .then((movieDetails) => {
                     setMovieDetails(movieDetails)
                     setIsLoading(false)
@@ -35,7 +28,7 @@ const MoviePage = () => {
                     setError(error.message)
                 })
         }
-    }, [movieID])
+    }, [movieId])
 
     if (error) {
         return (

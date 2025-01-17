@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { memo, useEffect, useState } from 'react'
 import { Alert } from '@mui/material'
 import Grid from '@mui/material/Grid2'
 
@@ -6,7 +6,11 @@ import MovieCard from '../MovieCard/MovieCard'
 import { useStoreContext } from '../../store/store'
 import CircleLoader from '../CircleLoader/CircleLoader'
 
-const MovieCardList = ({ moviesList, isLoading, error }) => {
+const MovieCardList = memo(function MovieCardList({
+    moviesList,
+    isLoading,
+    error,
+}) {
     const { searchInput } = useStoreContext()
     const [moviesFilteredBySearch, setMoviesFilteredBySearch] = useState([])
 
@@ -39,33 +43,18 @@ const MovieCardList = ({ moviesList, isLoading, error }) => {
         >
             <CircleLoader isLoading={isLoading} />
             {moviesFilteredBySearch.length > 0 &&
-                moviesFilteredBySearch.map(
-                    ({
-                        id,
-                        title,
-                        overview,
-                        poster_path,
-                        vote_average,
-                        release_date,
-                    }) => (
-                        <Grid
-                            size={4}
-                            display="flex"
-                            justifyContent="center"
-                            key={id}
-                        >
-                            <MovieCard
-                                title={title}
-                                overview={overview}
-                                poster_path={`https://image.tmdb.org/t/p/w300${poster_path}`}
-                                vote_average={vote_average}
-                                release_date={release_date}
-                            />
-                        </Grid>
-                    )
-                )}
+                moviesFilteredBySearch.map(({ ...movie }) => (
+                    <Grid
+                        size={4}
+                        display="flex"
+                        justifyContent="center"
+                        key={movie.id}
+                    >
+                        <MovieCard {...movie} />
+                    </Grid>
+                ))}
         </Grid>
     )
-}
+})
 
 export default MovieCardList
