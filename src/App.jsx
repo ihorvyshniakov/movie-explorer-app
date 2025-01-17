@@ -12,6 +12,7 @@ import './App.css'
 
 import Header from './components/Header'
 import MovieCard from './components/MovieCard'
+import { getTopRatedMovies } from './store/https'
 
 // TODO 👇
 // * Pages
@@ -33,38 +34,24 @@ import MovieCard from './components/MovieCard'
 // error handling
 // preloader for cards
 
-const MOVIES_API_BEARER_TOKEN = import.meta.env.VITE_MOVIES_API_BEARER_TOKEN
-
 function App() {
     const [topRatedMoviesList, setTopRatedMoviesList] = useState([])
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState(null)
 
     useEffect(() => {
-        const options = {
-            method: 'GET',
-            headers: {
-                accept: 'application/json',
-                Authorization: MOVIES_API_BEARER_TOKEN,
-            },
-        }
-
         setLoading(true)
-        fetch(
-            'https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1',
-            options
-        )
-            .then((res) => {
-                if (!res.ok) {
-                    setError(res.status)
-                }
-                return res.json()
-            })
-            .then((res) => {
-                setTopRatedMoviesList(res.results)
-                setLoading(false)
+
+        getTopRatedMovies()
+            .then((data) => {
+                setTopRatedMoviesList(data)
                 setError(null)
             })
+            .catch((error) => {
+                setError(error.message)
+            })
+
+        setLoading(false)
     }, [])
 
     return (
@@ -111,7 +98,8 @@ function App() {
                                 <CircularProgress size="5rem" />
                             </Grid>
                         )}
-                        {topRatedMoviesList?.length &&
+                        {topRatedMoviesList.length > 0 &&
+                            !error &&
                             topRatedMoviesList.map(
                                 ({
                                     id,
