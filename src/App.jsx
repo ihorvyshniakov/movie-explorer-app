@@ -16,7 +16,7 @@ import HomeSearchBlock from './components/HomeSearchBlock/HomeSearchBlock'
 
 // * Features
 // - Filter by category (comedy/horrors/action)
-// - Searching with caching (via useReducer)
+// + Searching with caching (via useReducer)
 // - Routing inside app (react-router)
 // ? 'to top' button (https://mui.com/material-ui/react-app-bar/#scrolling)
 
