@@ -8,11 +8,18 @@ const options = {
     },
 }
 
-export const getTopRatedMovies = () =>
-    fetch(
-        'https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1',
-        options
+export const getPopularMovies = () =>
+    getMovieWithURL(
+        'https://api.themoviedb.org/3/movie/popular?language=en-US&page=1'
     )
+
+export const getTopRatedMovies = () =>
+    getMovieWithURL(
+        'https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1'
+    )
+
+const getMovieWithURL = (URL) =>
+    fetch(URL, options)
         .then((res) => {
             if (!res.ok) {
                 throw new Error(res.status)
