@@ -1,13 +1,12 @@
-import { useEffect, useState } from 'react'
+import { Route, Routes } from 'react-router'
 import { Container } from '@mui/material'
 
 import './App.css'
 
-import { getTopRatedMovies } from './store/https'
-import { useStoreContext } from './store/store'
 import Header from './components/Header/Header'
-import MovieCardList from './components/MovieCardList/MovieCardList'
-import HomeSearchBlock from './components/HomeSearchBlock/HomeSearchBlock'
+
+import MoviePage from './pages/MoviePage/MoviePage'
+import Home from './pages/Home/Home'
 
 // TODO 👇
 // * Pages
@@ -30,38 +29,22 @@ import HomeSearchBlock from './components/HomeSearchBlock/HomeSearchBlock'
 // preloader for cards
 
 function App() {
-    const { topRatedMoviesList, setTopRatedMoviesList } = useStoreContext()
-    const [isLoading, setIsLoading] = useState(true)
-    const [error, setError] = useState(null)
-
-    useEffect(() => {
-        setIsLoading(true)
-
-        getTopRatedMovies()
-            .then((moviesList) => {
-                setTopRatedMoviesList(moviesList)
-                setError(null)
-            })
-            .catch((error) => {
-                setError(error.message)
-            })
-
-        setIsLoading(false)
-        // eslint-disable-next-line
-    }, [])
-
     return (
         <>
             <Header />
             <main>
                 <Container maxWidth="md">
-                    <HomeSearchBlock />
+                    <Routes>
+                        <Route index element={<Home />} />
+                        <Route
+                            path="/movie/godfather"
+                            element={<MoviePage />}
+                        />
 
-                    <MovieCardList
-                        moviesList={topRatedMoviesList}
-                        isLoading={isLoading}
-                        error={error}
-                    />
+                        {/* <Route path="movie">
+                            <Route path=":movie-title" element={<City />} />
+                        </Route> */}
+                    </Routes>
                 </Container>
             </main>
         </>
