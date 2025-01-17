@@ -1,12 +1,6 @@
-import {
-    Alert,
-    Card,
-    CardActionArea,
-    CardContent,
-    CardMedia,
-    Typography,
-} from '@mui/material'
+import { Alert, AlertTitle, Paper, Stack, Typography } from '@mui/material'
 import Grid from '@mui/material/Grid2'
+import StarsIcon from '@mui/icons-material/Stars'
 import { useEffect, useRef, useState } from 'react'
 import { useLocation } from 'react-router'
 
@@ -46,9 +40,21 @@ const MoviePage = () => {
     if (error) {
         return (
             <Alert severity="error" sx={{ margin: '1rem 0' }}>
-                {error}
+                <AlertTitle>{error}</AlertTitle>
+                The request for details about this movie failed
             </Alert>
         )
+    }
+
+    if (movieDetails) {
+        var {
+            title,
+            overview,
+            backdrop_path,
+            poster_path,
+            vote_average,
+            release_date,
+        } = movieDetails
     }
 
     return (
@@ -56,45 +62,72 @@ const MoviePage = () => {
             <Grid
                 container
                 spacing={2}
-                columns={{ xs: 4, sm: 8, md: 12 }}
+                columns={{ xs: 6, sm: 12, md: 12 }}
                 sx={{ margin: '1rem 0 4rem' }}
             >
                 <CircleLoader isLoading={isLoading} />
                 {movieDetails && (
-                    <Grid
-                        size={12}
-                        display="flex"
-                        justifyContent="center"
-                        alignItems="center"
-                    >
-                        <Card>
-                            <CardActionArea>
-                                <CardMedia
-                                    component="img"
-                                    height="140"
-                                    image={`https://image.tmdb.org/t/p/w500${movieDetails.backdrop_path}`}
-                                    alt="green iguana"
+                    <>
+                        <Grid size={4} display="flex" justifyContent="center">
+                            <Paper elevation={3} sx={{ overflow: 'hidden' }}>
+                                <img
+                                    style={{ width: '100%' }}
+                                    src={`https://image.tmdb.org/t/p/w500${poster_path}`}
+                                    alt={`${title} poster`}
                                 />
-                                <CardContent>
+                            </Paper>
+                        </Grid>
+                        <Grid size={8}>
+                            <Typography
+                                gutterBottom
+                                variant="h5"
+                                component="h1"
+                                sx={{ height: '4rem' }}
+                            >
+                                {title}
+                            </Typography>
+                            <Typography
+                                gutterBottom
+                                variant="body2"
+                                sx={{
+                                    color: 'text.secondary',
+                                    marginBottom: '1rem',
+                                }}
+                                className="ellipsis-4-lines"
+                            >
+                                {overview}
+                            </Typography>
+                            <Grid
+                                container
+                                spacing={1}
+                                direction="row"
+                                alignItems="center"
+                                justifyContent="space-between"
+                            >
+                                <Grid>
+                                    <Stack
+                                        direction="row"
+                                        alignItems="center"
+                                        gap={1}
+                                    >
+                                        <StarsIcon sx={{ color: 'orange' }} />
+                                        <Typography variant="h6" component="p">
+                                            {vote_average.toFixed(2)}
+                                        </Typography>
+                                    </Stack>
+                                </Grid>
+                                <Grid>
                                     <Typography
-                                        gutterBottom
-                                        variant="h1"
+                                        variant="h6"
                                         component="p"
+                                        align="right"
                                     >
-                                        {movieDetails.title}
+                                        {release_date.slice(0, 4)}
                                     </Typography>
-                                    {/* <Typography
-                                        variant="body2"
-                                        sx={{ color: 'text.secondary' }}
-                                    >
-                                        Lizards are a widespread group of squamate
-                                        reptiles, with over 6,000 species, ranging
-                                        across all continents except Antarctica
-                                    </Typography> */}
-                                </CardContent>
-                            </CardActionArea>
-                        </Card>
-                    </Grid>
+                                </Grid>
+                            </Grid>
+                        </Grid>
+                    </>
                 )}
             </Grid>
         </>

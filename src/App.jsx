@@ -17,6 +17,7 @@ import Home from './pages/Home/Home'
 // - Filter by category (comedy/horrors/action)
 // + Searching with caching (via useReducer)
 // - Routing inside app (react-router)
+// - remove all inline styles
 // ? 'to top' button (https://mui.com/material-ui/react-app-bar/#scrolling)
 // ? Movie page is a modal
 
