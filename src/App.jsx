@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useReducer, useState } from 'react'
 import {
     Alert,
     CircularProgress,
@@ -34,8 +34,22 @@ import { getTopRatedMovies } from './store/https'
 // error handling
 // preloader for cards
 
+function reducer(state, action) {
+    switch (action.type) {
+        case 'set_top_rated_movies_list':
+            return {
+                ...state,
+                topRatedMoviesList: action.payload,
+            }
+    }
+}
+
+const initialState = {
+    topRatedMoviesList: [],
+}
+
 function App() {
-    const [topRatedMoviesList, setTopRatedMoviesList] = useState([])
+    const [{ topRatedMoviesList }, dispatch] = useReducer(reducer, initialState)
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState(null)
 
@@ -44,7 +58,7 @@ function App() {
 
         getTopRatedMovies()
             .then((data) => {
-                setTopRatedMoviesList(data)
+                dispatch({ type: 'set_top_rated_movies_list', payload: data })
                 setError(null)
             })
             .catch((error) => {
