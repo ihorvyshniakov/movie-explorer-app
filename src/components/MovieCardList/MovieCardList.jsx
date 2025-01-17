@@ -26,6 +26,17 @@ const MovieCardList = memo(function MovieCardList({
         setMoviesFilteredBySearch(moviesList)
     }, [moviesList])
 
+    const scrollToElementIfItWasOpened = (movieId) => {
+        const scrollToElementId = localStorage.getItem('scrollToMovieId')
+
+        if (scrollToElementId == movieId) {
+            document
+                .getElementById(scrollToElementId)
+                .scrollIntoView({ behavior: 'smooth', block: 'center' })
+            localStorage.removeItem('scrollToMovieId')
+        }
+    }
+
     if (error) {
         return (
             <Alert severity="error" sx={{ marginBottom: '1rem' }}>
@@ -49,6 +60,8 @@ const MovieCardList = memo(function MovieCardList({
                         display="flex"
                         justifyContent="center"
                         key={movie.id}
+                        id={movie.id}
+                        onLoad={() => scrollToElementIfItWasOpened(movie.id)}
                     >
                         <MovieCard {...movie} />
                     </Grid>

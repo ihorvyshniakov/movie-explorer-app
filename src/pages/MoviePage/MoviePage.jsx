@@ -30,6 +30,11 @@ const MoviePage = () => {
         }
     }, [movieId])
 
+    useEffect(() => {
+        // save movie id for scrolling on home page
+        localStorage.setItem('scrollToMovieId', movieId)
+    }, [])
+
     if (error) {
         return (
             <Alert severity="error" sx={{ margin: '1rem 0' }}>
