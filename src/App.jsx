@@ -1,4 +1,4 @@
-import { useEffect, useReducer, useState } from 'react'
+import { useEffect, useState } from 'react'
 import {
     Alert,
     CircularProgress,
@@ -13,6 +13,7 @@ import './App.css'
 import Header from './components/Header'
 import MovieCard from './components/MovieCard'
 import { getTopRatedMovies } from './store/https'
+import { useStoreContext } from './store/store'
 
 // TODO 👇
 // * Pages
@@ -34,22 +35,8 @@ import { getTopRatedMovies } from './store/https'
 // error handling
 // preloader for cards
 
-function reducer(state, action) {
-    switch (action.type) {
-        case 'set_top_rated_movies_list':
-            return {
-                ...state,
-                topRatedMoviesList: action.payload,
-            }
-    }
-}
-
-const initialState = {
-    topRatedMoviesList: [],
-}
-
 function App() {
-    const [{ topRatedMoviesList }, dispatch] = useReducer(reducer, initialState)
+    const { topRatedMoviesList, setTopRatedMoviesList } = useStoreContext()
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState(null)
 
@@ -57,8 +44,8 @@ function App() {
         setLoading(true)
 
         getTopRatedMovies()
-            .then((data) => {
-                dispatch({ type: 'set_top_rated_movies_list', payload: data })
+            .then((moviesList) => {
+                setTopRatedMoviesList(moviesList)
                 setError(null)
             })
             .catch((error) => {
