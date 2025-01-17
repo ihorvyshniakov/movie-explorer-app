@@ -7,22 +7,24 @@ import MovieCardList from '../../components/MovieCardList/MovieCardList'
 
 const Home = () => {
     const { topRatedMoviesList, setTopRatedMoviesList } = useStoreContext()
-    const [isLoading, setIsLoading] = useState(true)
+    const [isLoading, setIsLoading] = useState(false)
     const [error, setError] = useState(null)
 
     useEffect(() => {
-        setIsLoading(true)
+        if (topRatedMoviesList.length === 0) {
+            setIsLoading(true)
 
-        getTopRatedMovies()
-            .then((moviesList) => {
-                setTopRatedMoviesList(moviesList)
-                setIsLoading(false)
-                setError(null)
-            })
-            .catch((error) => {
-                setIsLoading(false)
-                setError(error.message)
-            })
+            getTopRatedMovies()
+                .then((moviesList) => {
+                    setTopRatedMoviesList(moviesList)
+                    setIsLoading(false)
+                    setError(null)
+                })
+                .catch((error) => {
+                    setIsLoading(false)
+                    setError(error.message)
+                })
+        }
 
         // eslint-disable-next-line
     }, [])
