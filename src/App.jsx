@@ -1,19 +1,13 @@
 import { useEffect, useState } from 'react'
-import {
-    Alert,
-    CircularProgress,
-    Container,
-    TextField,
-    Typography,
-} from '@mui/material'
-import Grid from '@mui/material/Grid2'
+import { Container } from '@mui/material'
 
 import './App.css'
 
-import Header from './components/Header'
-import MovieCard from './components/MovieCard'
 import { getTopRatedMovies } from './store/https'
 import { useStoreContext } from './store/store'
+import Header from './components/Header/Header'
+import MovieCardList from './components/MovieCardList/MovieCardList'
+import HomeSearchBlock from './components/HomeSearchBlock/HomeSearchBlock'
 
 // TODO 👇
 // * Pages
@@ -37,11 +31,11 @@ import { useStoreContext } from './store/store'
 
 function App() {
     const { topRatedMoviesList, setTopRatedMoviesList } = useStoreContext()
-    const [loading, setLoading] = useState(true)
+    const [isLoading, setIsLoading] = useState(true)
     const [error, setError] = useState(null)
 
     useEffect(() => {
-        setLoading(true)
+        setIsLoading(true)
 
         getTopRatedMovies()
             .then((moviesList) => {
@@ -52,7 +46,8 @@ function App() {
                 setError(error.message)
             })
 
-        setLoading(false)
+        setIsLoading(false)
+        // eslint-disable-next-line
     }, [])
 
     return (
@@ -60,73 +55,13 @@ function App() {
             <Header />
             <main>
                 <Container maxWidth="md">
-                    <Grid container spacing={2} sx={{ margin: '1rem 0' }}>
-                        <Grid size={12}>
-                            <Typography
-                                variant="h3"
-                                component="h3"
-                                align="center"
-                            >
-                                Search your favorite movie!
-                            </Typography>
-                            <TextField
-                                fullWidth
-                                label="Search..."
-                                id="search"
-                                margin="normal"
-                            />
-                        </Grid>
-                    </Grid>
-                    {error && (
-                        <Alert severity="error" sx={{ marginBottom: '1rem' }}>
-                            {error}
-                        </Alert>
-                    )}
-                    <Grid
-                        container
-                        spacing={2}
-                        columns={{ xs: 4, sm: 8, md: 12 }}
-                        sx={{ marginBottom: '4rem' }}
-                    >
-                        {loading && (
-                            <Grid
-                                size={12}
-                                display="flex"
-                                justifyContent="center"
-                                alignItems="center"
-                                sx={{ height: '300px' }}
-                            >
-                                <CircularProgress size="5rem" />
-                            </Grid>
-                        )}
-                        {topRatedMoviesList.length > 0 &&
-                            !error &&
-                            topRatedMoviesList.map(
-                                ({
-                                    id,
-                                    title,
-                                    overview,
-                                    poster_path,
-                                    vote_average,
-                                    release_date,
-                                }) => (
-                                    <Grid
-                                        size={4}
-                                        display="flex"
-                                        justifyContent="center"
-                                        key={id}
-                                    >
-                                        <MovieCard
-                                            title={title}
-                                            overview={overview}
-                                            poster_path={`https://image.tmdb.org/t/p/w300/${poster_path}`}
-                                            vote_average={vote_average}
-                                            release_date={release_date}
-                                        />
-                                    </Grid>
-                                )
-                            )}
-                    </Grid>
+                    <HomeSearchBlock />
+
+                    <MovieCardList
+                        moviesList={topRatedMoviesList}
+                        isLoading={isLoading}
+                        error={error}
+                    />
                 </Container>
             </main>
         </>
