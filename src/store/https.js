@@ -8,17 +8,28 @@ const options = {
     },
 }
 
+export const getMovieDetailsById = (movieID) =>
+    fetch(
+        `https://api.themoviedb.org/3/movie/${movieID}?language=en-US`,
+        options
+    ).then((res) => {
+        if (!res.ok) {
+            throw new Error(res.status)
+        }
+        return res.json()
+    })
+
 export const getPopularMovies = () =>
-    getMovieWithURL(
+    getMoviesListWithURL(
         'https://api.themoviedb.org/3/movie/popular?language=en-US&page=1'
     )
 
 export const getTopRatedMovies = () =>
-    getMovieWithURL(
+    getMoviesListWithURL(
         'https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1'
     )
 
-const getMovieWithURL = (URL) =>
+const getMoviesListWithURL = (URL) =>
     fetch(URL, options)
         .then((res) => {
             if (!res.ok) {

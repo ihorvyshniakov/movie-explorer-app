@@ -16,13 +16,14 @@ const Home = () => {
         getTopRatedMovies()
             .then((moviesList) => {
                 setTopRatedMoviesList(moviesList)
+                setIsLoading(false)
                 setError(null)
             })
             .catch((error) => {
+                setIsLoading(false)
                 setError(error.message)
             })
 
-        setIsLoading(false)
         // eslint-disable-next-line
     }, [])
 

@@ -18,6 +18,7 @@ import Home from './pages/Home/Home'
 // + Searching with caching (via useReducer)
 // - Routing inside app (react-router)
 // ? 'to top' button (https://mui.com/material-ui/react-app-bar/#scrolling)
+// ? Movie page is a modal
 
 // * Requirements
 // + Using UI lib (https://mui.com/material-ui/)
@@ -29,6 +30,7 @@ import Home from './pages/Home/Home'
 // preloader for cards
 
 function App() {
+    // "Spirited Away".toLowerCase().replaceAll(' ', '-')
     return (
         <>
             <Header />
@@ -37,7 +39,7 @@ function App() {
                     <Routes>
                         <Route index element={<Home />} />
                         <Route
-                            path="/movie/godfather"
+                            path="/movie/129/spirited-away"
                             element={<MoviePage />}
                         />
 
