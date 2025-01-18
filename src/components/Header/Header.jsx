@@ -5,22 +5,28 @@ import IconButton from '@mui/material/IconButton'
 import Typography from '@mui/material/Typography'
 import GitHubIcon from '@mui/icons-material/GitHub'
 
+import Link from '../Link/Link'
+
 const Header = () => {
     return (
         <Box sx={{ flexGrow: 1 }}>
             <AppBar position="static">
                 <Toolbar>
-                    <Typography
-                        align="center"
-                        variant="h6"
-                        noWrap
-                        component="p"
+                    <Link
+                        url=""
                         sx={{
                             flexGrow: 1,
                         }}
                     >
-                        Movie Explorer
-                    </Typography>
+                        <Typography
+                            align="center"
+                            variant="h6"
+                            noWrap
+                            component="p"
+                        >
+                            Movie Explorer
+                        </Typography>
+                    </Link>
                     <IconButton
                         size="large"
                         aria-label="github link"

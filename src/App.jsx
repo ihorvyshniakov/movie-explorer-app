@@ -22,8 +22,10 @@ import Home from './pages/Home/Home'
 // ? Movie page is a modal
 // - Movie page: showing movie details from search, if no info per movieId
 // - 'abudabi' request wrong top rated values
+// - 'king' bad width layout
 // - preloaders for Movie page
 // - Mobile: different width of cards
+// - Reload: same search input
 
 // * Requirements
 // + Using UI lib (https://mui.com/material-ui/)
