@@ -9,25 +9,25 @@ const options = {
 }
 
 export const getMovieDetailsById = (movieID) =>
-    fetch(
-        `https://api.themoviedb.org/3/movie/${movieID}?language=en-US`,
-        options
-    ).then((res) => {
-        if (!res.ok) {
-            throw new Error(res.status)
+    fetch(`https://api.themoviedb.org/3/movie/${movieID}`, options).then(
+        (res) => {
+            if (!res.ok) {
+                throw new Error(res.status)
+            }
+            return res.json()
         }
-        return res.json()
-    })
+    )
+
+export const getMoviesBySearch = (searchInput) =>
+    getMoviesListWithURL(
+        `https://api.themoviedb.org/3/search/movie?query=${searchInput}`
+    )
 
 export const getPopularMovies = () =>
-    getMoviesListWithURL(
-        'https://api.themoviedb.org/3/movie/popular?language=en-US&page=1'
-    )
+    getMoviesListWithURL('https://api.themoviedb.org/3/movie/popular')
 
 export const getTopRatedMovies = () =>
-    getMoviesListWithURL(
-        'https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1'
-    )
+    getMoviesListWithURL('https://api.themoviedb.org/3/movie/top_rated')
 
 const getMoviesListWithURL = (URL) =>
     fetch(URL, options)

@@ -37,22 +37,17 @@ const MoviePage = () => {
 
     if (error) {
         return (
-            <Alert severity="error" sx={{ margin: '1rem 0' }}>
-                <AlertTitle>{error}</AlertTitle>
-                The request for details about this movie failed
+            <Alert severity="error" sx={{ margin: '4rem 0 0' }}>
+                <AlertTitle>{error || 'Whoops...'}</AlertTitle>
+                Whoops, movie details request failed or Database do not have an
+                extra info 🤷‍♂️
             </Alert>
         )
     }
 
     if (movieDetails) {
-        var {
-            title,
-            overview,
-            backdrop_path,
-            poster_path,
-            vote_average,
-            release_date,
-        } = movieDetails
+        var { title, overview, poster_path, vote_average, release_date } =
+            movieDetails
     }
 
     return (

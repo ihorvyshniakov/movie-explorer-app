@@ -20,6 +20,10 @@ import Home from './pages/Home/Home'
 // - remove all inline styles
 // ? 'to top' button (https://mui.com/material-ui/react-app-bar/#scrolling)
 // ? Movie page is a modal
+// - Movie page: showing movie details from search, if no info per movieId
+// - 'abudabi' request wrong top rated values
+// - preloaders for Movie page
+// - Mobile: different width of cards
 
 // * Requirements
 // + Using UI lib (https://mui.com/material-ui/)

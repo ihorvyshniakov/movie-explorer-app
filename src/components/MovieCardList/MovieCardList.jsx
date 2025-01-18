@@ -11,20 +11,8 @@ const MovieCardList = memo(function MovieCardList({
     isLoading,
     error,
 }) {
-    const { searchInput } = useStoreContext()
+    const { searchInput, moviesBasedOnSearch } = useStoreContext()
     const [moviesFilteredBySearch, setMoviesFilteredBySearch] = useState([])
-
-    useEffect(() => {
-        setMoviesFilteredBySearch(
-            moviesList.filter(({ title }) =>
-                title.toLowerCase().includes(searchInput)
-            )
-        )
-    }, [moviesList, searchInput])
-
-    useEffect(() => {
-        setMoviesFilteredBySearch(moviesList)
-    }, [moviesList])
 
     const scrollToElementIfItWasOpened = (movieId) => {
         const scrollToElementId = localStorage.getItem('scrollToMovieId')
@@ -37,7 +25,21 @@ const MovieCardList = memo(function MovieCardList({
         }
     }
 
-    if (error) {
+    useEffect(() => {
+        if (moviesBasedOnSearch.length > 0) {
+            setMoviesFilteredBySearch(moviesBasedOnSearch)
+        } else {
+            setMoviesFilteredBySearch(moviesList)
+        }
+    }, [moviesList, moviesBasedOnSearch])
+
+    useEffect(() => {
+        if (searchInput === '') {
+            setMoviesFilteredBySearch(moviesList)
+        }
+    }, [searchInput])
+
+    if (error || moviesFilteredBySearch.length === 0) {
         return (
             <Alert severity="error" sx={{ marginBottom: '1rem' }}>
                 {error}
