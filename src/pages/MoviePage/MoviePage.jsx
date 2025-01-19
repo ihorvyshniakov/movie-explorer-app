@@ -1,11 +1,4 @@
-import {
-    Alert,
-    AlertTitle,
-    Chip,
-    Paper,
-    Stack,
-    Typography,
-} from '@mui/material'
+import { Alert, AlertTitle, Chip, Stack, Typography } from '@mui/material'
 import Grid from '@mui/material/Grid2'
 import StarsIcon from '@mui/icons-material/Stars'
 import { useEffect, useState } from 'react'
@@ -114,20 +107,13 @@ const MoviePage = () => {
                             justifyContent="center"
                             sx={{ width: '100%' }}
                         >
-                            <Paper
+                            <Image
+                                title={title}
+                                url={`https://image.tmdb.org/t/p/w500${poster_path}`}
+                                preloaderHeight={500}
                                 elevation={3}
-                                sx={{
-                                    overflow: 'hidden',
-                                    minWidth: 300,
-                                    height: 500,
-                                }}
-                            >
-                                <Image
-                                    title={title}
-                                    url={`https://image.tmdb.org/t/p/w500${poster_path}`}
-                                    style={{ width: '100%', height: '100%' }}
-                                />
-                            </Paper>
+                                square={false}
+                            />
                         </Grid>
                         <Grid
                             container

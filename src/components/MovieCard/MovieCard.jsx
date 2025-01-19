@@ -1,12 +1,12 @@
 import { Skeleton, Stack, Typography } from '@mui/material'
 import Card from '@mui/material/Card'
 import CardContent from '@mui/material/CardContent'
-import CardMedia from '@mui/material/CardMedia'
 import CardActionArea from '@mui/material/CardActionArea'
 import Grid from '@mui/material/Grid2'
 import StarsIcon from '@mui/icons-material/Stars'
 
 import Link from '../Link/Link'
+import Image from '../Image/Image'
 
 const MovieCard = ({
     id,
@@ -23,21 +23,11 @@ const MovieCard = ({
         >
             <Card sx={{ maxWidth: 345 }}>
                 <CardActionArea>
-                    {poster_path ? (
-                        <CardMedia
-                            component="img"
-                            image={`https://image.tmdb.org/t/p/w300${poster_path}`}
-                            alt={`${title || name} poster`}
-                            height="400"
-                        />
-                    ) : (
-                        <Skeleton
-                            sx={{ minWidth: 300 }}
-                            variant="rectangular"
-                            height={400}
-                            animation={false}
-                        />
-                    )}
+                    <Image
+                        title={title || name}
+                        url={`https://image.tmdb.org/t/p/w300${poster_path}`}
+                        preloaderHeight={400}
+                    />
                     <CardContent>
                         {title || name ? (
                             <Typography
