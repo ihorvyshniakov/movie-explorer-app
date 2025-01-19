@@ -11,7 +11,7 @@ const MovieCardList = memo(function MovieCardList({
     isLoading,
     error,
 }) {
-    const { searchInput, moviesBasedOnSearch } = useStoreContext()
+    const { searchInput, searchMoviesList } = useStoreContext()
     const [moviesFilteredBySearch, setMoviesFilteredBySearch] = useState([])
 
     const scrollToElementIfItWasOpened = (movieId) => {
@@ -26,12 +26,12 @@ const MovieCardList = memo(function MovieCardList({
     }
 
     useEffect(() => {
-        if (moviesBasedOnSearch.length > 0) {
-            setMoviesFilteredBySearch(moviesBasedOnSearch)
+        if (searchMoviesList.length > 0) {
+            setMoviesFilteredBySearch(searchMoviesList)
         } else {
             setMoviesFilteredBySearch(moviesList)
         }
-    }, [moviesList, moviesBasedOnSearch])
+    }, [moviesList, searchMoviesList])
 
     useEffect(() => {
         if (searchInput === '') {

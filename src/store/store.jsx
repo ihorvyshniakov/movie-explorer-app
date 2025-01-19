@@ -10,7 +10,7 @@ export const useStoreContext = () => {
 
 const initialState = {
     searchInput: '',
-    moviesBasedOnSearch: [],
+    searchMoviesList: [],
     topRatedMoviesList: [],
 }
 
@@ -31,13 +31,13 @@ function reducer(state, action) {
         case 'set_movies_based_on_search':
             return {
                 ...state,
-                moviesBasedOnSearch: action.payload,
+                searchMoviesList: action.payload,
             }
     }
 }
 
 export const StoreContextProvider = ({ children }) => {
-    const [{ searchInput, moviesBasedOnSearch, topRatedMoviesList }, dispatch] =
+    const [{ searchInput, searchMoviesList, topRatedMoviesList }, dispatch] =
         useReducer(reducer, initialState)
 
     const setSearchInput = (input) => {
@@ -55,7 +55,7 @@ export const StoreContextProvider = ({ children }) => {
     const contextValue = {
         searchInput,
         setSearchInput,
-        moviesBasedOnSearch,
+        searchMoviesList,
         setMoviesBasedOnSearch,
         topRatedMoviesList,
         setTopRatedMoviesList,
