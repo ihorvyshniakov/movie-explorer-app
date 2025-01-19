@@ -26,6 +26,7 @@ import Home from './pages/Home/Home'
 // - preloaders for Movie page
 // - Mobile: different width of cards
 // - Reload: same search input
+// - Separate components for image, text with Skeleton
 
 // * Requirements
 // + Using UI lib (https://mui.com/material-ui/)
