@@ -1,18 +1,38 @@
-import { memo, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Alert } from '@mui/material'
 import Grid from '@mui/material/Grid2'
 
 import MovieCard from '../MovieCard/MovieCard'
 import { useStoreContext } from '../../store/store'
 import CircleLoader from '../CircleLoader/CircleLoader'
+import { getTopRatedMovies } from '../../store/https'
 
-const MovieCardList = memo(function MovieCardList({
-    moviesList,
-    isLoading,
-    error,
-}) {
+const MovieCardList = () => {
     const { searchInput, searchMoviesList } = useStoreContext()
     const [moviesFilteredBySearch, setMoviesFilteredBySearch] = useState([])
+
+    const { topRatedMoviesList, setTopRatedMoviesList } = useStoreContext()
+    const [isLoading, setIsLoading] = useState(false)
+    const [error, setError] = useState(null)
+
+    useEffect(() => {
+        if (topRatedMoviesList.length === 0) {
+            setIsLoading(true)
+
+            getTopRatedMovies()
+                .then((moviesList) => {
+                    setTopRatedMoviesList(moviesList)
+                    setIsLoading(false)
+                    setError(null)
+                })
+                .catch((error) => {
+                    setIsLoading(false)
+                    setError(error.message)
+                })
+        }
+
+        // eslint-disable-next-line
+    }, [])
 
     const scrollToElementIfItWasOpened = (movieId) => {
         const scrollToElementId = localStorage.getItem('scrollToMovieId')
@@ -29,13 +49,13 @@ const MovieCardList = memo(function MovieCardList({
         if (searchMoviesList.length > 0) {
             setMoviesFilteredBySearch(searchMoviesList)
         } else {
-            setMoviesFilteredBySearch(moviesList)
+            setMoviesFilteredBySearch(topRatedMoviesList)
         }
-    }, [moviesList, searchMoviesList])
+    }, [topRatedMoviesList, searchMoviesList])
 
     useEffect(() => {
         if (searchInput === '') {
-            setMoviesFilteredBySearch(moviesList)
+            setMoviesFilteredBySearch(topRatedMoviesList)
         }
     }, [searchInput])
 
@@ -74,6 +94,6 @@ const MovieCardList = memo(function MovieCardList({
                 ))}
         </Grid>
     )
-})
+}
 
 export default MovieCardList
