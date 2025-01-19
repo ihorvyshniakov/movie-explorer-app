@@ -1,27 +1,56 @@
 import { useEffect, useState } from 'react'
+import { useSearchParams } from 'react-router'
 import { Alert } from '@mui/material'
 import Grid from '@mui/material/Grid2'
 
 import MovieCard from '../MovieCard/MovieCard'
 import { useStoreContext } from '../../store/store'
-import CircleLoader from '../CircleLoader/CircleLoader'
-import { getTopRatedMovies } from '../../store/https'
+import { getMoviesBySearch, getTopRatedMovies } from '../../store/https'
+import { scrollToElementIfItWasOpened } from '../../utils/utils'
 
-const MovieCardList = () => {
-    const { searchInput, searchMoviesList } = useStoreContext()
-    const [moviesFilteredBySearch, setMoviesFilteredBySearch] = useState([])
+// http://localhost:5173/?search=matrix
 
-    const { topRatedMoviesList, setTopRatedMoviesList } = useStoreContext()
-    const [isLoading, setIsLoading] = useState(false)
+const MovieCardList = ({ setIsLoading }) => {
+    const {
+        setSearchInput,
+        searchMoviesList,
+        setSearchMoviesList,
+        topRatedMoviesList,
+        setTopRatedMoviesList,
+    } = useStoreContext()
+    let [searchParams] = useSearchParams()
+
     const [error, setError] = useState(null)
+    const displayList = searchMoviesList.length
+        ? searchMoviesList
+        : topRatedMoviesList
 
+    // if SEARCH -> getSearchMovies
+    // else -> getTopRatedMovies
     useEffect(() => {
-        if (topRatedMoviesList.length === 0) {
-            setIsLoading(true)
+        const searchInputFromURL = searchParams.get('search')
 
+        if (searchInputFromURL) {
+            setSearchInput(searchInputFromURL)
+
+            setIsLoading(true)
+            getMoviesBySearch(searchInputFromURL)
+                .then((movies) => {
+                    setSearchMoviesList(movies)
+                    setIsLoading(false)
+                    setError(null)
+                })
+                .catch((error) => {
+                    setIsLoading(false)
+                    setError(error.message)
+                })
+        } else {
+            setSearchMoviesList([])
+
+            setIsLoading(true)
             getTopRatedMovies()
-                .then((moviesList) => {
-                    setTopRatedMoviesList(moviesList)
+                .then((movies) => {
+                    setTopRatedMoviesList(movies)
                     setIsLoading(false)
                     setError(null)
                 })
@@ -30,36 +59,10 @@ const MovieCardList = () => {
                     setError(error.message)
                 })
         }
-
         // eslint-disable-next-line
     }, [])
 
-    const scrollToElementIfItWasOpened = (movieId) => {
-        const scrollToElementId = localStorage.getItem('scrollToMovieId')
-
-        if (scrollToElementId == movieId) {
-            document
-                .getElementById(scrollToElementId)
-                .scrollIntoView({ behavior: 'smooth', block: 'center' })
-            localStorage.removeItem('scrollToMovieId')
-        }
-    }
-
-    useEffect(() => {
-        if (searchMoviesList.length > 0) {
-            setMoviesFilteredBySearch(searchMoviesList)
-        } else {
-            setMoviesFilteredBySearch(topRatedMoviesList)
-        }
-    }, [topRatedMoviesList, searchMoviesList])
-
-    useEffect(() => {
-        if (searchInput === '') {
-            setMoviesFilteredBySearch(topRatedMoviesList)
-        }
-    }, [searchInput])
-
-    if (error || moviesFilteredBySearch.length === 0) {
+    if (error) {
         return (
             <Alert severity="error" sx={{ marginBottom: '1rem' }}>
                 {error}
@@ -79,19 +82,17 @@ const MovieCardList = () => {
             }}
             sx={{ marginBottom: '4rem', display: 'grid' }}
         >
-            <CircleLoader isLoading={isLoading} />
-            {moviesFilteredBySearch.length > 0 &&
-                moviesFilteredBySearch.map(({ ...movie }) => (
-                    <Grid
-                        size={4}
-                        key={movie.id}
-                        id={movie.id}
-                        onLoad={() => scrollToElementIfItWasOpened(movie.id)}
-                        sx={{ width: '100%' }}
-                    >
-                        <MovieCard {...movie} />
-                    </Grid>
-                ))}
+            {displayList.map(({ ...movie }) => (
+                <Grid
+                    size={4}
+                    key={movie.id}
+                    id={movie.id}
+                    onLoad={() => scrollToElementIfItWasOpened(movie.id)}
+                    sx={{ width: '100%' }}
+                >
+                    <MovieCard {...movie} />
+                </Grid>
+            ))}
         </Grid>
     )
 }

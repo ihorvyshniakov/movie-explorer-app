@@ -44,7 +44,7 @@ export const StoreContextProvider = ({ children }) => {
         dispatch({ type: 'set_search_input', payload: input })
     }
 
-    const setMoviesBasedOnSearch = (input) => {
+    const setSearchMoviesList = (input) => {
         dispatch({ type: 'set_movies_based_on_search', payload: input })
     }
 
@@ -56,7 +56,7 @@ export const StoreContextProvider = ({ children }) => {
         searchInput,
         setSearchInput,
         searchMoviesList,
-        setMoviesBasedOnSearch,
+        setSearchMoviesList,
         topRatedMoviesList,
         setTopRatedMoviesList,
     }

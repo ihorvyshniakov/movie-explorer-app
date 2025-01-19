@@ -25,6 +25,7 @@ import ScrollTopButton from './components/ScrollTopButton/ScrollTopButton'
 // - Reload: same search input
 // - error handling
 // - preloader for cards
+// - search on Debounce
 
 //! Bugs
 // - 'abudabi' request wrong top rated values
