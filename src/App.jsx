@@ -7,6 +7,7 @@ import Header from './components/Header/Header'
 
 import MoviePage from './pages/MoviePage/MoviePage'
 import Home from './pages/Home/Home'
+import ScrollTopButton from './components/ScrollTopButton/ScrollTopButton'
 
 // * Pages
 // + Home page (popular/trend movies)
@@ -19,7 +20,6 @@ import Home from './pages/Home/Home'
 
 // TODO 👇
 // - Filter by category (comedy/horrors/action)
-// ? 'to top' button (https://mui.com/material-ui/react-app-bar/#scrolling)
 // ? Movie page is a modal
 // - remove all inline styles
 // - Reload: same search input
@@ -32,7 +32,7 @@ import Home from './pages/Home/Home'
 function App() {
     return (
         <>
-            <Header />
+            <Header id="back-to-top-anchor" />
             <main>
                 <Container maxWidth="md">
                     <Routes>
@@ -46,6 +46,7 @@ function App() {
                     </Routes>
                 </Container>
             </main>
+            <ScrollTopButton />
         </>
     )
 }

@@ -7,9 +7,9 @@ import GitHubIcon from '@mui/icons-material/GitHub'
 
 import Link from '../Link/Link'
 
-const Header = () => {
+const Header = (props) => {
     return (
-        <Box sx={{ flexGrow: 1 }}>
+        <Box sx={{ flexGrow: 1 }} {...props}>
             <AppBar position="static">
                 <Toolbar>
                     <Link
