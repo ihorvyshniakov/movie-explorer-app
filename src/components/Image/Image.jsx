@@ -7,10 +7,10 @@ const Image = ({ title, url, ...props }) => {
     if (!url || error) {
         return (
             <Skeleton
-                sx={{ minWidth: 300 }}
+                style={{ width: '100%', height: '100%' }}
                 variant="rectangular"
-                height="100%"
                 animation={false}
+                {...props}
             />
         )
     }
@@ -21,6 +21,7 @@ const Image = ({ title, url, ...props }) => {
             image={`https://image.tmdb.org/t/p/w300${url}`}
             alt={`${title} poster`}
             onError={() => setError(true)}
+            style={{ width: '100%', height: '100%' }}
             {...props}
         />
     )

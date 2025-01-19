@@ -101,17 +101,26 @@ const MoviePage = () => {
         <>
             <Grid
                 container
-                spacing={6}
-                columns={{ xs: 6, sm: 12, md: 12 }}
+                spacing={{ sm: 2, md: 6 }}
+                columns={{ sm: 6, md: 12 }}
                 sx={{ margin: '2rem 0 4rem' }}
             >
                 <CircleLoader isLoading={isLoading} />
                 {movieDetails && (
                     <>
-                        <Grid size={5} display="flex" justifyContent="center">
+                        <Grid
+                            size={{ sm: 12, md: 5 }}
+                            display="flex"
+                            justifyContent="center"
+                            sx={{ width: '100%' }}
+                        >
                             <Paper
                                 elevation={3}
-                                sx={{ overflow: 'hidden', maxHeight: 500 }}
+                                sx={{
+                                    overflow: 'hidden',
+                                    minWidth: 300,
+                                    height: 500,
+                                }}
                             >
                                 <Image
                                     title={title}
@@ -122,7 +131,7 @@ const MoviePage = () => {
                         </Grid>
                         <Grid
                             container
-                            size={7}
+                            size={{ sm: 12, md: 7 }}
                             spacing={2}
                             sx={{
                                 display: 'grid',

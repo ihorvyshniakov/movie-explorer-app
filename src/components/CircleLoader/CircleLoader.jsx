@@ -12,7 +12,7 @@ const CircleLoader = ({ isLoading }) => {
             display="flex"
             justifyContent="center"
             alignItems="center"
-            sx={{ height: '300px' }}
+            sx={{ height: '300px', width: '100%' }}
         >
             <CircularProgress size="5rem" />
         </Grid>
