@@ -20,9 +20,13 @@ const MovieCard = ({
     return (
         <Link
             url={`/movie/${id}/${(title || name).replaceAll(/[.,:;'"]/g, '').replaceAll(' ', '-')}`}
-            sx={{ width: '100%' }}
+            sx={{
+                height: '100%',
+                display: 'flex',
+                justifyContent: 'center',
+            }}
         >
-            <Card sx={{ maxWidth: 345, height: '100%' }}>
+            <Card sx={{ width: '100%', maxWidth: 345, height: '100%' }}>
                 <CardActionArea
                     sx={{
                         height: '100%',

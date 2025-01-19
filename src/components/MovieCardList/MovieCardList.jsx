@@ -52,18 +52,22 @@ const MovieCardList = memo(function MovieCardList({
             container
             spacing={2}
             columns={{ xs: 4, sm: 8, md: 12 }}
-            sx={{ marginBottom: '4rem' }}
+            gridTemplateColumns={{
+                xs: '1fr',
+                sm: '1fr 1fr',
+                md: '1fr 1fr 1fr',
+            }}
+            sx={{ marginBottom: '4rem', display: 'grid' }}
         >
             <CircleLoader isLoading={isLoading} />
             {moviesFilteredBySearch.length > 0 &&
                 moviesFilteredBySearch.map(({ ...movie }) => (
                     <Grid
                         size={4}
-                        display="flex"
-                        justifyContent="center"
                         key={movie.id}
                         id={movie.id}
                         onLoad={() => scrollToElementIfItWasOpened(movie.id)}
+                        sx={{ width: '100%' }}
                     >
                         <MovieCard {...movie} />
                     </Grid>

@@ -8,34 +8,26 @@ import Header from './components/Header/Header'
 import MoviePage from './pages/MoviePage/MoviePage'
 import Home from './pages/Home/Home'
 
-// TODO 👇
 // * Pages
-// - Home page (popular/trend movies)
-// - Movie page (description, actors, trailer)
-
-// * Features
-// - Filter by category (comedy/horrors/action)
-// + Searching with caching (via useReducer)
-// - Routing inside app (react-router)
-// - remove all inline styles
-// ? 'to top' button (https://mui.com/material-ui/react-app-bar/#scrolling)
-// ? Movie page is a modal
-// - Movie page: showing movie details from search, if no info per movieId
-// - 'abudabi' request wrong top rated values
-// - 'king' bad width layout
-// - preloaders for Movie page
-// - Mobile: different width of cards
-// - Reload: same search input
-// - Separate components for image, text with Skeleton
+// + Home page (popular/trend movies)
+// + Movie page (description, actors, trailer)
 
 // * Requirements
 // + Using UI lib (https://mui.com/material-ui/)
 // - Usage of all hooks (useState, useEffect, useRef, useReducer, useContext)
 // - Using API (https://developer.themoviedb.org/reference/intro/getting-started)
 
-// TODO
-// error handling
-// preloader for cards
+// TODO 👇
+// - Filter by category (comedy/horrors/action)
+// ? 'to top' button (https://mui.com/material-ui/react-app-bar/#scrolling)
+// ? Movie page is a modal
+// - remove all inline styles
+// - Reload: same search input
+// - error handling
+// - preloader for cards
+
+//! Bugs
+// - 'abudabi' request wrong top rated values
 
 function App() {
     return (
