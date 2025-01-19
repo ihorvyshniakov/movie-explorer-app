@@ -22,24 +22,13 @@ const Image = ({
                 height: preloaderHeight,
             }}
         >
-            {error && (
-                <Skeleton
-                    style={{ width: '100%', height: '100%' }}
-                    variant="rectangular"
-                    animation={false}
-                />
-            )}
             {!isLoaded && (
                 <Skeleton
                     style={{ width: '100%', height: '100%' }}
                     variant="rectangular"
+                    animation={error ? false : 'pulse'}
                 />
             )}
-            {/* <Skeleton
-                style={{ width: '100%', height: '100%' }}
-                variant="rectangular"
-                animation={error ? false : !isLoaded}
-            /> */}
             {!error && (
                 <CardMedia
                     component="img"
