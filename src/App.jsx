@@ -15,8 +15,8 @@ import ScrollTopButton from './components/ScrollTopButton/ScrollTopButton'
 
 // * Requirements
 // + Using UI lib (https://mui.com/material-ui/)
-// - Usage of all hooks (useState, useEffect, useRef, useReducer, useContext)
-// - Using API (https://developer.themoviedb.org/reference/intro/getting-started)
+// + Usage of all hooks (useState, useEffect, useRef, useReducer, useContext)
+// + Using API (https://developer.themoviedb.org/reference/intro/getting-started)
 
 // TODO 👇
 // - Filter by category (comedy/horrors/action)
@@ -25,10 +25,10 @@ import ScrollTopButton from './components/ScrollTopButton/ScrollTopButton'
 // - Reload: same search input
 // - error handling
 // - preloader for cards
-// - search on Debounce
 
 //! Bugs
 // - 'abudabi' request wrong top rated values
+// [FIXED] if return from MoviePage to Home -> wrong result + extra request
 
 function App() {
     return (

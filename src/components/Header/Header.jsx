@@ -23,6 +23,7 @@ const Header = (props) => {
                             variant="h6"
                             noWrap
                             component="p"
+                            sx={{ userSelect: 'none' }}
                         >
                             Movie Explorer
                         </Typography>

@@ -21,14 +21,16 @@ const MovieCardList = ({ setIsLoading }) => {
     let [searchParams] = useSearchParams()
 
     const [error, setError] = useState(null)
-    const displayList = searchMoviesList.length
-        ? searchMoviesList
-        : topRatedMoviesList
 
     // if SEARCH -> getSearchMovies
     // else -> getTopRatedMovies
     useEffect(() => {
         const searchInputFromURL = searchParams.get('search')
+
+        // return 'back' from Movie page
+        if (searchMoviesList.length) {
+            return
+        }
 
         if (searchInputFromURL) {
             setSearchInput(searchInputFromURL)
@@ -82,7 +84,10 @@ const MovieCardList = ({ setIsLoading }) => {
             }}
             sx={{ marginBottom: '4rem', display: 'grid' }}
         >
-            {displayList.map(({ ...movie }) => (
+            {(searchMoviesList.length
+                ? searchMoviesList
+                : topRatedMoviesList
+            ).map(({ ...movie }) => (
                 <Grid
                     size={4}
                     key={movie.id}

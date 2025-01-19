@@ -6,10 +6,19 @@ import { useStoreContext } from '../../store/store'
 import { getMoviesBySearch } from '../../store/https'
 
 const HomeSearchBlock = ({ isLoading, setIsLoading }) => {
-    const { searchInput, setSearchInput, setSearchMoviesList } =
-        useStoreContext()
+    const {
+        searchInput,
+        setSearchInput,
+        searchMoviesList,
+        setSearchMoviesList,
+    } = useStoreContext()
 
     useEffect(() => {
+        // return 'back' from Movie page
+        if (searchMoviesList.length) {
+            return
+        }
+
         if (searchInput === '') {
             setSearchMoviesList([])
         }
