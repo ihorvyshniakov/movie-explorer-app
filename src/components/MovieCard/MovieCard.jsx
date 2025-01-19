@@ -20,15 +20,29 @@ const MovieCard = ({
     return (
         <Link
             url={`/movie/${id}/${(title || name).replaceAll(/[.,:;'"]/g, '').replaceAll(' ', '-')}`}
+            sx={{ width: '100%' }}
         >
-            <Card sx={{ maxWidth: 345 }}>
-                <CardActionArea>
+            <Card sx={{ maxWidth: 345, height: '100%' }}>
+                <CardActionArea
+                    sx={{
+                        height: '100%',
+                        display: 'flex',
+                        flexDirection: 'column',
+                    }}
+                >
                     <Image
                         title={title || name}
                         url={`https://image.tmdb.org/t/p/w300${poster_path}`}
                         preloaderHeight={400}
                     />
-                    <CardContent>
+                    <CardContent
+                        sx={{
+                            width: '100%',
+                            display: 'grid',
+                            gridTemplateRows: 'auto auto 1fr',
+                            flexGrow: 1,
+                        }}
+                    >
                         {title || name ? (
                             <Typography
                                 gutterBottom
@@ -74,6 +88,7 @@ const MovieCard = ({
                             direction="row"
                             alignItems="center"
                             justifyContent="space-between"
+                            alignSelf="flex-end"
                         >
                             <Grid>
                                 {vote_average > 0 && (
