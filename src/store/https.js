@@ -52,11 +52,7 @@ const getMoviesListWithURL = async (URL) =>
         })
         .catch((error) => {
             // network error
-            throw new Error(
-                JSON.stringify({
-                    status: error.message,
-                })
-            )
+            throw new Error(error.message)
         })
 
 // Response for test handling errors (wrong data)
