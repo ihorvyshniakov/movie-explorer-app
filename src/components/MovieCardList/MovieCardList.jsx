@@ -6,6 +6,7 @@ import { useStoreContext } from '../../store/store'
 import { getTopRatedMovies } from '../../store/https'
 import { scrollToElementIfItWasOpened } from '../../utils/utils'
 import Error from '../Error/Error'
+import MovieCardSkeleton from './MovieCardSkeleton'
 
 // http://localhost:5173/?search=matrix
 
@@ -38,10 +39,6 @@ const MovieCardList = ({ isLoading, setIsLoading }) => {
         // eslint-disable-next-line
     }, [])
 
-    if (isLoading) {
-        return null
-    }
-
     if (error) {
         return <Error {...error} />
     }
@@ -58,9 +55,19 @@ const MovieCardList = ({ isLoading, setIsLoading }) => {
             }}
             sx={{ marginBottom: '4rem', display: 'grid' }}
         >
-            {(searchMoviesList.length
+            {isLoading &&
+                [...new Array(6)].map((el, index) => (
+                    <MovieCardSkeleton
+                        key={`skeleton-${index}`}
+                        isLoading={true}
+                    />
+                ))}
+
+            {(searchMoviesList.length && !isLoading
                 ? searchMoviesList
-                : topRatedMoviesList
+                : topRatedMoviesList.length && !isLoading
+                  ? topRatedMoviesList
+                  : []
             ).map(({ ...movie }) => (
                 <Grid
                     size={4}

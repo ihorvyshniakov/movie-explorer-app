@@ -22,7 +22,7 @@ import ScrollTopButton from './components/ScrollTopButton/ScrollTopButton'
 // ? Movie page is a modal
 // - Filter by category (comedy/horrors/action)
 // - Reload: same search input
-// - preloader for cards
+// - clean + refactor
 
 //! Bugs
 // - 'abudabi' request wrong top rated values
