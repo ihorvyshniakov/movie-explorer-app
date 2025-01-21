@@ -1,45 +1,50 @@
 import { useEffect } from 'react'
 import { LinearProgress, TextField, Typography } from '@mui/material'
 import Grid from '@mui/material/Grid2'
+import { useSearchParams } from 'react-router'
 
 import { useStoreContext } from '../../store/store'
 import { getMoviesBySearch } from '../../store/https'
 
 const HomeSearchBlock = ({ isLoading, setIsLoading }) => {
-    const {
-        searchInput,
-        setSearchInput,
-        searchMoviesList,
-        setSearchMoviesList,
-    } = useStoreContext()
+    const { searchInput, setSearchInput, setSearchMoviesList } =
+        useStoreContext()
+    const [searchParams, setSearchParams] = useSearchParams()
 
-    // useEffect(() => {
-    //     // return 'back' from Movie page
-    //     if (searchMoviesList.length) {
-    //         return
-    //     }
+    useEffect(() => {
+        // return to Home
+        const searchInputFromURL = searchParams.get('search')
 
-    //     if (searchInput === '') {
-    //         setSearchMoviesList([])
-    //     }
-    //     if (searchInput.length) {
-    //         const delayDebounceFn = setTimeout(() => {
-    //             setIsLoading(true)
-    //             getMoviesBySearch(searchInput)
-    //                 .then((data) => {
-    //                     setSearchMoviesList(data)
-    //                     clearTimeout(delayDebounceFn)
-    //                     setIsLoading(false)
-    //                 })
-    //                 .catch(() => {
-    //                     clearTimeout(delayDebounceFn)
-    //                     setIsLoading(false)
-    //                 })
-    //         }, 1500)
+        if (!searchInputFromURL) {
+            setSearchInput('')
+        }
+    }, [searchParams, setSearchInput])
 
-    //         return () => clearTimeout(delayDebounceFn)
-    //     }
-    // }, [searchInput])
+    useEffect(() => {
+        if (searchInput === '') {
+            setSearchParams()
+            setSearchMoviesList([])
+        } else {
+            setSearchParams({ search: searchInput })
+
+            const delayDebounceFn = setTimeout(() => {
+                setIsLoading(true)
+                getMoviesBySearch(searchInput)
+                    .then((data) => {
+                        setSearchMoviesList(data)
+                        clearTimeout(delayDebounceFn)
+                        setIsLoading(false)
+                    })
+                    .catch(() => {
+                        clearTimeout(delayDebounceFn)
+                        setIsLoading(false)
+                    })
+            }, 1500)
+
+            return () => clearTimeout(delayDebounceFn)
+        }
+        // eslint-disable-next-line
+    }, [searchInput])
 
     return (
         <Grid container spacing={2} sx={{ margin: '1rem 0' }}>
