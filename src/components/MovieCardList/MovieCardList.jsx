@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import Grid from '@mui/material/Grid2'
 
 import MovieCard from '../MovieCard/MovieCard'
@@ -10,9 +10,13 @@ import Error from '../Error/Error'
 // http://localhost:5173/?search=matrix
 
 const MovieCardList = ({ isLoading, setIsLoading }) => {
-    const [error, setError] = useState(null)
-    const { searchMoviesList, topRatedMoviesList, setTopRatedMoviesList } =
-        useStoreContext()
+    const {
+        error,
+        setError,
+        searchMoviesList,
+        topRatedMoviesList,
+        setTopRatedMoviesList,
+    } = useStoreContext()
 
     useEffect(() => {
         if (!topRatedMoviesList.length) {

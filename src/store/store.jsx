@@ -9,6 +9,7 @@ export const useStoreContext = () => {
 }
 
 const initialState = {
+    error: null,
     searchInput: '',
     searchMoviesList: [],
     topRatedMoviesList: [],
@@ -16,6 +17,12 @@ const initialState = {
 
 function reducer(state, action) {
     switch (action.type) {
+        case 'set_error':
+            return {
+                ...state,
+                error: action.payload,
+            }
+
         case 'set_search_input':
             return {
                 ...state,
@@ -37,8 +44,14 @@ function reducer(state, action) {
 }
 
 export const StoreContextProvider = ({ children }) => {
-    const [{ searchInput, searchMoviesList, topRatedMoviesList }, dispatch] =
-        useReducer(reducer, initialState)
+    const [
+        { error, searchInput, searchMoviesList, topRatedMoviesList },
+        dispatch,
+    ] = useReducer(reducer, initialState)
+
+    const setError = useCallback((error) => {
+        dispatch({ type: 'set_error', payload: error })
+    }, [])
 
     const setSearchInput = useCallback((input) => {
         dispatch({ type: 'set_search_input', payload: input })
@@ -53,6 +66,8 @@ export const StoreContextProvider = ({ children }) => {
     }, [])
 
     const contextValue = {
+        error,
+        setError,
         searchInput,
         setSearchInput,
         searchMoviesList,
