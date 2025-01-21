@@ -58,7 +58,9 @@ const HomeSearchBlock = ({ isLoading, setIsLoading }) => {
                     id="search"
                     margin="normal"
                     value={searchInput}
-                    onChange={(e) => setSearchInput(e.target.value)}
+                    onChange={(e) => {
+                        setSearchInput(e.target.value)
+                    }}
                 />
                 <LinearProgress
                     sx={{
