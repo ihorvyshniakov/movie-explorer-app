@@ -29,14 +29,42 @@ export const getPopularMovies = () =>
 export const getTopRatedMovies = () =>
     getMoviesListWithURL('https://api.themoviedb.org/3/movie/top_rated')
 
-const getMoviesListWithURL = (URL) =>
+const getMoviesListWithURL = async (URL) =>
     fetch(URL, options)
         .then((res) => {
             if (!res.ok) {
-                throw new Error(res.status)
+                // 400, 500 errors (wrong Endpoint)
+                throw new Error(
+                    JSON.stringify({
+                        status: res.status,
+                        url: res.url,
+                    })
+                )
             }
             return res.json()
         })
         .then((res) => {
-            return res.results
+            if (res.results) {
+                return res.results
+            }
+            // wrong response data
+            throw new Error(JSON.stringify(res))
         })
+        .catch((error) => {
+            // network error
+            throw new Error(
+                JSON.stringify({
+                    status: error.message,
+                })
+            )
+        })
+
+// Response for test handling errors (wrong data)
+// eslint-disable-next-line
+const mockInvalidResponse = async () =>
+    new Promise((resolve) =>
+        resolve({
+            json: () => Promise.resolve({ invalidKey: 'Unexpected data' }),
+            ok: true,
+        })
+    )

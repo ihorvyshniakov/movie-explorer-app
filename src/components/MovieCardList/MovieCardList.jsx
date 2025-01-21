@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react'
-import { Alert } from '@mui/material'
 import Grid from '@mui/material/Grid2'
 
 import MovieCard from '../MovieCard/MovieCard'
 import { useStoreContext } from '../../store/store'
 import { getTopRatedMovies } from '../../store/https'
 import { scrollToElementIfItWasOpened } from '../../utils/utils'
+import Error from '../Error/Error'
 
 // http://localhost:5173/?search=matrix
 
@@ -25,7 +25,10 @@ const MovieCardList = ({ isLoading, setIsLoading }) => {
                 })
                 .catch((error) => {
                     setIsLoading(false)
-                    setError(error.message)
+                    setError({
+                        error: error.message,
+                        message: 'Top rated movies request failed',
+                    })
                 })
         }
         // eslint-disable-next-line
@@ -36,11 +39,7 @@ const MovieCardList = ({ isLoading, setIsLoading }) => {
     }
 
     if (error) {
-        return (
-            <Alert severity="error" sx={{ marginBottom: '1rem' }}>
-                {error}
-            </Alert>
-        )
+        return <Error {...error} />
     }
 
     return (
