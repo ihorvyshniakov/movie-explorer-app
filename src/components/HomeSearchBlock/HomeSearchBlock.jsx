@@ -1,5 +1,11 @@
-import { useEffect } from 'react'
-import { LinearProgress, TextField, Typography } from '@mui/material'
+import { useCallback, useEffect, useRef } from 'react'
+import {
+    Button,
+    LinearProgress,
+    Stack,
+    TextField,
+    Typography,
+} from '@mui/material'
 import Grid from '@mui/material/Grid2'
 import { useSearchParams } from 'react-router'
 
@@ -10,6 +16,21 @@ const HomeSearchBlock = ({ isLoading, setIsLoading }) => {
     const { searchInput, setSearchInput, setSearchMoviesList } =
         useStoreContext()
     const [searchParams, setSearchParams] = useSearchParams()
+    const inputRef = useRef(null)
+
+    const getSearchMovies = useCallback(() => {
+        setIsLoading(true)
+        getMoviesBySearch(searchInput)
+            .then((data) => {
+                setSearchMoviesList(data)
+                setIsLoading(false)
+            })
+            .catch(() => {
+                setIsLoading(false)
+                throw new Error('Search movies request failed')
+            })
+        // eslint-disable-next-line
+    }, [searchInput])
 
     useEffect(() => {
         // return to Home
@@ -26,25 +47,19 @@ const HomeSearchBlock = ({ isLoading, setIsLoading }) => {
             setSearchMoviesList([])
         } else {
             setSearchParams({ search: searchInput })
-
-            const delayDebounceFn = setTimeout(() => {
-                setIsLoading(true)
-                getMoviesBySearch(searchInput)
-                    .then((data) => {
-                        setSearchMoviesList(data)
-                        clearTimeout(delayDebounceFn)
-                        setIsLoading(false)
-                    })
-                    .catch(() => {
-                        clearTimeout(delayDebounceFn)
-                        setIsLoading(false)
-                    })
-            }, 1500)
-
-            return () => clearTimeout(delayDebounceFn)
         }
         // eslint-disable-next-line
     }, [searchInput])
+
+    useEffect(() => {
+        const searchInputFromURL = searchParams.get('search')
+
+        if (searchInputFromURL?.length) {
+            setIsLoading(true)
+            getSearchMovies()
+        }
+        // eslint-disable-next-line
+    }, [])
 
     return (
         <Grid container spacing={2} sx={{ margin: '1rem 0' }}>
@@ -52,16 +67,30 @@ const HomeSearchBlock = ({ isLoading, setIsLoading }) => {
                 <Typography variant="h3" component="h3" align="center">
                     Search your favorite movie!
                 </Typography>
-                <TextField
-                    fullWidth
-                    label="Search..."
-                    id="search"
-                    margin="normal"
-                    value={searchInput}
-                    onChange={(e) => {
-                        setSearchInput(e.target.value)
+            </Grid>
+            <Grid size={12}>
+                <form
+                    onSubmit={(e) => {
+                        e.preventDefault()
+                        getSearchMovies()
                     }}
-                />
+                >
+                    <Stack direction="row" spacing={2}>
+                        <TextField
+                            fullWidth
+                            label="Search..."
+                            id="search"
+                            ref={inputRef}
+                            value={searchInput}
+                            onChange={(e) => setSearchInput(e.target.value)}
+                        />
+                        <Button variant="contained" type="submit">
+                            FIND
+                        </Button>
+                    </Stack>
+                </form>
+            </Grid>
+            <Grid size={12}>
                 <LinearProgress
                     sx={{
                         opacity: isLoading ? '1' : '0',

@@ -9,7 +9,7 @@ import { scrollToElementIfItWasOpened } from '../../utils/utils'
 
 // http://localhost:5173/?search=matrix
 
-const MovieCardList = ({ setIsLoading }) => {
+const MovieCardList = ({ isLoading, setIsLoading }) => {
     const [error, setError] = useState(null)
     const { searchMoviesList, topRatedMoviesList, setTopRatedMoviesList } =
         useStoreContext()
@@ -30,6 +30,10 @@ const MovieCardList = ({ setIsLoading }) => {
         }
         // eslint-disable-next-line
     }, [])
+
+    if (isLoading) {
+        return null
+    }
 
     if (error) {
         return (

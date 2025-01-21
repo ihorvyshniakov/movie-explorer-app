@@ -19,16 +19,14 @@ import ScrollTopButton from './components/ScrollTopButton/ScrollTopButton'
 // + Using API (https://developer.themoviedb.org/reference/intro/getting-started)
 
 // TODO 👇
-// - Filter by category (comedy/horrors/action)
 // ? Movie page is a modal
-// - remove all inline styles
+// - Filter by category (comedy/horrors/action)
 // - Reload: same search input
-// - error handling
 // - preloader for cards
 
 //! Bugs
 // - 'abudabi' request wrong top rated values
-// [FIXED] if return from MoviePage to Home -> wrong result + extra request
+// - error handling
 
 function App() {
     return (

@@ -11,7 +11,7 @@ const Home = () => {
                 isLoading={isLoading}
                 setIsLoading={setIsLoading}
             />
-            <MovieCardList setIsLoading={setIsLoading} />
+            <MovieCardList isLoading={isLoading} setIsLoading={setIsLoading} />
         </>
     )
 }
