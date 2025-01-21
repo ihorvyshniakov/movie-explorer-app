@@ -13,7 +13,7 @@ const Error = ({ error, message }) => {
     }
 
     return (
-        <Alert severity="error" sx={{ marginBottom: '1rem' }}>
+        <Alert severity="error" sx={{ margin: '1rem 0' }}>
             <AlertTitle>Error{status ? ` - ${status}` : null}</AlertTitle>
             <Typography component="pre">{message}</Typography>
             <br />

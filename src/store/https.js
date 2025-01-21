@@ -9,14 +9,24 @@ const options = {
 }
 
 export const getMovieDetailsById = (movieID) =>
-    fetch(`https://api.themoviedb.org/3/movie/${movieID}`, options).then(
-        (res) => {
+    fetch(`https://api.themoviedb.org/3/movie/${movieID}`, options)
+        .then((res) => {
             if (!res.ok) {
                 throw new Error(res.status)
             }
             return res.json()
-        }
-    )
+        })
+        .then((res) => {
+            if (res.overview) {
+                return res
+            }
+            // wrong response data
+            throw new Error(JSON.stringify(res))
+        })
+        .catch((error) => {
+            // network error
+            throw new Error(error.message)
+        })
 
 export const getMoviesBySearch = (searchInput) =>
     getMoviesListWithURL(

@@ -1,4 +1,4 @@
-import { Alert, AlertTitle, Chip, Stack, Typography } from '@mui/material'
+import { Chip, Stack, Typography } from '@mui/material'
 import Grid from '@mui/material/Grid2'
 import StarsIcon from '@mui/icons-material/Stars'
 import { useEffect, useState } from 'react'
@@ -8,11 +8,13 @@ import { getMovieDetailsById } from '../../store/https'
 import CircleLoader from '../../components/CircleLoader/CircleLoader'
 import MovieDetailsTable from '../../components/MovieDetailsTable/MovieDetailsTable'
 import Image from '../../components/Image/Image'
+import { useStoreContext } from '../../store/store'
+import Error from '../../components/Error/Error'
 
 const MoviePage = () => {
+    const { error, setError } = useStoreContext()
     const [movieDetails, setMovieDetails] = useState(null)
     const [isLoading, setIsLoading] = useState(false)
-    const [error, setError] = useState(null)
 
     const { movieId } = useParams()
 
@@ -27,7 +29,11 @@ const MoviePage = () => {
                 })
                 .catch((error) => {
                     setIsLoading(false)
-                    setError(error.message)
+                    setError({
+                        error: error.message,
+                        message:
+                            'Whoops, movie details request failed or \nDatabase do not have an extra info 🤷‍♂️',
+                    })
                 })
         }
     }, [movieId])
@@ -38,13 +44,7 @@ const MoviePage = () => {
     }, [])
 
     if (error) {
-        return (
-            <Alert severity="error" sx={{ margin: '4rem 0 0' }}>
-                <AlertTitle>{error || 'Whoops...'}</AlertTitle>
-                Whoops, movie details request failed or Database do not have an
-                extra info 🤷‍♂️
-            </Alert>
-        )
+        return <Error {...error} />
     }
 
     if (movieDetails) {

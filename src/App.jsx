@@ -26,7 +26,6 @@ import ScrollTopButton from './components/ScrollTopButton/ScrollTopButton'
 
 //! Bugs
 // - 'abudabi' request wrong top rated values
-// - error handling
 
 function App() {
     return (
