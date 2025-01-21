@@ -1,4 +1,4 @@
-import { createContext, useContext, useReducer } from 'react'
+import { createContext, useCallback, useContext, useReducer } from 'react'
 
 const StoreContext = createContext(null)
 
@@ -40,17 +40,17 @@ export const StoreContextProvider = ({ children }) => {
     const [{ searchInput, searchMoviesList, topRatedMoviesList }, dispatch] =
         useReducer(reducer, initialState)
 
-    const setSearchInput = (input) => {
+    const setSearchInput = useCallback((input) => {
         dispatch({ type: 'set_search_input', payload: input })
-    }
+    }, [])
 
-    const setSearchMoviesList = (input) => {
+    const setSearchMoviesList = useCallback((input) => {
         dispatch({ type: 'set_movies_based_on_search', payload: input })
-    }
+    }, [])
 
-    const setTopRatedMoviesList = (moviesList) => {
+    const setTopRatedMoviesList = useCallback((moviesList) => {
         dispatch({ type: 'set_top_rated_movies_list', payload: moviesList })
-    }
+    }, [])
 
     const contextValue = {
         searchInput,
