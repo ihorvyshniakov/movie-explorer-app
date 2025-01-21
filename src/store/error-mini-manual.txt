@@ -1,0 +1,137 @@
+а як зімітувати різні види помилок для запиту, щоб перевірити чи всі помилки коректно виводяться
+
+ChatGPT said:
+ChatGPT
+Для тестування різних видів помилок в запитах ти можеш симулювати різні сценарії. Ось кілька підходів для цього:
+
+1. Симуляція HTTP-помилок (404, 500 тощо)
+Замість реальної URL використовуй fetch із фейковими або некоректними шляхами.
+
+const getMoviesListWithURL = async (URL) =>
+    fetch(URL, options)
+        .then((res) => {
+            if (!res.ok) {
+                throw new Error(
+                    JSON.stringify({
+                        status: res.status,
+                        url: res.url,
+                    })
+                );
+            }
+            return res.json();
+        })
+        .then((res) => res.results);
+
+// Симуляція помилки 404
+getMoviesListWithURL('https://api.themoviedb.org/3/movie/nonexistent')
+    .catch((err) => console.error('Simulated HTTP Error:', err));
+
+// Симуляція помилки 500
+getMoviesListWithURL('https://httpstat.us/500')
+    .catch((err) => console.error('Simulated HTTP Error:', err));
+
+2. Симуляція мережевої помилки
+Використовуй фейковий домен для перевірки поведінки, коли сервер недоступний.
+
+getMoviesListWithURL('https://nonexistent.domain.com')
+    .catch((err) => console.error('Simulated Network Error:', err));
+
+3. Симуляція таймауту
+Можна створити таймаут для fetch, якщо сервер не відповідає вчасно.
+
+const fetchWithTimeout = (URL, options, timeout = 5000) =>
+    Promise.race([
+        fetch(URL, options),
+        new Promise((_, reject) =>
+            setTimeout(() => reject(new Error('Timeout Error')), timeout)
+        ),
+    ]);
+
+const getMoviesListWithTimeout = async (URL) =>
+    fetchWithTimeout(URL, options)
+        .then((res) => {
+            if (!res.ok) {
+                throw new Error(
+                    JSON.stringify({
+                        status: res.status,
+                        url: res.url,
+                    })
+                );
+            }
+            return res.json();
+        })
+        .catch((err) => {
+            console.error('Simulated Timeout Error:', err);
+            throw err;
+        });
+
+getMoviesListWithTimeout('https://api.themoviedb.org/3/movie/top_rated')
+    .catch((err) => console.error('Error:', err));
+
+4. Симуляція некоректних даних із сервера
+Можна використовувати моки або створити тестовий сервер, який повертає несподіваний формат даних.
+
+const mockInvalidResponse = async () =>
+    new Promise((resolve) =>
+        resolve({
+            json: () => Promise.resolve({ invalidKey: 'Unexpected data' }),
+            ok: true,
+        })
+    );
+
+const getMoviesListWithMock = async () =>
+    mockInvalidResponse()
+        .then((res) => {
+            if (!res.ok) {
+                throw new Error('HTTP Error');
+            }
+            return res.json();
+        })
+        .then((res) => {
+            if (!res.results) {
+                throw new Error('Invalid response structure');
+            }
+            return res.results;
+        })
+        .catch((err) => console.error('Simulated Invalid Response:', err));
+
+getMoviesListWithMock();
+
+5. Симуляція кидання помилок вручну
+Прямо виклич throw, щоб протестувати обробку помилок.
+
+const getMoviesListWithManualError = async () => {
+    try {
+        throw new Error('Manual error for testing');
+    } catch (err) {
+        console.error('Simulated Manual Error:', err);
+        throw err;
+    }
+};
+
+getMoviesListWithManualError().catch((err) =>
+    console.error('Caught Manual Error:', err)
+);
+
+6. Тестування через Jest або інші тестові фреймворки
+Використовуй мокінг функцій fetch для тестування різних сценаріїв.
+
+jest.mock('node-fetch', () => jest.fn());
+
+const fetch = require('node-fetch');
+
+test('Simulate 404 Error', async () => {
+    fetch.mockImplementationOnce(() =>
+        Promise.resolve({
+            ok: false,
+            status: 404,
+            url: 'https://example.com',
+        })
+    );
+
+    await getMoviesListWithURL('https://example.com').catch((err) =>
+        expect(err.message).toContain('404')
+    );
+});
+
+Ці методи дозволяють протестувати різні помилки, щоб упевнитися, що твоя програма правильно їх обробляє.

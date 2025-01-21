@@ -13,7 +13,7 @@ import { useStoreContext } from '../../store/store'
 import { getMoviesBySearch } from '../../store/https'
 
 const HomeSearchBlock = ({ isLoading, setIsLoading }) => {
-    const { searchInput, setSearchInput, setSearchMoviesList } =
+    const { setError, searchInput, setSearchInput, setSearchMoviesList } =
         useStoreContext()
     const [searchParams, setSearchParams] = useSearchParams()
     const inputRef = useRef(null)
@@ -24,10 +24,14 @@ const HomeSearchBlock = ({ isLoading, setIsLoading }) => {
             .then((data) => {
                 setSearchMoviesList(data)
                 setIsLoading(false)
+                setError(null)
             })
-            .catch(() => {
+            .catch((error) => {
                 setIsLoading(false)
-                throw new Error('Search movies request failed')
+                setError({
+                    error: error.message,
+                    message: 'Search movies request failed',
+                })
             })
         // eslint-disable-next-line
     }, [searchInput])
