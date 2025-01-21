@@ -1,54 +1,21 @@
 import { useEffect, useState } from 'react'
-import { useSearchParams } from 'react-router'
 import { Alert } from '@mui/material'
 import Grid from '@mui/material/Grid2'
 
 import MovieCard from '../MovieCard/MovieCard'
 import { useStoreContext } from '../../store/store'
-import { getMoviesBySearch, getTopRatedMovies } from '../../store/https'
+import { getTopRatedMovies } from '../../store/https'
 import { scrollToElementIfItWasOpened } from '../../utils/utils'
 
 // http://localhost:5173/?search=matrix
 
 const MovieCardList = ({ setIsLoading }) => {
-    const {
-        setSearchInput,
-        searchMoviesList,
-        setSearchMoviesList,
-        topRatedMoviesList,
-        setTopRatedMoviesList,
-    } = useStoreContext()
-    let [searchParams] = useSearchParams()
-
     const [error, setError] = useState(null)
+    const { searchMoviesList, topRatedMoviesList, setTopRatedMoviesList } =
+        useStoreContext()
 
-    // if SEARCH -> getSearchMovies
-    // else -> getTopRatedMovies
     useEffect(() => {
-        const searchInputFromURL = searchParams.get('search')
-
-        // return 'back' from Movie page
-        if (searchMoviesList.length) {
-            return
-        }
-
-        if (searchInputFromURL) {
-            setSearchInput(searchInputFromURL)
-
-            setIsLoading(true)
-            getMoviesBySearch(searchInputFromURL)
-                .then((movies) => {
-                    setSearchMoviesList(movies)
-                    setIsLoading(false)
-                    setError(null)
-                })
-                .catch((error) => {
-                    setIsLoading(false)
-                    setError(error.message)
-                })
-        } else {
-            setSearchMoviesList([])
-
+        if (!topRatedMoviesList.length) {
             setIsLoading(true)
             getTopRatedMovies()
                 .then((movies) => {

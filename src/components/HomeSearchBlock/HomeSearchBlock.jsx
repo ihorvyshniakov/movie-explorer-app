@@ -13,33 +13,33 @@ const HomeSearchBlock = ({ isLoading, setIsLoading }) => {
         setSearchMoviesList,
     } = useStoreContext()
 
-    useEffect(() => {
-        // return 'back' from Movie page
-        if (searchMoviesList.length) {
-            return
-        }
+    // useEffect(() => {
+    //     // return 'back' from Movie page
+    //     if (searchMoviesList.length) {
+    //         return
+    //     }
 
-        if (searchInput === '') {
-            setSearchMoviesList([])
-        }
-        if (searchInput.length) {
-            const delayDebounceFn = setTimeout(() => {
-                setIsLoading(true)
-                getMoviesBySearch(searchInput)
-                    .then((data) => {
-                        setSearchMoviesList(data)
-                        clearTimeout(delayDebounceFn)
-                        setIsLoading(false)
-                    })
-                    .catch(() => {
-                        clearTimeout(delayDebounceFn)
-                        setIsLoading(false)
-                    })
-            }, 1500)
+    //     if (searchInput === '') {
+    //         setSearchMoviesList([])
+    //     }
+    //     if (searchInput.length) {
+    //         const delayDebounceFn = setTimeout(() => {
+    //             setIsLoading(true)
+    //             getMoviesBySearch(searchInput)
+    //                 .then((data) => {
+    //                     setSearchMoviesList(data)
+    //                     clearTimeout(delayDebounceFn)
+    //                     setIsLoading(false)
+    //                 })
+    //                 .catch(() => {
+    //                     clearTimeout(delayDebounceFn)
+    //                     setIsLoading(false)
+    //                 })
+    //         }, 1500)
 
-            return () => clearTimeout(delayDebounceFn)
-        }
-    }, [searchInput])
+    //         return () => clearTimeout(delayDebounceFn)
+    //     }
+    // }, [searchInput])
 
     return (
         <Grid container spacing={2} sx={{ margin: '1rem 0' }}>
