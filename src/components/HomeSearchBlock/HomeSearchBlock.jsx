@@ -49,6 +49,8 @@ const HomeSearchBlock = ({ isLoading, setIsLoading }) => {
 
     useEffect(
         function handlePageOnURLSearchChanged() {
+            console.log(searchParams)
+
             const searchInputFromURL = searchParams.get('search')
 
             if (!searchInputFromURL) {
@@ -62,11 +64,11 @@ const HomeSearchBlock = ({ isLoading, setIsLoading }) => {
 
     useEffect(
         function handleInputChange() {
-            if (searchInput === '') {
+            const searchInputFromURL = searchParams.get('search') || ''
+
+            if (searchInput === '' && !searchInputFromURL.length) {
                 setSearchParams()
                 setSearchMoviesList([])
-            } else {
-                setSearchParams({ search: searchInput })
             }
         },
         [searchInput]
@@ -93,6 +95,7 @@ const HomeSearchBlock = ({ isLoading, setIsLoading }) => {
                 <form
                     onSubmit={(e) => {
                         e.preventDefault()
+                        setSearchParams({ search: searchInput })
                         getSearchMovies()
                     }}
                 >
