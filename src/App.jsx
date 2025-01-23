@@ -18,13 +18,16 @@ import ScrollTopButton from './components/ScrollTopButton/ScrollTopButton'
 // + Usage of all hooks (useState, useEffect, useRef, useReducer, useContext)
 // + Using API (https://developer.themoviedb.org/reference/intro/getting-started)
 
+//* DONE
+// - Стікі хедер
+// - [BUG] 'abudabi' request wrong top rated values
+
 // TODO 👇
 // ? Movie page is a modal
 // - Filter by category (comedy/horrors/action)
 // - Reload: same search input
 // - clean + refactor
 
-// + Стікі хедер
 // - Темна/світла тема
 // - Своя кольорова тема для додатку
 // - Анімації
@@ -33,9 +36,6 @@ import ScrollTopButton from './components/ScrollTopButton/ScrollTopButton'
 // - Може додай .finally() to fetch
 // - Apply useMemo, useCallback when needed
 // - Як оптимізувати додаток? Девтулз кольорами рендери, консоль на зменшення рендерів
-
-//! Bugs
-// - 'abudabi' request wrong top rated values
 
 function App() {
     return (

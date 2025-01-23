@@ -24,7 +24,14 @@ const HomeSearchBlock = ({ isLoading, setIsLoading }) => {
             .then((data) => {
                 setSearchMoviesList(data)
                 setIsLoading(false)
-                setError(null)
+                if (data.length) {
+                    setError(null)
+                } else {
+                    setError({
+                        error: '0 results',
+                        message: `We didn't find any movie with "${searchInput}" name \nPlease try to find other movies :)`,
+                    })
+                }
             })
             .catch((error) => {
                 setIsLoading(false)
