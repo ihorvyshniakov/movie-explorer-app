@@ -40,6 +40,8 @@ function reducer(state, action) {
                 ...state,
                 searchMoviesList: action.payload,
             }
+        default:
+            return state
     }
 }
 

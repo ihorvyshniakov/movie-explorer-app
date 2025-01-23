@@ -26,8 +26,9 @@ import ScrollTopButton from './components/ScrollTopButton/ScrollTopButton'
 // - [BUG] Removed extra request topRatedMovies while onLoad with search params
 // - [BUG] Change search URL only when start fetching
 // - [BUG] Return from home to search params page -> show top rated
-// - [BUG]
+// - [BUG] When deleted input='' -> should reset results / but onLoad get search movies by search URL
 // - Додати .finally() to fetch
+// - Apply useMemo, useCallback when needed
 
 // TODO 👇
 // ? Movie page is a modal
@@ -39,7 +40,6 @@ import ScrollTopButton from './components/ScrollTopButton/ScrollTopButton'
 // - Анімації
 // - Початковий екран з привітанням і переліком того, що я використовую та демонструю у цьому проекті
 // - Футер
-// - Apply useMemo, useCallback when needed
 // - Як оптимізувати додаток? Девтулз кольорами рендери, консоль на зменшення рендерів
 
 function App() {

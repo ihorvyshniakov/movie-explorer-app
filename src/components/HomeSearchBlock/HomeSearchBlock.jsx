@@ -45,7 +45,7 @@ const HomeSearchBlock = ({ isLoading, setIsLoading }) => {
                     setIsLoading(false)
                 })
         },
-        [searchInput]
+        [searchInput, setError, setSearchMoviesList, setIsLoading]
     )
 
     const handleInputChange = (e) => {
@@ -58,19 +58,17 @@ const HomeSearchBlock = ({ isLoading, setIsLoading }) => {
         }
     }
 
-    useEffect(
-        function handlePageOnURLSearchChanged() {
-            const searchInputFromURL = searchParams.get('search')
+    useEffect(() => {
+        const searchInputFromURL = searchParams.get('search')
 
-            if (!searchInputFromURL) {
-                setSearchInput('')
-            } else {
-                setSearchInput(searchInputFromURL)
-                getSearchMovies(searchInputFromURL)
-            }
-        },
-        [searchParams, setSearchInput]
-    )
+        if (!searchInputFromURL) {
+            setSearchInput('')
+        } else {
+            setSearchInput(searchInputFromURL)
+            getSearchMovies(searchInputFromURL)
+        }
+        // eslint-disable-next-line
+    }, [searchParams, setSearchInput])
 
     return (
         <Grid container spacing={2} sx={{ margin: '1rem 0' }}>
@@ -83,7 +81,9 @@ const HomeSearchBlock = ({ isLoading, setIsLoading }) => {
                 <form
                     onSubmit={(e) => {
                         e.preventDefault()
-                        setSearchParams({ search: searchInput })
+                        if (searchInput.trim()) {
+                            setSearchParams({ search: searchInput.trim() })
+                        }
                     }}
                 >
                     <Stack direction="row" spacing={2}>
