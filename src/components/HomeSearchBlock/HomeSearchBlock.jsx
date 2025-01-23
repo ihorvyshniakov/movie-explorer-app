@@ -48,7 +48,7 @@ const HomeSearchBlock = ({ isLoading, setIsLoading }) => {
     )
 
     useEffect(
-        function handlePageOnLoad() {
+        function handlePageOnURLSearchChanged() {
             const searchInputFromURL = searchParams.get('search')
 
             if (!searchInputFromURL) {

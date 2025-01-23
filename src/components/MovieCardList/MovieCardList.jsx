@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useCallback, useEffect } from 'react'
 import Grid from '@mui/material/Grid2'
 
 import MovieCard from '../MovieCard/MovieCard'
@@ -19,22 +19,26 @@ const MovieCardList = ({ isLoading, setIsLoading }) => {
         setTopRatedMoviesList,
     } = useStoreContext()
 
+    const fetchTopRatedMovies = useCallback(() => {
+        setIsLoading(true)
+        getTopRatedMovies()
+            .then((movies) => {
+                setTopRatedMoviesList(movies)
+                setIsLoading(false)
+                setError(null)
+            })
+            .catch((error) => {
+                setIsLoading(false)
+                setError({
+                    error: error.message,
+                    message: 'Top rated movies request failed',
+                })
+            })
+    }, [])
+
     useEffect(() => {
         if (!topRatedMoviesList.length) {
-            setIsLoading(true)
-            getTopRatedMovies()
-                .then((movies) => {
-                    setTopRatedMoviesList(movies)
-                    setIsLoading(false)
-                    setError(null)
-                })
-                .catch((error) => {
-                    setIsLoading(false)
-                    setError({
-                        error: error.message,
-                        message: 'Top rated movies request failed',
-                    })
-                })
+            fetchTopRatedMovies()
         }
         // eslint-disable-next-line
     }, [])

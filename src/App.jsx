@@ -27,6 +27,7 @@ import ScrollTopButton from './components/ScrollTopButton/ScrollTopButton'
 // ? Movie page is a modal
 // - Filter by category (comedy/horrors/action)
 // - clean + refactor
+// - [BUG] Return from home to search params page -> show top rated
 
 // - Темна/світла тема
 // - Своя кольорова тема для додатку
