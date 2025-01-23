@@ -48,6 +48,16 @@ const HomeSearchBlock = ({ isLoading, setIsLoading }) => {
         [searchInput]
     )
 
+    const handleInputChange = (e) => {
+        const input = e.target.value
+
+        setSearchInput(input)
+        if (input === '') {
+            setSearchParams()
+            setSearchMoviesList([])
+        }
+    }
+
     useEffect(
         function handlePageOnURLSearchChanged() {
             const searchInputFromURL = searchParams.get('search')
@@ -60,18 +70,6 @@ const HomeSearchBlock = ({ isLoading, setIsLoading }) => {
             }
         },
         [searchParams, setSearchInput]
-    )
-
-    useEffect(
-        function handleInputChange() {
-            const searchInputFromURL = searchParams.get('search') || ''
-
-            if (searchInput === '' && !searchInputFromURL.length) {
-                setSearchParams()
-                setSearchMoviesList([])
-            }
-        },
-        [searchInput]
     )
 
     return (
@@ -95,7 +93,7 @@ const HomeSearchBlock = ({ isLoading, setIsLoading }) => {
                             id="search"
                             ref={inputRef}
                             value={searchInput}
-                            onChange={(e) => setSearchInput(e.target.value)}
+                            onChange={handleInputChange}
                         />
                         <Button variant="contained" type="submit">
                             FIND

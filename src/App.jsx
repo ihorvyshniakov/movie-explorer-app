@@ -26,6 +26,7 @@ import ScrollTopButton from './components/ScrollTopButton/ScrollTopButton'
 // - [BUG] Removed extra request topRatedMovies while onLoad with search params
 // - [BUG] Change search URL only when start fetching
 // - [BUG] Return from home to search params page -> show top rated
+// - [BUG]
 // - Додати .finally() to fetch
 
 // TODO 👇
