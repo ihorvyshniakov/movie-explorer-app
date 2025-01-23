@@ -24,6 +24,16 @@ import ScrollTopButton from './components/ScrollTopButton/ScrollTopButton'
 // - Reload: same search input
 // - clean + refactor
 
+// + Стікі хедер
+// - Темна/світла тема
+// - Своя кольорова тема для додатку
+// - Анімації
+// - Початковий екран з привітанням і переліком того, що я використовую та демонструю у цьому проекті
+// - Футер
+// - Може додай .finally() to fetch
+// - Apply useMemo, useCallback when needed
+// - Як оптимізувати додаток? Девтулз кольорами рендери, консоль на зменшення рендерів
+
 //! Bugs
 // - 'abudabi' request wrong top rated values
 

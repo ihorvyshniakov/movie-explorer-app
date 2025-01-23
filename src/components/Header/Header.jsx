@@ -1,5 +1,4 @@
 import AppBar from '@mui/material/AppBar'
-import Box from '@mui/material/Box'
 import Toolbar from '@mui/material/Toolbar'
 import IconButton from '@mui/material/IconButton'
 import Typography from '@mui/material/Typography'
@@ -9,36 +8,34 @@ import Link from '../Link/Link'
 
 const Header = (props) => {
     return (
-        <Box sx={{ flexGrow: 1 }} {...props}>
-            <AppBar position="static">
-                <Toolbar>
-                    <Link
-                        url=""
-                        sx={{
-                            flexGrow: 1,
-                        }}
+        <AppBar position="sticky" {...props}>
+            <Toolbar>
+                <Link
+                    url=""
+                    sx={{
+                        flexGrow: 1,
+                    }}
+                >
+                    <Typography
+                        align="center"
+                        variant="h6"
+                        noWrap
+                        component="p"
+                        sx={{ userSelect: 'none' }}
                     >
-                        <Typography
-                            align="center"
-                            variant="h6"
-                            noWrap
-                            component="p"
-                            sx={{ userSelect: 'none' }}
-                        >
-                            Movie Explorer
-                        </Typography>
-                    </Link>
-                    <IconButton
-                        size="large"
-                        aria-label="github link"
-                        color="inherit"
-                        href="#"
-                    >
-                        <GitHubIcon />
-                    </IconButton>
-                </Toolbar>
-            </AppBar>
-        </Box>
+                        Movie Explorer
+                    </Typography>
+                </Link>
+                <IconButton
+                    size="large"
+                    aria-label="github link"
+                    color="inherit"
+                    href="#"
+                >
+                    <GitHubIcon />
+                </IconButton>
+            </Toolbar>
+        </AppBar>
     )
 }
 
