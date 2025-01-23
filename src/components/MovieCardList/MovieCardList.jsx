@@ -1,5 +1,6 @@
 import { useCallback, useEffect } from 'react'
 import Grid from '@mui/material/Grid2'
+import { useSearchParams } from 'react-router'
 
 import MovieCard from '../MovieCard/MovieCard'
 import { useStoreContext } from '../../store/store'
@@ -7,9 +8,6 @@ import { getTopRatedMovies } from '../../store/https'
 import { scrollToElementIfItWasOpened } from '../../utils/utils'
 import Error from '../Error/Error'
 import MovieCardSkeleton from './MovieCardSkeleton'
-import { useSearchParams } from 'react-router'
-
-// http://localhost:5173/?search=matrix
 
 const MovieCardList = ({ isLoading, setIsLoading }) => {
     const {

@@ -57,6 +57,7 @@ const HomeSearchBlock = ({ isLoading, setIsLoading }) => {
                 setSearchInput('')
             } else {
                 setSearchInput(searchInputFromURL)
+                getSearchMovies(searchInputFromURL)
             }
         },
         [searchParams, setSearchInput]
@@ -74,16 +75,6 @@ const HomeSearchBlock = ({ isLoading, setIsLoading }) => {
         [searchInput]
     )
 
-    useEffect(() => {
-        const searchInputFromURL = searchParams.get('search')
-
-        if (searchInputFromURL?.length) {
-            setIsLoading(true)
-            getSearchMovies(searchInputFromURL)
-        }
-        // eslint-disable-next-line
-    }, [])
-
     return (
         <Grid container spacing={2} sx={{ margin: '1rem 0' }}>
             <Grid size={12}>
@@ -96,7 +87,6 @@ const HomeSearchBlock = ({ isLoading, setIsLoading }) => {
                     onSubmit={(e) => {
                         e.preventDefault()
                         setSearchParams({ search: searchInput })
-                        getSearchMovies()
                     }}
                 >
                     <Stack direction="row" spacing={2}>

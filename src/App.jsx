@@ -20,16 +20,17 @@ import ScrollTopButton from './components/ScrollTopButton/ScrollTopButton'
 
 //* DONE
 // - Стікі хедер
+// Routing bugs:
 // - [BUG] 'abudabi' request wrong top rated values
 // - [BUG] Reload should show movies based on search params http://localhost:5173/?search=nipple
 // - [BUG] Removed extra request topRatedMovies while onLoad with search params
 // - [BUG] Change search URL only when start fetching
+// - [BUG] Return from home to search params page -> show top rated
 
 // TODO 👇
 // ? Movie page is a modal
 // - Filter by category (comedy/horrors/action)
 // - clean + refactor
-// - [BUG] Return from home to search params page -> show top rated
 
 // - Темна/світла тема
 // - Своя кольорова тема для додатку
