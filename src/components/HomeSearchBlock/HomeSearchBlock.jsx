@@ -18,56 +18,66 @@ const HomeSearchBlock = ({ isLoading, setIsLoading }) => {
     const [searchParams, setSearchParams] = useSearchParams()
     const inputRef = useRef(null)
 
-    const getSearchMovies = useCallback(() => {
-        setIsLoading(true)
-        getMoviesBySearch(searchInput)
-            .then((data) => {
-                setSearchMoviesList(data)
-                setIsLoading(false)
-                if (data.length) {
-                    setError(null)
-                } else {
-                    setError({
-                        error: '0 results',
-                        message: `We didn't find any movie with "${searchInput}" name \nPlease try to find other movies :)`,
-                    })
-                }
-            })
-            .catch((error) => {
-                setIsLoading(false)
-                setError({
-                    error: error.message,
-                    message: 'Search movies request failed',
+    const getSearchMovies = useCallback(
+        (movieTitle = '') => {
+            const searchString = movieTitle || searchInput
+
+            setIsLoading(true)
+            getMoviesBySearch(searchString)
+                .then((data) => {
+                    setSearchMoviesList(data)
+                    setIsLoading(false)
+                    if (data.length) {
+                        setError(null)
+                    } else {
+                        setError({
+                            error: '0 results',
+                            message: `We didn't find any movie with "${searchString}" name \nPlease try to find other movies :)`,
+                        })
+                    }
                 })
-            })
-        // eslint-disable-next-line
-    }, [searchInput])
+                .catch((error) => {
+                    setIsLoading(false)
+                    setError({
+                        error: error.message,
+                        message: 'Search movies request failed',
+                    })
+                })
+        },
+        [searchInput]
+    )
 
-    useEffect(() => {
-        // return to Home
-        const searchInputFromURL = searchParams.get('search')
+    useEffect(
+        function handlePageOnLoad() {
+            const searchInputFromURL = searchParams.get('search')
 
-        if (!searchInputFromURL) {
-            setSearchInput('')
-        }
-    }, [searchParams, setSearchInput])
+            if (!searchInputFromURL) {
+                setSearchInput('')
+            } else {
+                setSearchInput(searchInputFromURL)
+            }
+        },
+        [searchParams, setSearchInput]
+    )
 
-    useEffect(() => {
-        if (searchInput === '') {
-            setSearchParams()
-            setSearchMoviesList([])
-        } else {
-            setSearchParams({ search: searchInput })
-        }
-        // eslint-disable-next-line
-    }, [searchInput])
+    useEffect(
+        function handleInputChange() {
+            if (searchInput === '') {
+                setSearchParams()
+                setSearchMoviesList([])
+            } else {
+                setSearchParams({ search: searchInput })
+            }
+        },
+        [searchInput]
+    )
 
     useEffect(() => {
         const searchInputFromURL = searchParams.get('search')
 
         if (searchInputFromURL?.length) {
             setIsLoading(true)
-            getSearchMovies()
+            getSearchMovies(searchInputFromURL)
         }
         // eslint-disable-next-line
     }, [])
