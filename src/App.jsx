@@ -22,6 +22,7 @@ import ScrollTopButton from './components/ScrollTopButton/ScrollTopButton'
 // - Стікі хедер
 // - [BUG] 'abudabi' request wrong top rated values
 // - [BUG] Reload should show movies based on search params http://localhost:5173/?search=nipple
+// - [BUG] Removed extra request topRatedMovies while onLoad with search params
 
 // TODO 👇
 // ? Movie page is a modal

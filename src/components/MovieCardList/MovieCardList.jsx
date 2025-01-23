@@ -7,6 +7,7 @@ import { getTopRatedMovies } from '../../store/https'
 import { scrollToElementIfItWasOpened } from '../../utils/utils'
 import Error from '../Error/Error'
 import MovieCardSkeleton from './MovieCardSkeleton'
+import { useSearchParams } from 'react-router'
 
 // http://localhost:5173/?search=matrix
 
@@ -18,6 +19,7 @@ const MovieCardList = ({ isLoading, setIsLoading }) => {
         topRatedMoviesList,
         setTopRatedMoviesList,
     } = useStoreContext()
+    const [searchParams] = useSearchParams()
 
     const fetchTopRatedMovies = useCallback(() => {
         setIsLoading(true)
@@ -37,11 +39,15 @@ const MovieCardList = ({ isLoading, setIsLoading }) => {
     }, [])
 
     useEffect(() => {
-        if (!topRatedMoviesList.length) {
+        const searchInputFromURL = searchParams.get('search') || ''
+        const isLoadTopRatedMovies =
+            !topRatedMoviesList.length && !searchInputFromURL.length
+
+        if (isLoadTopRatedMovies) {
             fetchTopRatedMovies()
         }
         // eslint-disable-next-line
-    }, [])
+    }, [searchParams])
 
     if (error) {
         return <Error {...error} />
