@@ -26,7 +26,6 @@ const HomeSearchBlock = ({ isLoading, setIsLoading }) => {
             getMoviesBySearch(searchString)
                 .then((data) => {
                     setSearchMoviesList(data)
-                    setIsLoading(false)
                     if (data.length) {
                         setError(null)
                     } else {
@@ -37,11 +36,13 @@ const HomeSearchBlock = ({ isLoading, setIsLoading }) => {
                     }
                 })
                 .catch((error) => {
-                    setIsLoading(false)
                     setError({
                         error: error.message,
                         message: 'Search movies request failed',
                     })
+                })
+                .finally(() => {
+                    setIsLoading(false)
                 })
         },
         [searchInput]
@@ -49,8 +50,6 @@ const HomeSearchBlock = ({ isLoading, setIsLoading }) => {
 
     useEffect(
         function handlePageOnURLSearchChanged() {
-            console.log(searchParams)
-
             const searchInputFromURL = searchParams.get('search')
 
             if (!searchInputFromURL) {

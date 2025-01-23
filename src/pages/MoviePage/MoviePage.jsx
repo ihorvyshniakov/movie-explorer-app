@@ -24,16 +24,17 @@ const MoviePage = () => {
             getMovieDetailsById(movieId)
                 .then((movieDetails) => {
                     setMovieDetails(movieDetails)
-                    setIsLoading(false)
                     setError(null)
                 })
                 .catch((error) => {
-                    setIsLoading(false)
                     setError({
                         error: error.message,
                         message:
                             'Whoops, movie details request failed or \nDatabase do not have an extra info 🤷‍♂️',
                     })
+                })
+                .finally(() => {
+                    setIsLoading(false)
                 })
         }
     }, [movieId])

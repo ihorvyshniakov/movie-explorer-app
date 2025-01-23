@@ -24,15 +24,16 @@ const MovieCardList = ({ isLoading, setIsLoading }) => {
         getTopRatedMovies()
             .then((movies) => {
                 setTopRatedMoviesList(movies)
-                setIsLoading(false)
                 setError(null)
             })
             .catch((error) => {
-                setIsLoading(false)
                 setError({
                     error: error.message,
                     message: 'Top rated movies request failed',
                 })
+            })
+            .finally(() => {
+                setIsLoading(false)
             })
     }, [])
 
