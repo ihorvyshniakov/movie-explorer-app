@@ -29,7 +29,11 @@ const ScrollTopButton = () => {
                     role="presentation"
                     sx={{ position: 'fixed', bottom: '3rem', right: '2rem' }}
                 >
-                    <Fab size="medium" aria-label="scroll back to top">
+                    <Fab
+                        size="medium"
+                        color="secondary"
+                        aria-label="scroll back to top"
+                    >
                         <KeyboardArrowUpIcon />
                     </Fab>
                 </Box>

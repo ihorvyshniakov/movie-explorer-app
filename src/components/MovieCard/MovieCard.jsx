@@ -101,7 +101,7 @@ const MovieCard = ({
                                         alignItems="center"
                                         gap={1}
                                     >
-                                        <StarsIcon sx={{ color: 'orange' }} />
+                                        <StarsIcon color="info" />
                                         <Typography variant="h6" component="p">
                                             {vote_average.toFixed(2)}
                                         </Typography>

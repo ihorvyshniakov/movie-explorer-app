@@ -71,10 +71,10 @@ const HomeSearchBlock = ({ isLoading, setIsLoading }) => {
     }, [searchParams, setSearchInput])
 
     return (
-        <Grid container spacing={2} sx={{ margin: '1rem 0' }}>
+        <Grid container spacing={2} sx={{ margin: '2rem 0 1rem' }}>
             <Grid size={12}>
-                <Typography variant="h3" component="h3" align="center">
-                    Search your favorite movie!
+                <Typography variant="h4" component="h3" align="center">
+                    Find your favorite movie 🔍
                 </Typography>
             </Grid>
             <Grid size={12}>
@@ -95,7 +95,11 @@ const HomeSearchBlock = ({ isLoading, setIsLoading }) => {
                             value={searchInput}
                             onChange={handleInputChange}
                         />
-                        <Button variant="contained" type="submit">
+                        <Button
+                            variant="contained"
+                            type="submit"
+                            color="secondary"
+                        >
                             FIND
                         </Button>
                     </Stack>

@@ -4,7 +4,6 @@ import { Container } from '@mui/material'
 import './App.css'
 
 import Header from './components/Header/Header'
-
 import MoviePage from './pages/MoviePage/MoviePage'
 import Home from './pages/Home/Home'
 import ScrollTopButton from './components/ScrollTopButton/ScrollTopButton'
@@ -19,16 +18,6 @@ import ScrollTopButton from './components/ScrollTopButton/ScrollTopButton'
 // + Using API (https://developer.themoviedb.org/reference/intro/getting-started)
 
 //* DONE
-// - Стікі хедер
-// Routing bugs:
-// - [BUG] 'abudabi' request wrong top rated values
-// - [BUG] Reload should show movies based on search params http://localhost:5173/?search=nipple
-// - [BUG] Removed extra request topRatedMovies while onLoad with search params
-// - [BUG] Change search URL only when start fetching
-// - [BUG] Return from home to search params page -> show top rated
-// - [BUG] When deleted input='' -> should reset results / but onLoad get search movies by search URL
-// - Додати .finally() to fetch
-// - Apply useMemo, useCallback when needed
 
 // TODO 👇
 // ? Movie page is a modal
@@ -36,7 +25,6 @@ import ScrollTopButton from './components/ScrollTopButton/ScrollTopButton'
 // - clean + refactor
 
 // - Темна/світла тема
-// - Своя кольорова тема для додатку
 // - Анімації
 // - Початковий екран з привітанням і переліком того, що я використовую та демонструю у цьому проекті
 // - Футер
@@ -45,7 +33,7 @@ import ScrollTopButton from './components/ScrollTopButton/ScrollTopButton'
 function App() {
     return (
         <>
-            <Header id="back-to-top-anchor" />
+            <Header />
             <main>
                 <Container maxWidth="md">
                     <Routes>

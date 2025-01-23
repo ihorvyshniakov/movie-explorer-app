@@ -8,34 +8,37 @@ import Link from '../Link/Link'
 
 const Header = (props) => {
     return (
-        <AppBar position="sticky" {...props}>
-            <Toolbar>
-                <Link
-                    url=""
-                    sx={{
-                        flexGrow: 1,
-                    }}
-                >
-                    <Typography
-                        align="center"
-                        variant="h6"
-                        noWrap
-                        component="p"
-                        sx={{ userSelect: 'none' }}
+        <>
+            <span id="back-to-top-anchor"></span>
+            <AppBar position="sticky" {...props}>
+                <Toolbar>
+                    <Link
+                        url=""
+                        sx={{
+                            flexGrow: 1,
+                        }}
                     >
-                        Movie Explorer
-                    </Typography>
-                </Link>
-                <IconButton
-                    size="large"
-                    aria-label="github link"
-                    color="inherit"
-                    href="#"
-                >
-                    <GitHubIcon />
-                </IconButton>
-            </Toolbar>
-        </AppBar>
+                        <Typography
+                            align="center"
+                            variant="h6"
+                            noWrap
+                            component="p"
+                            sx={{ userSelect: 'none' }}
+                        >
+                            Movie Explorer
+                        </Typography>
+                    </Link>
+                    <IconButton
+                        size="large"
+                        aria-label="github link"
+                        color="inherit"
+                        href="#"
+                    >
+                        <GitHubIcon />
+                    </IconButton>
+                </Toolbar>
+            </AppBar>
+        </>
     )
 }
 

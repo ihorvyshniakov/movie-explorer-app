@@ -153,7 +153,7 @@ const MoviePage = () => {
                                         alignItems="center"
                                         gap={1}
                                     >
-                                        <StarsIcon sx={{ color: 'orange' }} />
+                                        <StarsIcon color="info" />
                                         <Typography variant="h6" component="p">
                                             {vote_average.toFixed(2)}
                                             {` (${vote_count} votes)`}
@@ -170,7 +170,7 @@ const MoviePage = () => {
                                         <Chip
                                             key={id}
                                             label={name}
-                                            color="info"
+                                            color="primary"
                                         />
                                     ))}
                                 </Stack>
