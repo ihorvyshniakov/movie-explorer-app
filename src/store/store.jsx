@@ -11,6 +11,10 @@ export const useStoreContext = () => {
 const initialState = {
     error: null,
     searchInput: '',
+    modal: {
+        isOpen: false,
+        movieId: null,
+    },
     searchMoviesList: [],
     topRatedMoviesList: [],
 }
@@ -27,6 +31,15 @@ function reducer(state, action) {
             return {
                 ...state,
                 searchInput: action.payload,
+            }
+
+        case 'set_modal':
+            return {
+                ...state,
+                modal: {
+                    isOpen: !state.modal.isOpen,
+                    movieId: action.payload || null,
+                },
             }
 
         case 'set_top_rated_movies_list':
@@ -47,7 +60,7 @@ function reducer(state, action) {
 
 export const StoreContextProvider = ({ children }) => {
     const [
-        { error, searchInput, searchMoviesList, topRatedMoviesList },
+        { error, searchInput, modal, searchMoviesList, topRatedMoviesList },
         dispatch,
     ] = useReducer(reducer, initialState)
 
@@ -57,6 +70,10 @@ export const StoreContextProvider = ({ children }) => {
 
     const setSearchInput = useCallback((input) => {
         dispatch({ type: 'set_search_input', payload: input })
+    }, [])
+
+    const setModal = useCallback((movieId) => {
+        dispatch({ type: 'set_modal', payload: movieId })
     }, [])
 
     const setSearchMoviesList = useCallback((input) => {
@@ -72,6 +89,8 @@ export const StoreContextProvider = ({ children }) => {
         setError,
         searchInput,
         setSearchInput,
+        modal,
+        setModal,
         searchMoviesList,
         setSearchMoviesList,
         topRatedMoviesList,
