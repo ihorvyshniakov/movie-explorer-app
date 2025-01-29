@@ -4,7 +4,7 @@ import { Container } from '@mui/material'
 import './App.css'
 
 import Header from './components/Header/Header'
-import MoviePage from './pages/MoviePage/MoviePage'
+import Movie from './pages/Movie/Movie'
 import Home from './pages/Home/Home'
 import ScrollTopButton from './components/ScrollTopButton/ScrollTopButton'
 
@@ -41,7 +41,7 @@ function App() {
                         <Route path="movie">
                             <Route
                                 path=":movieId/:movieTitle?"
-                                element={<MoviePage />}
+                                element={<Movie />}
                             />
                         </Route>
                     </Routes>

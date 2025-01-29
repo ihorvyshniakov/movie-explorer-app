@@ -4,7 +4,7 @@ import { BrowserRouter } from 'react-router'
 import { createTheme, ThemeProvider } from '@mui/material'
 
 import App from './App.jsx'
-import { StoreContextProvider } from './store/store.jsx'
+import { StoreContextProvider } from './context/StoreContext.jsx'
 
 const theme = createTheme({
     palette: {

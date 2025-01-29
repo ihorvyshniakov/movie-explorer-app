@@ -7,6 +7,8 @@ import {
     TableRow,
 } from '@mui/material'
 
+import { formatIntoDollars } from '../../utils/utils'
+
 const tableStyles = {
     'tr, td': {
         borderBottom: '1px solid rgba(224, 224, 224, 1)',
@@ -21,15 +23,7 @@ const tableStyles = {
     },
 }
 
-const formatMoney = (amount) => {
-    function numberWithCommas(x) {
-        return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
-    }
-
-    return '$ ' + numberWithCommas(amount)
-}
-
-const MovieDetailsTable = ({ rows = [] }) => {
+const TwoColumnTable = ({ rows = [] }) => {
     if (rows.length === 0) {
         return null
     }
@@ -53,7 +47,7 @@ const MovieDetailsTable = ({ rows = [] }) => {
                             </TableCell>
                             <TableCell align="left">
                                 {Number.isInteger(row.value)
-                                    ? formatMoney(row.value)
+                                    ? formatIntoDollars(row.value)
                                     : row.value}
                             </TableCell>
                         </TableRow>
@@ -64,4 +58,4 @@ const MovieDetailsTable = ({ rows = [] }) => {
     )
 }
 
-export default MovieDetailsTable
+export default TwoColumnTable

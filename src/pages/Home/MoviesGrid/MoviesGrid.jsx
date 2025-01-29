@@ -3,13 +3,13 @@ import Grid from '@mui/material/Grid2'
 import { useSearchParams } from 'react-router'
 
 import MovieCard from '../MovieCard/MovieCard'
-import { useStoreContext } from '../../store/store'
-import { getTopRatedMovies } from '../../store/https'
-import { scrollToElementIfItWasOpened } from '../../utils/utils'
-import Error from '../Error/Error'
-import MovieCardSkeleton from './MovieCardSkeleton'
+import { useStoreContext } from '../../../context/StoreContext'
+import { getTopRatedMovies } from '../../../context/requests'
+import { scrollToElementIfItWasOpened } from '../../../utils/utils'
+import Error from '../../../components/Error/Error'
+import MoviesGridSkeleton from './MoviesGridSkeleton'
 
-const MovieCardList = ({ isLoading, setIsLoading }) => {
+const MoviesGrid = ({ isLoading, setIsLoading }) => {
     const {
         error,
         setError,
@@ -66,7 +66,7 @@ const MovieCardList = ({ isLoading, setIsLoading }) => {
         >
             {isLoading &&
                 [...new Array(6)].map((el, index) => (
-                    <MovieCardSkeleton
+                    <MoviesGridSkeleton
                         key={`skeleton-${index}`}
                         isLoading={true}
                     />
@@ -92,4 +92,4 @@ const MovieCardList = ({ isLoading, setIsLoading }) => {
     )
 }
 
-export default MovieCardList
+export default MoviesGrid

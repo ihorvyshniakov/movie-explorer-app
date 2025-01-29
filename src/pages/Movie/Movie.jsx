@@ -4,14 +4,14 @@ import StarsIcon from '@mui/icons-material/Stars'
 import { useEffect, useState } from 'react'
 import { useParams } from 'react-router'
 
-import { getMovieDetailsById } from '../../store/https'
+import { getMovieDetailsById } from '../../context/requests'
 import CircleLoader from '../../components/CircleLoader/CircleLoader'
-import MovieDetailsTable from '../../components/MovieDetailsTable/MovieDetailsTable'
+import TwoColumnTable from '../../components/TwoColumnTable/TwoColumnTable'
 import Image from '../../components/Image/Image'
-import { useStoreContext } from '../../store/store'
+import { useStoreContext } from '../../context/StoreContext'
 import Error from '../../components/Error/Error'
 
-const MoviePage = () => {
+const Movie = () => {
     const { error, setError } = useStoreContext()
     const [movieDetails, setMovieDetails] = useState(null)
     const [isLoading, setIsLoading] = useState(false)
@@ -176,7 +176,7 @@ const MoviePage = () => {
                                 </Stack>
                             </Grid>
                             <Grid>
-                                <MovieDetailsTable rows={tableInfo} />
+                                <TwoColumnTable rows={tableInfo} />
                             </Grid>
                         </Grid>
                     </>
@@ -186,4 +186,4 @@ const MoviePage = () => {
     )
 }
 
-export default MoviePage
+export default Movie

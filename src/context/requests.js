@@ -1,4 +1,4 @@
-const MOVIES_API_BEARER_TOKEN = import.meta.env.VITE_MOVIES_API_BEARER_TOKEN
+import { MOVIES_API_BEARER_TOKEN } from '../data/constants'
 
 const options = {
     method: 'GET',

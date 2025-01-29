@@ -1,5 +1,5 @@
 import { Box, Modal as ModalMUI } from '@mui/material'
-import { useStoreContext } from '../../store/store'
+import { useStoreContext } from '../../../context/StoreContext'
 
 const style = {
     position: 'absolute',

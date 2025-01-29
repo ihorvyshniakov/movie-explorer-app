@@ -5,9 +5,9 @@ import CardActionArea from '@mui/material/CardActionArea'
 import Grid from '@mui/material/Grid2'
 import StarsIcon from '@mui/icons-material/Stars'
 
-import Link from '../Link/Link'
-import Image from '../Image/Image'
-import { useStoreContext } from '../../store/store'
+import Link from '../../../components/Link/Link'
+import Image from '../../../components/Image/Image'
+import { useStoreContext } from '../../../context/StoreContext'
 
 const MovieCard = ({
     id,

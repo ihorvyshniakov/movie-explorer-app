@@ -1,6 +1,6 @@
 import { Link as MaterialLink } from '@mui/material'
 import { useNavigate } from 'react-router'
-import { useStoreContext } from '../../store/store'
+import { useStoreContext } from '../../context/StoreContext'
 
 const Link = ({ url, children, ...props }) => {
     const navigate = useNavigate()

@@ -9,10 +9,10 @@ import {
 import Grid from '@mui/material/Grid2'
 import { useSearchParams } from 'react-router'
 
-import { useStoreContext } from '../../store/store'
-import { getMoviesBySearch } from '../../store/https'
+import { useStoreContext } from '../../../context/StoreContext'
+import { getMoviesBySearch } from '../../../context/requests'
 
-const HomeSearchBlock = ({ isLoading, setIsLoading }) => {
+const SearchBlock = ({ isLoading, setIsLoading }) => {
     const { setError, searchInput, setSearchInput, setSearchMoviesList } =
         useStoreContext()
     const [searchParams, setSearchParams] = useSearchParams()
@@ -117,4 +117,4 @@ const HomeSearchBlock = ({ isLoading, setIsLoading }) => {
     )
 }
 
-export default HomeSearchBlock
+export default SearchBlock

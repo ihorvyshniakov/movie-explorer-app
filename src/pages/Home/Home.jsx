@@ -1,8 +1,8 @@
 import { useState } from 'react'
 
-import HomeSearchBlock from '../../components/HomeSearchBlock/HomeSearchBlock'
-import MovieCardList from '../../components/MovieCardList/MovieCardList'
-import MovieModal from '../../components/MovieModal/MovieModal'
+import MoviesGrid from './MoviesGrid/MoviesGrid'
+import SearchBlock from './SearchBlock/SearchBlock'
+import MovieModal from './MovieModal/MovieModal'
 
 const Home = () => {
     const [isLoading, setIsLoading] = useState(false)
@@ -10,11 +10,8 @@ const Home = () => {
     return (
         <>
             <MovieModal />
-            <HomeSearchBlock
-                isLoading={isLoading}
-                setIsLoading={setIsLoading}
-            />
-            <MovieCardList isLoading={isLoading} setIsLoading={setIsLoading} />
+            <SearchBlock isLoading={isLoading} setIsLoading={setIsLoading} />
+            <MoviesGrid isLoading={isLoading} setIsLoading={setIsLoading} />
         </>
     )
 }
