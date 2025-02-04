@@ -4,10 +4,12 @@ import CardContent from '@mui/material/CardContent'
 import CardActionArea from '@mui/material/CardActionArea'
 import Grid from '@mui/material/Grid2'
 import StarsIcon from '@mui/icons-material/Stars'
+import { useNavigate } from 'react-router'
 
-import Link from '../../../components/Link/Link'
 import Image from '../../../components/Image/Image'
-import { useStoreContext } from '../../../context/StoreContext'
+
+const createMovieURL = (id, title) =>
+    `/movie/${id}/${title.replaceAll(/[.,:;'"]/g, '').replaceAll(' ', '-')}`
 
 const MovieCard = ({
     id,
@@ -18,24 +20,16 @@ const MovieCard = ({
     vote_average,
     release_date,
 }) => {
-    const { setModal } = useStoreContext()
+    const navigate = useNavigate()
 
-    const handleOpenMovieModal = () => {
-        setModal(id)
+    const openMovieModal = () => {
+        navigate(createMovieURL(id, title || name))
     }
 
     return (
-        // <Link
-        //     url={`/movie/${id}/${(title || name).replaceAll(/[.,:;'"]/g, '').replaceAll(' ', '-')}`}
-        //     sx={{
-        //         height: '100%',
-        //         display: 'flex',
-        //         justifyContent: 'center',
-        //     }}
-        // >
         <Card
             sx={{ width: '100%', maxWidth: 345, height: '100%' }}
-            onClick={handleOpenMovieModal}
+            onClick={openMovieModal}
         >
             <CardActionArea
                 sx={{
@@ -133,7 +127,6 @@ const MovieCard = ({
                 </CardContent>
             </CardActionArea>
         </Card>
-        // </Link>
     )
 }
 

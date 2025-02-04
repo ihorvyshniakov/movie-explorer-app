@@ -37,10 +37,9 @@ function App() {
             <main>
                 <Container maxWidth="md">
                     <Routes>
-                        <Route index element={<Home />} />
-                        <Route path="movie">
+                        <Route path="/" element={<Home />}>
                             <Route
-                                path=":movieId/:movieTitle?"
+                                path="/movie/:movieId/:movieTitle?"
                                 element={<Movie />}
                             />
                         </Route>

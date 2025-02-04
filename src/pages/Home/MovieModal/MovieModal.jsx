@@ -1,5 +1,6 @@
 import { Box, Modal as ModalMUI } from '@mui/material'
-import { useStoreContext } from '../../../context/StoreContext'
+import { useNavigate, useParams } from 'react-router'
+import { useEffect, useState } from 'react'
 
 const style = {
     position: 'absolute',
@@ -14,13 +15,21 @@ const style = {
 }
 
 const MovieModal = () => {
-    const {
-        modal: { isOpen, movieId },
-        setModal,
-    } = useStoreContext()
+    const [isModalOpen, setIsModalOpen] = useState(true)
+
+    const navigate = useNavigate()
+    const { movieId } = useParams()
+
+    useEffect(() => {
+        if (movieId) {
+            setIsModalOpen(true)
+        } else {
+            setIsModalOpen(false)
+        }
+    }, [movieId])
 
     return (
-        <ModalMUI open={isOpen} onClose={() => setModal()}>
+        <ModalMUI open={isModalOpen} onClose={() => navigate('/')}>
             <Box sx={style}>movie content - {movieId}</Box>
         </ModalMUI>
     )
