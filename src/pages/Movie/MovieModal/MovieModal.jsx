@@ -11,6 +11,7 @@ const MovieModal = () => {
     const { movieId } = useParams()
 
     const goHome = () => {
+        setIsModalOpen(false)
         navigate(-1)
     }
 

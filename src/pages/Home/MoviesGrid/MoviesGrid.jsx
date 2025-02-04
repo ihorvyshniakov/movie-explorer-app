@@ -1,6 +1,6 @@
 import { useCallback, useEffect } from 'react'
 import Grid from '@mui/material/Grid2'
-import { useSearchParams } from 'react-router'
+import { useParams, useSearchParams } from 'react-router'
 
 import MovieCard from '../MovieCard/MovieCard'
 import { useStoreContext } from '../../../context/StoreContext'
@@ -16,6 +16,7 @@ const MoviesGrid = ({ isLoading, setIsLoading }) => {
         topRatedMoviesList,
         setTopRatedMoviesList,
     } = useStoreContext()
+    const { movieId } = useParams()
     const [searchParams] = useSearchParams()
 
     const fetchTopRatedMovies = useCallback(() => {
@@ -51,6 +52,18 @@ const MoviesGrid = ({ isLoading, setIsLoading }) => {
         return <Error {...error} />
     }
 
+    const showThisContent = () => {
+        const search = searchParams.get('search') || ''
+
+        if (search || movieId) {
+            return searchMoviesList.length
+                ? searchMoviesList
+                : topRatedMoviesList
+        } else {
+            return topRatedMoviesList.length ? topRatedMoviesList : []
+        }
+    }
+
     return (
         <Grid
             container
@@ -71,12 +84,7 @@ const MoviesGrid = ({ isLoading, setIsLoading }) => {
                     />
                 ))}
 
-            {(searchMoviesList.length && !isLoading
-                ? searchMoviesList
-                : topRatedMoviesList.length && !isLoading
-                  ? topRatedMoviesList
-                  : []
-            ).map(({ ...movie }) => (
+            {showThisContent().map(({ ...movie }) => (
                 <Grid
                     size={4}
                     key={movie.id}
