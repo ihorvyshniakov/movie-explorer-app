@@ -11,7 +11,7 @@ const MovieModal = () => {
     const { movieId } = useParams()
 
     const goHome = () => {
-        navigate('/')
+        navigate(-1)
     }
 
     useEffect(() => {
