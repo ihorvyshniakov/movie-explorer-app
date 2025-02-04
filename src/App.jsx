@@ -18,10 +18,11 @@ import ScrollTopButton from './components/ScrollTopButton/ScrollTopButton'
 // + Using API (https://developer.themoviedb.org/reference/intro/getting-started)
 
 //* DONE
+// + Movie page is a modal
+// + responsive Layout for Modal with Movie details
 
 // TODO 👇
-// ? Movie page is a modal
-// - Filter by category (comedy/horrors/action)
+// - Pagination instead of category filter
 // - clean + refactor
 
 // - Темна/світла тема

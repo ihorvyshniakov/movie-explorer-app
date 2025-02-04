@@ -1,8 +1,7 @@
-import { Chip, Stack, Typography } from '@mui/material'
+import { Box, Chip, Stack, Typography } from '@mui/material'
 import Grid from '@mui/material/Grid2'
 import StarsIcon from '@mui/icons-material/Stars'
 import { useEffect, useState } from 'react'
-import { useParams } from 'react-router'
 
 import { getMovieDetailsById } from '../../context/requests'
 import CircleLoader from '../../components/CircleLoader/CircleLoader'
@@ -11,12 +10,10 @@ import Image from '../../components/Image/Image'
 import { useStoreContext } from '../../context/StoreContext'
 import Error from '../../components/Error/Error'
 
-const Movie = () => {
+const Movie = ({ movieId }) => {
     const { error, setError } = useStoreContext()
     const [movieDetails, setMovieDetails] = useState(null)
     const [isLoading, setIsLoading] = useState(false)
-
-    const { movieId } = useParams()
 
     useEffect(() => {
         if (movieId) {
@@ -97,7 +94,11 @@ const Movie = () => {
                 container
                 spacing={{ sm: 2, md: 6 }}
                 columns={{ sm: 6, md: 12 }}
-                sx={{ margin: '2rem 0 4rem' }}
+                sx={{
+                    padding: '.5rem .5rem 1rem',
+                    overflow: 'auto',
+                    maxHeight: 'calc(80vh - 2rem)',
+                }}
             >
                 <CircleLoader isLoading={isLoading} />
                 {movieDetails && (
@@ -106,15 +107,18 @@ const Movie = () => {
                             size={{ sm: 12, md: 5 }}
                             display="flex"
                             justifyContent="center"
+                            alignItems="center"
                             sx={{ width: '100%' }}
                         >
-                            <Image
-                                title={title}
-                                url={`https://image.tmdb.org/t/p/w500${poster_path}`}
-                                preloaderHeight={500}
-                                elevation={3}
-                                square={false}
-                            />
+                            <Box sx={{ maxWidth: '300px' }}>
+                                <Image
+                                    title={title}
+                                    url={`https://image.tmdb.org/t/p/w500${poster_path}`}
+                                    preloaderHeight={500}
+                                    elevation={3}
+                                    square={false}
+                                />
+                            </Box>
                         </Grid>
                         <Grid
                             container

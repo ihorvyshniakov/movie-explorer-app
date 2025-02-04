@@ -1,17 +1,23 @@
 import { Box, Modal as ModalMUI } from '@mui/material'
 import { useNavigate, useParams } from 'react-router'
 import { useEffect, useState } from 'react'
+import Movie from '../Movie'
 
 const style = {
     position: 'absolute',
-    top: '50%',
+    top: '10vh',
     left: '50%',
-    transform: 'translate(-50%, -50%)',
-    width: 400,
+    transform: 'translateX(-50%)',
+    width: '90vw',
+    maxWidth: '800px',
+    maxHeight: '80vh',
     bgcolor: 'background.paper',
-    border: '2px solid #000',
+    borderRadius: '1rem',
     boxShadow: 24,
-    p: 4,
+    p: '1rem',
+    '&:focus-visible': {
+        outline: 'none',
+    },
 }
 
 const MovieModal = () => {
@@ -30,7 +36,7 @@ const MovieModal = () => {
 
     return (
         <ModalMUI open={isModalOpen} onClose={() => navigate('/')}>
-            <Box sx={style}>movie content - {movieId}</Box>
+            <Box sx={style}>{movieId && <Movie movieId={movieId} />}</Box>
         </ModalMUI>
     )
 }

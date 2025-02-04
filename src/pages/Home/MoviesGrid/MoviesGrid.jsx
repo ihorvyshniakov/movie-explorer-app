@@ -83,6 +83,8 @@ const MoviesGrid = ({ isLoading, setIsLoading }) => {
                     key={movie.id}
                     id={movie.id}
                     onLoad={() => scrollToElementIfItWasOpened(movie.id)}
+                    display="flex"
+                    justifyContent="center"
                     sx={{ width: '100%' }}
                 >
                     <MovieCard {...movie} />
