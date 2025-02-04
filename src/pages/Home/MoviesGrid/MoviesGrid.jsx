@@ -5,7 +5,6 @@ import { useSearchParams } from 'react-router'
 import MovieCard from '../MovieCard/MovieCard'
 import { useStoreContext } from '../../../context/StoreContext'
 import { getTopRatedMovies } from '../../../context/requests'
-import { scrollToElementIfItWasOpened } from '../../../utils/utils'
 import Error from '../../../components/Error/Error'
 import MoviesGridSkeleton from './MoviesGridSkeleton'
 
@@ -82,7 +81,6 @@ const MoviesGrid = ({ isLoading, setIsLoading }) => {
                     size={4}
                     key={movie.id}
                     id={movie.id}
-                    onLoad={() => scrollToElementIfItWasOpened(movie.id)}
                     display="flex"
                     justifyContent="center"
                     sx={{ width: '100%' }}
