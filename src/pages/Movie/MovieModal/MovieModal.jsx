@@ -21,7 +21,7 @@ const style = {
 }
 
 const MovieModal = () => {
-    const [isModalOpen, setIsModalOpen] = useState(true)
+    const [isModalOpen, setIsModalOpen] = useState(false)
 
     const navigate = useNavigate()
     const { movieId } = useParams()
