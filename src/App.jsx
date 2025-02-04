@@ -20,8 +20,10 @@ import ScrollTopButton from './components/ScrollTopButton/ScrollTopButton'
 //* DONE
 // + Movie page is a modal
 // + responsive Layout for Modal with Movie details
+// + Modal: added close button
 
 // TODO 👇
+// - Modal: if close sent to previous link, not home
 // - Pagination instead of category filter
 // - clean + refactor
 
