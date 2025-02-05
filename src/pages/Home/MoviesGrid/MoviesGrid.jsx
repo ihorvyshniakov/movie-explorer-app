@@ -76,20 +76,11 @@ const MoviesGrid = ({ isLoading, setIsLoading }) => {
             }}
             sx={{ marginBottom: '4rem', display: 'grid' }}
         >
-            <MoviesGridSkeleton isLoading={isLoading} />
-
-            {showThisContent().map(({ ...movie }) => (
-                <Grid
-                    size={4}
-                    key={movie.id}
-                    id={movie.id}
-                    display="flex"
-                    justifyContent="center"
-                    sx={{ width: '100%' }}
-                >
-                    <MovieCard {...movie} />
-                </Grid>
-            ))}
+            {isLoading && <MoviesGridSkeleton />}
+            {!isLoading &&
+                showThisContent().map((movie) => (
+                    <MovieCard key={movie.id} {...movie} />
+                ))}
         </Grid>
     )
 }

@@ -7,11 +7,7 @@ import {
 } from '@mui/material'
 import Grid from '@mui/material/Grid2'
 
-const MovieCardSkeleton = ({ isLoading }) => {
-    if (!isLoading) {
-        return null
-    }
-
+const MoviesGridSkeleton = () => {
     return [...new Array(6)].map((el, index) => (
         <Card
             key={`skeleton-${index}`}
@@ -97,4 +93,4 @@ const MovieCardSkeleton = ({ isLoading }) => {
     ))
 }
 
-export default MovieCardSkeleton
+export default MoviesGridSkeleton

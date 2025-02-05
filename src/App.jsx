@@ -15,6 +15,10 @@ import ScrollTopButton from './components/ScrollTopButton/ScrollTopButton'
 //* DONE
 
 // TODO 👇
+// Коли оновлювати ShowingMovies???
+// - [BUG] return from error search result to home not showing top rated
+// - [BUG] same error status is BAD idea
+// - [BUG] return from modal to category jump of content
 // - text above movies grid - title for results
 // - Skeleton preloaders for all loading content (Movie page)
 // - Футер
