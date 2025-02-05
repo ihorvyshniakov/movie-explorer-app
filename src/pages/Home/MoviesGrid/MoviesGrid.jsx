@@ -76,13 +76,7 @@ const MoviesGrid = ({ isLoading, setIsLoading }) => {
             }}
             sx={{ marginBottom: '4rem', display: 'grid' }}
         >
-            {isLoading &&
-                [...new Array(6)].map((el, index) => (
-                    <MoviesGridSkeleton
-                        key={`skeleton-${index}`}
-                        isLoading={true}
-                    />
-                ))}
+            <MoviesGridSkeleton isLoading={isLoading} />
 
             {showThisContent().map(({ ...movie }) => (
                 <Grid
