@@ -13,9 +13,12 @@ const MoviesGrid = ({ isLoading, setIsLoading }) => {
         error,
         setError,
         searchMoviesList,
+        showingMovies,
+        setShowingMovies,
         topRatedMoviesList,
         setTopRatedMoviesList,
     } = useStoreContext()
+
     const { movieId } = useParams()
     const [searchParams] = useSearchParams()
 
@@ -24,9 +27,11 @@ const MoviesGrid = ({ isLoading, setIsLoading }) => {
         getTopRatedMovies()
             .then((movies) => {
                 setTopRatedMoviesList(movies)
+                setShowingMovies(movies)
                 setError(null)
             })
             .catch((error) => {
+                setShowingMovies([])
                 setError({
                     error: error.message,
                     message: 'Top rated movies request failed',
@@ -48,20 +53,27 @@ const MoviesGrid = ({ isLoading, setIsLoading }) => {
         // eslint-disable-next-line
     }, [searchParams])
 
-    if (error) {
-        return <Error {...error} />
-    }
-
-    const showThisContent = () => {
+    useEffect(() => {
         const search = searchParams.get('search') || ''
 
         if (search || movieId) {
-            return searchMoviesList.length
-                ? searchMoviesList
-                : topRatedMoviesList
+            if (searchMoviesList.length) {
+                setShowingMovies(searchMoviesList)
+            } else {
+                setShowingMovies(topRatedMoviesList)
+            }
         } else {
-            return topRatedMoviesList.length ? topRatedMoviesList : []
+            if (topRatedMoviesList.length) {
+                setShowingMovies(topRatedMoviesList)
+            } else {
+                setShowingMovies([])
+            }
         }
+        // eslint-disable-next-line
+    }, [searchParams, movieId, setShowingMovies])
+
+    if (error) {
+        return <Error {...error} />
     }
 
     return (
@@ -78,7 +90,7 @@ const MoviesGrid = ({ isLoading, setIsLoading }) => {
         >
             {isLoading && <MoviesGridSkeleton />}
             {!isLoading &&
-                showThisContent().map((movie) => (
+                showingMovies.map((movie) => (
                     <MovieCard key={movie.id} {...movie} />
                 ))}
         </Grid>

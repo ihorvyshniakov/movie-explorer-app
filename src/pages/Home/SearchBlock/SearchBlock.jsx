@@ -13,8 +13,13 @@ import { useStoreContext } from '../../../context/StoreContext'
 import { getMoviesBySearch } from '../../../context/requests'
 
 const SearchBlock = ({ isLoading, setIsLoading }) => {
-    const { setError, searchInput, setSearchInput, setSearchMoviesList } =
-        useStoreContext()
+    const {
+        setError,
+        searchInput,
+        setSearchInput,
+        setSearchMoviesList,
+        setShowingMovies,
+    } = useStoreContext()
     const [searchParams, setSearchParams] = useSearchParams()
     const inputRef = useRef(null)
 
@@ -24,11 +29,14 @@ const SearchBlock = ({ isLoading, setIsLoading }) => {
 
             setIsLoading(true)
             getMoviesBySearch(searchString)
-                .then((data) => {
-                    setSearchMoviesList(data)
-                    if (data.length) {
+                .then((searchedMovies) => {
+                    setSearchMoviesList(searchedMovies)
+                    setShowingMovies(searchedMovies)
+
+                    if (searchedMovies.length) {
                         setError(null)
                     } else {
+                        setShowingMovies([])
                         setError({
                             error: '0 results',
                             message: `We didn't find any movie with "${searchString}" name \nPlease try to find other movies :)`,
@@ -36,6 +44,7 @@ const SearchBlock = ({ isLoading, setIsLoading }) => {
                     }
                 })
                 .catch((error) => {
+                    setShowingMovies([])
                     setError({
                         error: error.message,
                         message: 'Search movies request failed',
@@ -45,7 +54,13 @@ const SearchBlock = ({ isLoading, setIsLoading }) => {
                     setIsLoading(false)
                 })
         },
-        [searchInput, setError, setSearchMoviesList, setIsLoading]
+        [
+            searchInput,
+            setError,
+            setSearchMoviesList,
+            setIsLoading,
+            setShowingMovies,
+        ]
     )
 
     const handleInputChange = (e) => {

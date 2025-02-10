@@ -11,6 +11,7 @@ export const useStoreContext = () => {
 const initialState = {
     error: null,
     searchInput: '',
+    showingMovies: [],
     searchMoviesList: [],
     topRatedMoviesList: [],
 }
@@ -27,6 +28,12 @@ function reducer(state, action) {
             return {
                 ...state,
                 searchInput: action.payload,
+            }
+
+        case 'set_showing_movies':
+            return {
+                ...state,
+                showingMovies: action.payload,
             }
 
         case 'set_top_rated_movies_list':
@@ -47,7 +54,13 @@ function reducer(state, action) {
 
 export const StoreContextProvider = ({ children }) => {
     const [
-        { error, searchInput, searchMoviesList, topRatedMoviesList },
+        {
+            error,
+            searchInput,
+            showingMovies,
+            searchMoviesList,
+            topRatedMoviesList,
+        },
         dispatch,
     ] = useReducer(reducer, initialState)
 
@@ -57,6 +70,10 @@ export const StoreContextProvider = ({ children }) => {
 
     const setSearchInput = useCallback((input) => {
         dispatch({ type: 'set_search_input', payload: input })
+    }, [])
+
+    const setShowingMovies = useCallback((value) => {
+        dispatch({ type: 'set_showing_movies', payload: value })
     }, [])
 
     const setSearchMoviesList = useCallback((input) => {
@@ -72,6 +89,8 @@ export const StoreContextProvider = ({ children }) => {
         setError,
         searchInput,
         setSearchInput,
+        showingMovies,
+        setShowingMovies,
         searchMoviesList,
         setSearchMoviesList,
         topRatedMoviesList,
