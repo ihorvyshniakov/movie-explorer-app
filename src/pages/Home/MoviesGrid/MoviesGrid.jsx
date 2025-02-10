@@ -11,12 +11,12 @@ import MoviesGridSkeleton from './MoviesGridSkeleton'
 const MoviesGrid = ({ isLoading, setIsLoading }) => {
     const {
         error,
-        setError,
-        searchMoviesList,
+        movies,
         showingMovies,
+
+        setError,
+        setMovies,
         setShowingMovies,
-        topRatedMoviesList,
-        setTopRatedMoviesList,
     } = useStoreContext()
 
     const { movieId } = useParams()
@@ -26,7 +26,13 @@ const MoviesGrid = ({ isLoading, setIsLoading }) => {
         setIsLoading(true)
         getTopRatedMovies()
             .then((movies) => {
-                setTopRatedMoviesList(movies)
+                setMovies({
+                    name: 'topRated',
+                    value: {
+                        title: 'Top rated',
+                        list: movies,
+                    },
+                })
                 setShowingMovies(movies)
                 setError(null)
             })
@@ -45,7 +51,7 @@ const MoviesGrid = ({ isLoading, setIsLoading }) => {
     useEffect(() => {
         const searchInputFromURL = searchParams.get('search') || ''
         const isLoadTopRatedMovies =
-            !topRatedMoviesList.length && !searchInputFromURL.length
+            !movies.topRated.list.length && !searchInputFromURL.length
 
         if (isLoadTopRatedMovies) {
             fetchTopRatedMovies()
@@ -57,14 +63,14 @@ const MoviesGrid = ({ isLoading, setIsLoading }) => {
         const search = searchParams.get('search') || ''
 
         if (search || movieId) {
-            if (searchMoviesList.length) {
-                setShowingMovies(searchMoviesList)
+            if (movies.search.list.length) {
+                setShowingMovies(movies.search.list)
             } else {
-                setShowingMovies(topRatedMoviesList)
+                setShowingMovies(movies.topRated.list)
             }
         } else {
-            if (topRatedMoviesList.length) {
-                setShowingMovies(topRatedMoviesList)
+            if (movies.topRated.list.length) {
+                setShowingMovies(movies.topRated.list)
             } else {
                 setShowingMovies([])
             }

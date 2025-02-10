@@ -12,8 +12,16 @@ const initialState = {
     error: null,
     searchInput: '',
     showingMovies: [],
-    searchMoviesList: [],
-    topRatedMoviesList: [],
+    movies: {
+        search: {
+            title: '',
+            list: [],
+        },
+        topRated: {
+            title: '',
+            list: [],
+        },
+    },
 }
 
 function reducer(state, action) {
@@ -36,33 +44,23 @@ function reducer(state, action) {
                 showingMovies: action.payload,
             }
 
-        case 'set_top_rated_movies_list':
+        case 'set_movies':
             return {
                 ...state,
-                topRatedMoviesList: action.payload,
+                movies: {
+                    ...state.movies,
+                    [action.payload.name]: action.payload.value,
+                },
             }
 
-        case 'set_movies_based_on_search':
-            return {
-                ...state,
-                searchMoviesList: action.payload,
-            }
         default:
             return state
     }
 }
 
 export const StoreContextProvider = ({ children }) => {
-    const [
-        {
-            error,
-            searchInput,
-            showingMovies,
-            searchMoviesList,
-            topRatedMoviesList,
-        },
-        dispatch,
-    ] = useReducer(reducer, initialState)
+    const [{ error, searchInput, movies, showingMovies }, dispatch] =
+        useReducer(reducer, initialState)
 
     const setError = useCallback((error) => {
         dispatch({ type: 'set_error', payload: error })
@@ -76,12 +74,8 @@ export const StoreContextProvider = ({ children }) => {
         dispatch({ type: 'set_showing_movies', payload: value })
     }, [])
 
-    const setSearchMoviesList = useCallback((input) => {
-        dispatch({ type: 'set_movies_based_on_search', payload: input })
-    }, [])
-
-    const setTopRatedMoviesList = useCallback((moviesList) => {
-        dispatch({ type: 'set_top_rated_movies_list', payload: moviesList })
+    const setMovies = useCallback((moviesListDetails) => {
+        dispatch({ type: 'set_movies', payload: moviesListDetails })
     }, [])
 
     const contextValue = {
@@ -89,12 +83,10 @@ export const StoreContextProvider = ({ children }) => {
         setError,
         searchInput,
         setSearchInput,
+        movies,
+        setMovies,
         showingMovies,
         setShowingMovies,
-        searchMoviesList,
-        setSearchMoviesList,
-        topRatedMoviesList,
-        setTopRatedMoviesList,
     }
 
     return (

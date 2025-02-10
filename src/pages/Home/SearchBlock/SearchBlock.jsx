@@ -14,10 +14,11 @@ import { getMoviesBySearch } from '../../../context/requests'
 
 const SearchBlock = ({ isLoading, setIsLoading }) => {
     const {
-        setError,
         searchInput,
+
         setSearchInput,
-        setSearchMoviesList,
+        setError,
+        setMovies,
         setShowingMovies,
     } = useStoreContext()
     const [searchParams, setSearchParams] = useSearchParams()
@@ -30,7 +31,13 @@ const SearchBlock = ({ isLoading, setIsLoading }) => {
             setIsLoading(true)
             getMoviesBySearch(searchString)
                 .then((searchedMovies) => {
-                    setSearchMoviesList(searchedMovies)
+                    setMovies({
+                        name: 'search',
+                        value: {
+                            title: searchString,
+                            list: searchedMovies,
+                        },
+                    })
                     setShowingMovies(searchedMovies)
 
                     if (searchedMovies.length) {
@@ -54,13 +61,7 @@ const SearchBlock = ({ isLoading, setIsLoading }) => {
                     setIsLoading(false)
                 })
         },
-        [
-            searchInput,
-            setError,
-            setSearchMoviesList,
-            setIsLoading,
-            setShowingMovies,
-        ]
+        [searchInput, setError, setMovies, setIsLoading, setShowingMovies]
     )
 
     const handleInputChange = (e) => {
@@ -69,7 +70,13 @@ const SearchBlock = ({ isLoading, setIsLoading }) => {
         setSearchInput(input)
         if (input === '') {
             setSearchParams()
-            setSearchMoviesList([])
+            setMovies({
+                name: 'search',
+                value: {
+                    title: '',
+                    list: [],
+                },
+            })
         }
     }
 
