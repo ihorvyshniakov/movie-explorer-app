@@ -16,6 +16,8 @@ import { MOVIES_EMPTY, MOVIES_SEARCH } from '../../../data/constants'
 const SearchBlock = ({ isLoading, setIsLoading }) => {
     const {
         searchInput,
+        movies,
+        showingMovies,
 
         setSearchInput,
         setError,
@@ -136,6 +138,13 @@ const SearchBlock = ({ isLoading, setIsLoading }) => {
                     }}
                 />
             </Grid>
+            {movies[showingMovies].title && (
+                <Grid size={12}>
+                    <Typography variant="body1">
+                        {`"${movies[showingMovies].title}" results`}
+                    </Typography>
+                </Grid>
+            )}
         </Grid>
     )
 }

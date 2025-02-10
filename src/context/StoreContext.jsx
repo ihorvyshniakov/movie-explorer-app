@@ -31,6 +31,7 @@ const initialState = {
             title: '',
             list: [],
         },
+        isLoading: false,
     },
 }
 
