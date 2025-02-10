@@ -15,6 +15,7 @@ import ScrollTopButton from './components/ScrollTopButton/ScrollTopButton'
 //* DONE
 // Коли оновлювати ShowingMovies???
 // - text above movies grid - title for results
+// - Movie: added better date formatting
 
 // TODO 👇
 // - [BUG] return from error search result to home not showing top rated

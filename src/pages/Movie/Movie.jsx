@@ -10,6 +10,14 @@ import Image from '../../components/Image/Image'
 import { useStoreContext } from '../../context/StoreContext'
 import Error from '../../components/Error/Error'
 
+const formatDate = (date) => {
+    return new Date(date).toLocaleDateString('en-US', {
+        day: 'numeric',
+        month: 'short',
+        year: 'numeric',
+    })
+}
+
 const Movie = ({ movieId }) => {
     const { error, setError } = useStoreContext()
     const [movieDetails, setMovieDetails] = useState(null)
@@ -143,7 +151,7 @@ const Movie = ({ movieId }) => {
                             <Grid container spacing={1} direction="column">
                                 <Grid>
                                     <Typography variant="h6" component="p">
-                                        {`Release: ${release_date}`}
+                                        {`Release - ${formatDate(release_date)}`}
                                     </Typography>
                                 </Grid>
                                 <Grid>
