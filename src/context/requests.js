@@ -33,9 +33,6 @@ export const getMoviesBySearch = (searchInput) =>
         `https://api.themoviedb.org/3/search/movie?query=${searchInput}`
     )
 
-export const getPopularMovies = () =>
-    getMoviesListWithURL('https://api.themoviedb.org/3/movie/popular')
-
 export const getTopRatedMovies = () =>
     getMoviesListWithURL('https://api.themoviedb.org/3/movie/top_rated')
 

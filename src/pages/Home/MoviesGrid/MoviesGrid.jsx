@@ -13,22 +13,24 @@ import {
     MOVIES_TOP_RATED,
 } from '../../../data/constants'
 
-const MoviesGrid = ({ isLoading, setIsLoading }) => {
+const MoviesGrid = () => {
     const {
         error,
         movies,
         showingMovies,
+        isMoviesLoading,
 
         setError,
         setMovies,
         setShowingMovies,
+        setIsMoviesLoading,
     } = useStoreContext()
 
     const { movieId } = useParams()
     const [searchParams] = useSearchParams()
 
     const fetchTopRatedMovies = useCallback(() => {
-        setIsLoading(true)
+        setIsMoviesLoading(true)
         getTopRatedMovies()
             .then((movies) => {
                 setMovies({
@@ -49,7 +51,7 @@ const MoviesGrid = ({ isLoading, setIsLoading }) => {
                 })
             })
             .finally(() => {
-                setIsLoading(false)
+                setIsMoviesLoading(false)
             })
     }, [])
 
@@ -99,11 +101,13 @@ const MoviesGrid = ({ isLoading, setIsLoading }) => {
             }}
             sx={{ marginBottom: '4rem', display: 'grid' }}
         >
-            {isLoading && <MoviesGridSkeleton />}
-            {!isLoading &&
+            {isMoviesLoading ? (
+                <MoviesGridSkeleton />
+            ) : (
                 movies[showingMovies].list.map((movie) => (
                     <MovieCard key={movie.id} {...movie} />
-                ))}
+                ))
+            )}
         </Grid>
     )
 }

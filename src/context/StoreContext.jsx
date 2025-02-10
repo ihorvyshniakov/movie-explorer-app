@@ -64,6 +64,15 @@ function reducer(state, action) {
                 },
             }
 
+        case 'set_is_movies_loading':
+            return {
+                ...state,
+                movies: {
+                    ...state.movies,
+                    isLoading: action.payload,
+                },
+            }
+
         default:
             return state
     }
@@ -89,6 +98,10 @@ export const StoreContextProvider = ({ children }) => {
         dispatch({ type: 'set_movies', payload: moviesListDetails })
     }, [])
 
+    const setIsMoviesLoading = useCallback((isLoading) => {
+        dispatch({ type: 'set_is_movies_loading', payload: isLoading })
+    }, [])
+
     const contextValue = {
         error,
         setError,
@@ -96,6 +109,8 @@ export const StoreContextProvider = ({ children }) => {
         setSearchInput,
         movies,
         setMovies,
+        isMoviesLoading: movies.isLoading,
+        setIsMoviesLoading,
         showingMovies,
         setShowingMovies,
     }

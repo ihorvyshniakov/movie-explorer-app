@@ -13,16 +13,19 @@ import { useStoreContext } from '../../../context/StoreContext'
 import { getMoviesBySearch } from '../../../context/requests'
 import { MOVIES_EMPTY, MOVIES_SEARCH } from '../../../data/constants'
 
-const SearchBlock = ({ isLoading, setIsLoading }) => {
+const SearchBlock = () => {
     const {
         searchInput,
+        error,
         movies,
         showingMovies,
+        isMoviesLoading,
 
         setSearchInput,
         setError,
         setMovies,
         setShowingMovies,
+        setIsMoviesLoading,
     } = useStoreContext()
     const [searchParams, setSearchParams] = useSearchParams()
     const inputRef = useRef(null)
@@ -31,7 +34,7 @@ const SearchBlock = ({ isLoading, setIsLoading }) => {
         (movieTitle = '') => {
             const searchString = movieTitle || searchInput
 
-            setIsLoading(true)
+            setIsMoviesLoading(true)
             getMoviesBySearch(searchString)
                 .then((searchedMovies) => {
                     setMovies({
@@ -61,10 +64,10 @@ const SearchBlock = ({ isLoading, setIsLoading }) => {
                     })
                 })
                 .finally(() => {
-                    setIsLoading(false)
+                    setIsMoviesLoading(false)
                 })
         },
-        [searchInput, setError, setMovies, setIsLoading, setShowingMovies]
+        [searchInput, setError, setMovies, setIsMoviesLoading, setShowingMovies]
     )
 
     const handleInputChange = (e) => {
@@ -133,12 +136,12 @@ const SearchBlock = ({ isLoading, setIsLoading }) => {
             <Grid size={12}>
                 <LinearProgress
                     sx={{
-                        opacity: isLoading ? '1' : '0',
+                        opacity: isMoviesLoading ? '1' : '0',
                         transition: 'opacity .5s linear',
                     }}
                 />
             </Grid>
-            {movies[showingMovies].title && (
+            {!isMoviesLoading && !error && (
                 <Grid size={12}>
                     <Typography variant="body1">
                         {`"${movies[showingMovies].title}" results`}
