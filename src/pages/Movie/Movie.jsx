@@ -7,7 +7,6 @@ import { getMovieDetailsById } from '../../context/requests'
 import CircleLoader from '../../components/CircleLoader/CircleLoader'
 import TwoColumnTable from '../../components/TwoColumnTable/TwoColumnTable'
 import Image from '../../components/Image/Image'
-import { useStoreContext } from '../../context/StoreContext'
 import Error from '../../components/Error/Error'
 
 const formatDate = (date) => {
@@ -19,7 +18,7 @@ const formatDate = (date) => {
 }
 
 const Movie = ({ movieId }) => {
-    const { error, setError } = useStoreContext()
+    const [error, setError] = useState(null)
     const [movieDetails, setMovieDetails] = useState(null)
     const [isLoading, setIsLoading] = useState(false)
 
@@ -113,7 +112,7 @@ const Movie = ({ movieId }) => {
                             alignItems="center"
                             sx={{ width: '100%' }}
                         >
-                            <Box sx={{ maxWidth: '300px' }}>
+                            <Box sx={{ width: 300 }}>
                                 <Image
                                     title={title}
                                     url={`https://image.tmdb.org/t/p/w500${poster_path}`}
