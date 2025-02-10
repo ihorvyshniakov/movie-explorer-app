@@ -18,6 +18,9 @@ const theme = createTheme({
             main: '#ffc107',
         },
     },
+    colorSchemes: {
+        dark: true,
+    },
 })
 
 createRoot(document.getElementById('root')).render(

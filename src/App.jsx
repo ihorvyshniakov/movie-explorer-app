@@ -1,5 +1,5 @@
 import { Route, Routes } from 'react-router'
-import { Container } from '@mui/material'
+import { Container, useColorScheme } from '@mui/material'
 
 import './App.css'
 
@@ -18,17 +18,25 @@ import ScrollTopButton from './components/ScrollTopButton/ScrollTopButton'
 // - Movie: added better date formatting
 // - isLoading -> isMoviesLoading
 // - [BUG] same error status is BAD idea
+// - Темна/світла тема кнопка
 
 // TODO 👇
+// - clean Input after search
 // - [BUG] return from error search result to home not showing top rated
 // - [BUG] return from modal to category jump of content
 // - Skeleton preloaders for all loading content (Movie page)
 // - Футер
-// - Темна/світла тема
+// - Темна/світла тема стилі
 // - Pagination instead of category filter
 // - Анімації
 
 function App() {
+    const { mode } = useColorScheme()
+
+    if (!mode) {
+        return null
+    }
+
     return (
         <>
             <Header />
