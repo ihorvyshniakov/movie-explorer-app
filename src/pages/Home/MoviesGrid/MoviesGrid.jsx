@@ -7,6 +7,11 @@ import { useStoreContext } from '../../../context/StoreContext'
 import { getTopRatedMovies } from '../../../context/requests'
 import Error from '../../../components/Error/Error'
 import MoviesGridSkeleton from './MoviesGridSkeleton'
+import {
+    MOVIES_EMPTY,
+    MOVIES_SEARCH,
+    MOVIES_TOP_RATED,
+} from '../../../data/constants'
 
 const MoviesGrid = ({ isLoading, setIsLoading }) => {
     const {
@@ -33,11 +38,11 @@ const MoviesGrid = ({ isLoading, setIsLoading }) => {
                         list: movies,
                     },
                 })
-                setShowingMovies(movies)
+                setShowingMovies(MOVIES_TOP_RATED)
                 setError(null)
             })
             .catch((error) => {
-                setShowingMovies([])
+                setShowingMovies(MOVIES_EMPTY)
                 setError({
                     error: error.message,
                     message: 'Top rated movies request failed',
@@ -64,15 +69,15 @@ const MoviesGrid = ({ isLoading, setIsLoading }) => {
 
         if (search || movieId) {
             if (movies.search.list.length) {
-                setShowingMovies(movies.search.list)
+                setShowingMovies(MOVIES_SEARCH)
             } else {
-                setShowingMovies(movies.topRated.list)
+                setShowingMovies(MOVIES_TOP_RATED)
             }
         } else {
             if (movies.topRated.list.length) {
-                setShowingMovies(movies.topRated.list)
+                setShowingMovies(MOVIES_TOP_RATED)
             } else {
-                setShowingMovies([])
+                setShowingMovies(MOVIES_EMPTY)
             }
         }
         // eslint-disable-next-line
@@ -96,7 +101,7 @@ const MoviesGrid = ({ isLoading, setIsLoading }) => {
         >
             {isLoading && <MoviesGridSkeleton />}
             {!isLoading &&
-                showingMovies.map((movie) => (
+                movies[showingMovies].list.map((movie) => (
                     <MovieCard key={movie.id} {...movie} />
                 ))}
         </Grid>

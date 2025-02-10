@@ -11,6 +11,7 @@ import { useSearchParams } from 'react-router'
 
 import { useStoreContext } from '../../../context/StoreContext'
 import { getMoviesBySearch } from '../../../context/requests'
+import { MOVIES_EMPTY, MOVIES_SEARCH } from '../../../data/constants'
 
 const SearchBlock = ({ isLoading, setIsLoading }) => {
     const {
@@ -38,12 +39,12 @@ const SearchBlock = ({ isLoading, setIsLoading }) => {
                             list: searchedMovies,
                         },
                     })
-                    setShowingMovies(searchedMovies)
+                    setShowingMovies(MOVIES_SEARCH)
 
                     if (searchedMovies.length) {
                         setError(null)
                     } else {
-                        setShowingMovies([])
+                        setShowingMovies(MOVIES_EMPTY)
                         setError({
                             error: '0 results',
                             message: `We didn't find any movie with "${searchString}" name \nPlease try to find other movies :)`,
@@ -51,7 +52,7 @@ const SearchBlock = ({ isLoading, setIsLoading }) => {
                     }
                 })
                 .catch((error) => {
-                    setShowingMovies([])
+                    setShowingMovies(MOVIES_EMPTY)
                     setError({
                         error: error.message,
                         message: 'Search movies request failed',

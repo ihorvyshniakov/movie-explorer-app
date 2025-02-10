@@ -1,5 +1,11 @@
 import { createContext, useCallback, useContext, useReducer } from 'react'
 
+import {
+    MOVIES_EMPTY,
+    MOVIES_SEARCH,
+    MOVIES_TOP_RATED,
+} from '../data/constants'
+
 const StoreContext = createContext(null)
 
 export const useStoreContext = () => {
@@ -11,13 +17,17 @@ export const useStoreContext = () => {
 const initialState = {
     error: null,
     searchInput: '',
-    showingMovies: [],
+    showingMovies: MOVIES_EMPTY,
     movies: {
-        search: {
+        [MOVIES_EMPTY]: {
             title: '',
             list: [],
         },
-        topRated: {
+        [MOVIES_SEARCH]: {
+            title: '',
+            list: [],
+        },
+        [MOVIES_TOP_RATED]: {
             title: '',
             list: [],
         },
