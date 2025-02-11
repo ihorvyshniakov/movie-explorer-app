@@ -100,7 +100,10 @@ const SearchBlock = () => {
     useEffect(() => {
         const searchInputFromURL = searchParams.get('search')
 
-        if (searchInputFromURL) {
+        if (
+            searchInputFromURL &&
+            movies[MOVIES_SEARCH].title !== searchInputFromURL
+        ) {
             getSearchMovies(searchInputFromURL)
         }
         // eslint-disable-next-line
