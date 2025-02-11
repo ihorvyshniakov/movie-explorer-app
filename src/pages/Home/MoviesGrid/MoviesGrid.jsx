@@ -77,6 +77,7 @@ const MoviesGrid = () => {
             }
         } else {
             if (movies.topRated.list.length) {
+                setError(null)
                 setShowingMovies(MOVIES_TOP_RATED)
             } else {
                 setShowingMovies(MOVIES_EMPTY)

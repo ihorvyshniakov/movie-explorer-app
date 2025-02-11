@@ -65,57 +65,59 @@ const Footer = () => {
     }, [])
 
     return (
-        <Box sx={{ bgcolor: 'primary.main' }}>
-            <Container maxWidth="md">
-                <Grid2 container spacing={4} padding="4rem 0 6rem">
-                    <Grid2
-                        size={12}
-                        display="flex"
-                        flexDirection="column"
-                        alignItems="center"
-                        gap={4}
-                    >
-                        <Typography
-                            align="center"
-                            color="textPrimary"
-                            sx={{
-                                typography: {
-                                    xs: 'h5',
-                                    md: 'h4',
-                                },
-                            }}
+        <footer>
+            <Box sx={{ bgcolor: 'primary.main' }}>
+                <Container maxWidth="md">
+                    <Grid2 container spacing={4} padding="4rem 0 6rem">
+                        <Grid2
+                            size={12}
+                            display="flex"
+                            flexDirection="column"
+                            alignItems="center"
+                            gap={4}
                         >
-                            Random movie quote for you 😉
-                        </Typography>
-
-                        {randomQuote && (
-                            <Alert
-                                icon={false}
+                            <Typography
+                                align="center"
+                                color="textPrimary"
                                 sx={{
-                                    minWidth: {
-                                        xs: 280,
-                                        md: 320,
+                                    typography: {
+                                        xs: 'h5',
+                                        md: 'h4',
                                     },
-                                    bgcolor: 'background.default',
                                 }}
                             >
-                                <AlertTitle color="textPrimary">
-                                    {randomQuote.quote}
-                                </AlertTitle>
-                                {randomQuote.movie}
-                            </Alert>
-                        )}
-                        <Typography
-                            align="center"
-                            variant="h6"
-                            color="textPrimary"
-                        >
-                            Developed by Ihor Vyshniakov <br /> 2025
-                        </Typography>
+                                Random movie quote for you 😉
+                            </Typography>
+
+                            {randomQuote && (
+                                <Alert
+                                    icon={false}
+                                    sx={{
+                                        minWidth: {
+                                            xs: 280,
+                                            md: 320,
+                                        },
+                                        bgcolor: 'background.default',
+                                    }}
+                                >
+                                    <AlertTitle color="textPrimary">
+                                        {randomQuote.quote}
+                                    </AlertTitle>
+                                    {randomQuote.movie}
+                                </Alert>
+                            )}
+                            <Typography
+                                align="center"
+                                variant="h6"
+                                color="textPrimary"
+                            >
+                                Developed by Ihor Vyshniakov <br /> 2025
+                            </Typography>
+                        </Grid2>
                     </Grid2>
-                </Grid2>
-            </Container>
-        </Box>
+                </Container>
+            </Box>
+        </footer>
     )
 }
 

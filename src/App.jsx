@@ -14,19 +14,10 @@ import Footer from './components/Footer/Footer'
 // - Як оптимізувати додаток? Девтулз кольорами рендери, консоль на зменшення рендерів
 
 //* DONE
-// Коли оновлювати ShowingMovies???
-// - text above movies grid - title for results
-// - Movie: added better date formatting
-// - isLoading -> isMoviesLoading
-// - [BUG] same error status is BAD idea
-// - Темна/світла тема кнопка
-// - Темна/світла тема стилі
-// - Responsive: fix
-// - Футер
+// - [BUG] return from error search result to home not showing top rated
 
 // TODO 👇
 // - clean Input after search
-// - [BUG] return from error search result to home not showing top rated
 // - [BUG] return from modal to category jump of content
 // - Skeleton preloaders for all loading content (Movie page)
 // - Pagination instead of category filter
@@ -40,10 +31,17 @@ function App() {
     }
 
     return (
-        <Box bgcolor="background.default">
+        <Box
+            bgcolor="background.default"
+            sx={{
+                display: 'flex',
+                flexDirection: 'column',
+                minHeight: '100svh',
+            }}
+        >
             <Header />
 
-            <main>
+            <main style={{ flexGrow: 1 }}>
                 <Container maxWidth="md">
                     <Routes>
                         <Route path="/" element={<Home />}>
