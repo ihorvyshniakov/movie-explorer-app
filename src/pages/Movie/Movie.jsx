@@ -4,10 +4,10 @@ import StarsIcon from '@mui/icons-material/Stars'
 import { useEffect, useState } from 'react'
 
 import { getMovieDetailsById } from '../../context/requests'
-import CircleLoader from '../../components/CircleLoader/CircleLoader'
 import TwoColumnTable from '../../components/TwoColumnTable/TwoColumnTable'
 import Image from '../../components/Image/Image'
 import Error from '../../components/Error/Error'
+import MovieSkeleton from './MovieSkeleton'
 
 const formatDate = (date) => {
     return new Date(date).toLocaleDateString('en-US', {
@@ -102,7 +102,7 @@ const Movie = ({ movieId }) => {
                     maxHeight: 'calc(80vh - 2rem)',
                 }}
             >
-                <CircleLoader isLoading={isLoading} />
+                {isLoading && <MovieSkeleton />}
                 {movieDetails && (
                     <>
                         <Grid
