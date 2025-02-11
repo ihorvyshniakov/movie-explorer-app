@@ -20,6 +20,7 @@ import ScrollTopButton from './components/ScrollTopButton/ScrollTopButton'
 // - [BUG] same error status is BAD idea
 // - Темна/світла тема кнопка
 // - Темна/світла тема стилі
+// - Responsive: fix
 
 // TODO 👇
 // - clean Input after search
@@ -40,6 +41,7 @@ function App() {
     return (
         <Box bgcolor="background.default">
             <Header />
+
             <main>
                 <Container maxWidth="md">
                     <Routes>

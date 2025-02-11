@@ -94,8 +94,8 @@ const Movie = ({ movieId }) => {
         <>
             <Grid
                 container
-                spacing={{ sm: 2, md: 6 }}
-                columns={{ sm: 6, md: 12 }}
+                spacing={{ xs: 2, md: 4 }}
+                columns={{ xs: 6, md: 12 }}
                 sx={{
                     padding: '.5rem .5rem 1rem',
                     overflow: 'auto',
@@ -112,7 +112,7 @@ const Movie = ({ movieId }) => {
                             alignItems="center"
                             sx={{ width: '100%' }}
                         >
-                            <Box sx={{ width: 300 }}>
+                            <Box sx={{ minWidth: 300 }}>
                                 <Image
                                     title={title}
                                     url={`https://image.tmdb.org/t/p/w500${poster_path}`}
@@ -129,16 +129,20 @@ const Movie = ({ movieId }) => {
                             sx={{
                                 display: 'grid',
                                 gridTemplateRows: 'repeat(5, min-content)',
-                                marginTop: '1rem',
                             }}
                         >
                             <Grid>
                                 <Typography
                                     gutterBottom
-                                    variant="h4"
                                     component="h1"
                                     color="textPrimary"
-                                    sx={{ margin: 0 }}
+                                    sx={{
+                                        margin: 0,
+                                        typography: {
+                                            xs: 'h5',
+                                            md: 'h4',
+                                        },
+                                    }}
                                 >
                                     {title}
                                 </Typography>
@@ -189,7 +193,7 @@ const Movie = ({ movieId }) => {
                                         <Chip
                                             key={id}
                                             label={name}
-                                            color="primary"
+                                            color="secondary"
                                         />
                                     ))}
                                 </Stack>

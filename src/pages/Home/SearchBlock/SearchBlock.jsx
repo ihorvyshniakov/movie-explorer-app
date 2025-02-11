@@ -102,10 +102,15 @@ const SearchBlock = () => {
         <Grid container spacing={2} sx={{ margin: '2rem 0 1rem' }}>
             <Grid size={12}>
                 <Typography
-                    variant="h4"
                     component="h3"
                     align="center"
                     color="textPrimary"
+                    sx={{
+                        typography: {
+                            xs: 'h5',
+                            md: 'h4',
+                        },
+                    }}
                 >
                     Find your favorite movie 🔍
                 </Typography>

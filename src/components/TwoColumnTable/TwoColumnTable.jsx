@@ -41,7 +41,12 @@ const TwoColumnTable = ({ rows = [] }) => {
                             <TableCell
                                 component="th"
                                 scope="row"
-                                sx={{ minWidth: 180 }}
+                                sx={{
+                                    width: {
+                                        xs: 110,
+                                        md: 180,
+                                    },
+                                }}
                             >
                                 {row.name}
                             </TableCell>

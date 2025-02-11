@@ -7,7 +7,7 @@ const modalStyle = {
     left: '50%',
     transform: 'translateX(-50%)',
     width: '90vw',
-    maxWidth: '800px',
+    maxWidth: '900px',
     maxHeight: '80vh',
     bgcolor: 'background.paper',
     borderRadius: '1rem',

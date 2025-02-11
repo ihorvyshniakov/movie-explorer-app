@@ -6,7 +6,7 @@ import GitHubIcon from '@mui/icons-material/GitHub'
 import Brightness6Icon from '@mui/icons-material/Brightness6'
 
 import Link from '../Link/Link'
-import { useColorScheme } from '@mui/material'
+import { Container, useColorScheme } from '@mui/material'
 
 const Header = (props) => {
     const { mode, setMode } = useColorScheme()
@@ -19,41 +19,43 @@ const Header = (props) => {
         <>
             <span id="back-to-top-anchor"></span>
             <AppBar position="sticky" {...props}>
-                <Toolbar>
-                    <IconButton
-                        size="large"
-                        aria-label="change mode button"
-                        color="inherit"
-                        onClick={handleModeChange}
-                    >
-                        <Brightness6Icon />
-                    </IconButton>
-                    <Link
-                        url=""
-                        sx={{
-                            flexGrow: 1,
-                        }}
-                    >
-                        <Typography
-                            align="center"
-                            variant="h6"
-                            noWrap
-                            component="p"
-                            sx={{ userSelect: 'none' }}
+                <Container maxWidth="md" sx={{ display: 'flex' }}>
+                    <Toolbar disableGutters sx={{ width: '100%' }}>
+                        <IconButton
+                            size="large"
+                            aria-label="change mode button"
+                            color="inherit"
+                            onClick={handleModeChange}
                         >
-                            Movie Explorer
-                        </Typography>
-                    </Link>
+                            <Brightness6Icon />
+                        </IconButton>
+                        <Link
+                            url=""
+                            sx={{
+                                flexGrow: 1,
+                            }}
+                        >
+                            <Typography
+                                align="center"
+                                variant="h6"
+                                noWrap
+                                component="p"
+                                sx={{ userSelect: 'none' }}
+                            >
+                                Movie Explorer
+                            </Typography>
+                        </Link>
 
-                    <IconButton
-                        size="large"
-                        aria-label="github link"
-                        color="inherit"
-                        href="#"
-                    >
-                        <GitHubIcon />
-                    </IconButton>
-                </Toolbar>
+                        <IconButton
+                            size="large"
+                            aria-label="github link"
+                            color="inherit"
+                            href="#"
+                        >
+                            <GitHubIcon />
+                        </IconButton>
+                    </Toolbar>
+                </Container>
             </AppBar>
         </>
     )
