@@ -17,7 +17,7 @@ export const getMovieDetailsById = (movieID) =>
             return res.json()
         })
         .then((res) => {
-            if (res.overview) {
+            if (res.title) {
                 return res
             }
             // wrong response data
