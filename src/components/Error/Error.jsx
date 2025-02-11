@@ -6,7 +6,6 @@ const Error = ({ error, message }) => {
     let url = ''
 
     if (isJSON(error)) {
-        status = JSON.parse(error).status || ''
         url = JSON.parse(error).url || ''
     } else {
         status = error
