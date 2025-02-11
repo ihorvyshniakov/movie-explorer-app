@@ -37,7 +37,11 @@ const Modal = ({ open, onClose, children }) => {
             <Box sx={modalStyle}>
                 {children}
                 <Box sx={closeIconStyles}>
-                    <CancelIcon onClick={onClose} fontSize="large" />
+                    <CancelIcon
+                        onClick={onClose}
+                        fontSize="large"
+                        color="secondary"
+                    />
                 </Box>
             </Box>
         </ModalMUI>

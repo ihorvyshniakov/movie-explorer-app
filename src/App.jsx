@@ -1,5 +1,5 @@
 import { Route, Routes } from 'react-router'
-import { Container, useColorScheme } from '@mui/material'
+import { Box, Container, useColorScheme } from '@mui/material'
 
 import './App.css'
 
@@ -19,6 +19,7 @@ import ScrollTopButton from './components/ScrollTopButton/ScrollTopButton'
 // - isLoading -> isMoviesLoading
 // - [BUG] same error status is BAD idea
 // - Темна/світла тема кнопка
+// - Темна/світла тема стилі
 
 // TODO 👇
 // - clean Input after search
@@ -26,7 +27,6 @@ import ScrollTopButton from './components/ScrollTopButton/ScrollTopButton'
 // - [BUG] return from modal to category jump of content
 // - Skeleton preloaders for all loading content (Movie page)
 // - Футер
-// - Темна/світла тема стилі
 // - Pagination instead of category filter
 // - Анімації
 
@@ -38,7 +38,7 @@ function App() {
     }
 
     return (
-        <>
+        <Box bgcolor="background.default">
             <Header />
             <main>
                 <Container maxWidth="md">
@@ -50,7 +50,7 @@ function App() {
                 </Container>
             </main>
             <ScrollTopButton />
-        </>
+        </Box>
     )
 }
 

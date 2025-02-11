@@ -101,7 +101,12 @@ const SearchBlock = () => {
     return (
         <Grid container spacing={2} sx={{ margin: '2rem 0 1rem' }}>
             <Grid size={12}>
-                <Typography variant="h4" component="h3" align="center">
+                <Typography
+                    variant="h4"
+                    component="h3"
+                    align="center"
+                    color="textPrimary"
+                >
                     Find your favorite movie 🔍
                 </Typography>
             </Grid>
@@ -118,7 +123,7 @@ const SearchBlock = () => {
                         <TextField
                             fullWidth
                             label="Search..."
-                            id="search"
+                            color="primary"
                             ref={inputRef}
                             value={searchInput}
                             onChange={handleInputChange}
@@ -143,7 +148,7 @@ const SearchBlock = () => {
             </Grid>
             {!isMoviesLoading && !error && (
                 <Grid size={12}>
-                    <Typography variant="body1">
+                    <Typography variant="body1" color="textPrimary">
                         {`"${movies[showingMovies].title}" results`}
                     </Typography>
                 </Grid>

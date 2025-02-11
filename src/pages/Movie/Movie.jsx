@@ -137,19 +137,28 @@ const Movie = ({ movieId }) => {
                                     gutterBottom
                                     variant="h4"
                                     component="h1"
+                                    color="textPrimary"
                                     sx={{ margin: 0 }}
                                 >
                                     {title}
                                 </Typography>
                             </Grid>
                             <Grid>
-                                <Typography gutterBottom variant="body2">
+                                <Typography
+                                    gutterBottom
+                                    variant="body2"
+                                    color="textPrimary"
+                                >
                                     {overview}
                                 </Typography>
                             </Grid>
                             <Grid container spacing={1} direction="column">
                                 <Grid>
-                                    <Typography variant="h6" component="p">
+                                    <Typography
+                                        variant="h6"
+                                        component="p"
+                                        color="textPrimary"
+                                    >
                                         {`Release - ${formatDate(release_date)}`}
                                     </Typography>
                                 </Grid>
@@ -160,7 +169,11 @@ const Movie = ({ movieId }) => {
                                         gap={1}
                                     >
                                         <StarsIcon color="info" />
-                                        <Typography variant="h6" component="p">
+                                        <Typography
+                                            variant="h6"
+                                            component="p"
+                                            color="textPrimary"
+                                        >
                                             {vote_average.toFixed(2)}
                                             {` (${vote_count} votes)`}
                                         </Typography>
