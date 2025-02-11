@@ -39,6 +39,7 @@ const Modal = ({ open, onClose, children }) => {
                     {children}
                     <Box sx={closeIconStyles}>
                         <CancelIcon
+                            aria-hidden={false}
                             onClick={onClose}
                             fontSize="large"
                             color="secondary"
