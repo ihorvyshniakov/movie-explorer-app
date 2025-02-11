@@ -16,9 +16,7 @@ import { MOVIES_EMPTY, MOVIES_SEARCH } from '../../../data/constants'
 const SearchBlock = () => {
     const {
         searchInput,
-        error,
         movies,
-        showingMovies,
         isMoviesLoading,
 
         setSearchInput,
@@ -149,19 +147,13 @@ const SearchBlock = () => {
             </Grid>
             <Grid size={12}>
                 <LinearProgress
+                    color="secondary"
                     sx={{
                         opacity: isMoviesLoading ? '1' : '0',
                         transition: 'opacity .5s linear',
                     }}
                 />
             </Grid>
-            {!isMoviesLoading && !error && (
-                <Grid size={12}>
-                    <Typography variant="body1" color="textPrimary">
-                        {`"${movies[showingMovies].title}" results`}
-                    </Typography>
-                </Grid>
-            )}
         </Grid>
     )
 }

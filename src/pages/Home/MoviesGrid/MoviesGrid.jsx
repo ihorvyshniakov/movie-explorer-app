@@ -1,5 +1,5 @@
 import { useCallback, useEffect } from 'react'
-import Grid from '@mui/material/Grid2'
+import { Grid2 as Grid, Skeleton, Typography } from '@mui/material'
 import { useParams, useSearchParams } from 'react-router'
 
 import MovieCard from '../MovieCard/MovieCard'
@@ -91,24 +91,43 @@ const MoviesGrid = () => {
     }
 
     return (
-        <Grid
-            container
-            spacing={2}
-            columns={{ xs: 4, sm: 8, md: 12 }}
-            gridTemplateColumns={{
-                xs: '1fr',
-                sm: '1fr 1fr',
-                md: '1fr 1fr 1fr',
-            }}
-            sx={{ marginBottom: '4rem', display: 'grid' }}
-        >
-            {isMoviesLoading ? (
-                <MoviesGridSkeleton />
+        <Grid container spacing={2}>
+            {!isMoviesLoading && !error ? (
+                <Grid>
+                    <Typography variant="body1" color="textPrimary">
+                        {`"${movies[showingMovies].title}" results`}
+                    </Typography>
+                </Grid>
             ) : (
-                movies[showingMovies].list.map((movie) => (
-                    <MovieCard key={movie.id} {...movie} />
-                ))
+                <Grid>
+                    <Skeleton
+                        variant="rounded"
+                        height="1.5rem"
+                        sx={{
+                            width: '8rem',
+                        }}
+                    />
+                </Grid>
             )}
+            <Grid
+                container
+                spacing={2}
+                columns={{ xs: 4, sm: 8, md: 12 }}
+                gridTemplateColumns={{
+                    xs: '1fr',
+                    sm: '1fr 1fr',
+                    md: '1fr 1fr 1fr',
+                }}
+                sx={{ width: '100%', marginBottom: '4rem', display: 'grid' }}
+            >
+                {isMoviesLoading ? (
+                    <MoviesGridSkeleton />
+                ) : (
+                    movies[showingMovies].list.map((movie) => (
+                        <MovieCard key={movie.id} {...movie} />
+                    ))
+                )}
+            </Grid>
         </Grid>
     )
 }

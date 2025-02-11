@@ -18,10 +18,11 @@ import Footer from './components/Footer/Footer'
 // - clean Input after search
 // - Caching: [BUG] return from modal to category jump of content
 // - Movie page: added skeleton preloader
+// - Анімація для модалки
 
 // TODO 👇
 // - Pagination instead of category filter
-// - Анімації
+// - Refactoring + skeletons/isLoading
 
 function App() {
     const { mode } = useColorScheme()
