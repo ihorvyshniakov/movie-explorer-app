@@ -7,6 +7,7 @@ import Header from './components/Header/Header'
 import Movie from './pages/Movie/Movie'
 import Home from './pages/Home/Home'
 import ScrollTopButton from './components/ScrollTopButton/ScrollTopButton'
+import Footer from './components/Footer/Footer'
 
 //? Backlog
 // - Початковий екран з привітанням і переліком того, що я використовую та демонструю у цьому проекті
@@ -21,13 +22,13 @@ import ScrollTopButton from './components/ScrollTopButton/ScrollTopButton'
 // - Темна/світла тема кнопка
 // - Темна/світла тема стилі
 // - Responsive: fix
+// - Футер
 
 // TODO 👇
 // - clean Input after search
 // - [BUG] return from error search result to home not showing top rated
 // - [BUG] return from modal to category jump of content
 // - Skeleton preloaders for all loading content (Movie page)
-// - Футер
 // - Pagination instead of category filter
 // - Анімації
 
@@ -51,6 +52,8 @@ function App() {
                     </Routes>
                 </Container>
             </main>
+
+            <Footer />
             <ScrollTopButton />
         </Box>
     )

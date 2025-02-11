@@ -1,4 +1,4 @@
-export { isJSON, numberWithCommas, formatIntoDollars }
+export { isJSON, numberWithCommas, formatIntoDollars, randomIntFromInterval }
 
 function isJSON(string) {
     try {
@@ -15,4 +15,9 @@ function numberWithCommas(x) {
 
 const formatIntoDollars = (amount) => {
     return '$ ' + numberWithCommas(amount)
+}
+
+function randomIntFromInterval(min, max) {
+    // min and max included
+    return Math.floor(Math.random() * (max - min + 1) + min)
 }

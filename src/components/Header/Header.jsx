@@ -1,12 +1,15 @@
-import AppBar from '@mui/material/AppBar'
-import Toolbar from '@mui/material/Toolbar'
-import IconButton from '@mui/material/IconButton'
-import Typography from '@mui/material/Typography'
+import {
+    Container,
+    useColorScheme,
+    AppBar,
+    Toolbar,
+    IconButton,
+    Typography,
+} from '@mui/material'
 import GitHubIcon from '@mui/icons-material/GitHub'
 import Brightness6Icon from '@mui/icons-material/Brightness6'
 
 import Link from '../Link/Link'
-import { Container, useColorScheme } from '@mui/material'
 
 const Header = (props) => {
     const { mode, setMode } = useColorScheme()
