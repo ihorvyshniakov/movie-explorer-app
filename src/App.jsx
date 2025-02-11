@@ -15,9 +15,9 @@ import Footer from './components/Footer/Footer'
 
 //* DONE
 // - [BUG] return from error search result to home not showing top rated
+// - clean Input after search
 
 // TODO 👇
-// - clean Input after search
 // - [BUG] return from modal to category jump of content
 // - Skeleton preloaders for all loading content (Movie page)
 // - Pagination instead of category filter

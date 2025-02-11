@@ -86,13 +86,21 @@ const SearchBlock = () => {
         }
     }
 
+    const handleSubmit = (e) => {
+        e.preventDefault()
+
+        if (searchInput.trim()) {
+            setSearchParams({ search: searchInput.trim() })
+        }
+        setSearchInput('')
+        const inputEl = inputRef.current.querySelector('input')
+        inputEl.blur()
+    }
+
     useEffect(() => {
         const searchInputFromURL = searchParams.get('search')
 
-        if (!searchInputFromURL) {
-            setSearchInput('')
-        } else {
-            setSearchInput(searchInputFromURL)
+        if (searchInputFromURL) {
             getSearchMovies(searchInputFromURL)
         }
         // eslint-disable-next-line
@@ -116,14 +124,7 @@ const SearchBlock = () => {
                 </Typography>
             </Grid>
             <Grid size={12}>
-                <form
-                    onSubmit={(e) => {
-                        e.preventDefault()
-                        if (searchInput.trim()) {
-                            setSearchParams({ search: searchInput.trim() })
-                        }
-                    }}
-                >
+                <form onSubmit={handleSubmit}>
                     <Stack direction="row" spacing={2}>
                         <TextField
                             fullWidth
