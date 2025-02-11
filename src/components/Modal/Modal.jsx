@@ -1,4 +1,4 @@
-import { Box, Modal as ModalMUI } from '@mui/material'
+import { Box, Fade, Modal as ModalMUI } from '@mui/material'
 import CancelIcon from '@mui/icons-material/Cancel'
 
 const modalStyle = {
@@ -33,17 +33,19 @@ const closeIconStyles = {
 
 const Modal = ({ open, onClose, children }) => {
     return (
-        <ModalMUI open={open} onClose={onClose}>
-            <Box sx={modalStyle}>
-                {children}
-                <Box sx={closeIconStyles}>
-                    <CancelIcon
-                        onClick={onClose}
-                        fontSize="large"
-                        color="secondary"
-                    />
+        <ModalMUI open={open} onClose={onClose} closeAfterTransition>
+            <Fade in={open} timeout={500}>
+                <Box sx={modalStyle}>
+                    {children}
+                    <Box sx={closeIconStyles}>
+                        <CancelIcon
+                            onClick={onClose}
+                            fontSize="large"
+                            color="secondary"
+                        />
+                    </Box>
                 </Box>
-            </Box>
+            </Fade>
         </ModalMUI>
     )
 }

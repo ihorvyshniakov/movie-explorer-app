@@ -25,7 +25,7 @@ const MovieModal = () => {
 
     return (
         <Modal open={isModalOpen} onClose={goHome}>
-            {movieId && <Movie movieId={movieId} />}
+            <Movie movieId={movieId} />
         </Modal>
     )
 }
