@@ -34,17 +34,17 @@ const SearchBlock = () => {
 
             setIsMoviesLoading(true)
             getMoviesBySearch(searchString)
-                .then((searchedMovies) => {
+                .then((details) => {
                     setMovies({
                         name: 'search',
                         value: {
                             title: searchString,
-                            list: searchedMovies,
+                            details,
                         },
                     })
                     setShowingMovies(MOVIES_SEARCH)
 
-                    if (searchedMovies.length) {
+                    if (details.results.length) {
                         setError(null)
                     } else {
                         setShowingMovies(MOVIES_EMPTY)

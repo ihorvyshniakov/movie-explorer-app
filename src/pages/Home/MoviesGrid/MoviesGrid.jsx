@@ -32,12 +32,12 @@ const MoviesGrid = () => {
     const fetchTopRatedMovies = useCallback(() => {
         setIsMoviesLoading(true)
         getTopRatedMovies()
-            .then((movies) => {
+            .then((details) => {
                 setMovies({
                     name: 'topRated',
                     value: {
                         title: 'Top rated',
-                        list: movies,
+                        details,
                     },
                 })
                 setShowingMovies(MOVIES_TOP_RATED)
@@ -58,7 +58,8 @@ const MoviesGrid = () => {
     useEffect(() => {
         const searchInputFromURL = searchParams.get('search') || ''
         const isLoadTopRatedMovies =
-            !movies.topRated.list.length && !searchInputFromURL.length
+            !movies.topRated.details?.results.length &&
+            !searchInputFromURL.length
 
         if (isLoadTopRatedMovies) {
             fetchTopRatedMovies()
@@ -70,13 +71,13 @@ const MoviesGrid = () => {
         const search = searchParams.get('search') || ''
 
         if (search || movieId) {
-            if (movies.search.list.length) {
+            if (movies.search.details?.results.length) {
                 setShowingMovies(MOVIES_SEARCH)
             } else {
                 setShowingMovies(MOVIES_TOP_RATED)
             }
         } else {
-            if (movies.topRated.list.length) {
+            if (movies.topRated.details?.results.length) {
                 setError(null)
                 setShowingMovies(MOVIES_TOP_RATED)
             } else {
@@ -123,9 +124,9 @@ const MoviesGrid = () => {
                 {isMoviesLoading ? (
                     <MoviesGridSkeleton />
                 ) : (
-                    movies[showingMovies].list.map((movie) => (
-                        <MovieCard key={movie.id} {...movie} />
-                    ))
+                    (movies[showingMovies]?.details?.results || []).map(
+                        (movie) => <MovieCard key={movie.id} {...movie} />
+                    )
                 )}
             </Grid>
         </Grid>

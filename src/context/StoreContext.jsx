@@ -22,15 +22,21 @@ const initialState = {
     movies: {
         [MOVIES_EMPTY]: {
             title: '',
-            list: [],
+            details: {
+                results: [],
+            },
         },
         [MOVIES_SEARCH]: {
             title: '',
-            list: [],
+            details: {
+                results: [],
+            },
         },
         [MOVIES_TOP_RATED]: {
             title: '',
-            list: [],
+            details: {
+                results: [],
+            },
         },
         isLoading: false,
     },
@@ -48,8 +54,8 @@ export const StoreContextProvider = ({ children }) => {
         dispatch({ type: 'set_search_input', payload: input })
     }, [])
 
-    const setShowingMovies = useCallback((value) => {
-        dispatch({ type: 'set_showing_movies', payload: value })
+    const setShowingMovies = useCallback((payload) => {
+        dispatch({ type: 'set_showing_movies', payload })
     }, [])
 
     const setMovies = useCallback((moviesListDetails) => {

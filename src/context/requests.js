@@ -52,7 +52,7 @@ const getMoviesListWithURL = async (URL) =>
         })
         .then((res) => {
             if (res.results) {
-                return res.results
+                return res
             }
             // wrong response data
             throw new Error(JSON.stringify(res))
