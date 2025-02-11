@@ -78,7 +78,9 @@ const SearchBlock = () => {
                 name: 'search',
                 value: {
                     title: '',
-                    list: [],
+                    details: {
+                        results: [],
+                    },
                 },
             })
         }

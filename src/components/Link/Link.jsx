@@ -14,7 +14,9 @@ const Link = ({ url, children, ...props }) => {
             name: 'search',
             value: {
                 title: '',
-                list: [],
+                details: {
+                    results: [],
+                },
             },
         })
         navigate(url)

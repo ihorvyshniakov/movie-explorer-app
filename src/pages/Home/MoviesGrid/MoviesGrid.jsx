@@ -124,9 +124,9 @@ const MoviesGrid = () => {
                 {isMoviesLoading ? (
                     <MoviesGridSkeleton />
                 ) : (
-                    (movies[showingMovies]?.details?.results || []).map(
-                        (movie) => <MovieCard key={movie.id} {...movie} />
-                    )
+                    movies[showingMovies].details.results.map((movie) => (
+                        <MovieCard key={movie.id} {...movie} />
+                    ))
                 )}
             </Grid>
         </Grid>
