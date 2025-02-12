@@ -14,17 +14,13 @@ import Footer from './components/Footer/Footer'
 // - Як оптимізувати додаток? Девтулз кольорами рендери, консоль на зменшення рендерів
 
 //* DONE
-// - [BUG] return from error search result to home not showing top rated
-// - clean Input after search
-// - Caching: [BUG] return from modal to category jump of content
-// - Movie page: added skeleton preloader
-// - Анімація для модалки
-// - New feature: added Pagination instead of category filter
-// - Responsive: styling for pagination
+// - TopRated page: correct scrolling after pagination
 
 // TODO 👇
 // - correct scrolling after pagination
 // - cache/show request, if you have result(reduce requests)
+// - [BUG] first load of Movie page, behind modal is shit
+// - [BUG] put wrong page number, load data
 // - Refactoring + skeletons/isLoading
 
 function App() {

@@ -7,11 +7,7 @@ import { useStoreContext } from '../../../context/StoreContext'
 import { getTopRatedMovies } from '../../../context/requests'
 import Error from '../../../components/Error/Error'
 import MoviesGridSkeleton from './MoviesGridSkeleton'
-import {
-    MOVIES_EMPTY,
-    MOVIES_SEARCH,
-    MOVIES_TOP_RATED,
-} from '../../../data/constants'
+import { MOVIES_EMPTY, MOVIES_TOP_RATED } from '../../../data/constants'
 import GridPagination from '../GridPagination/GridPagination'
 
 const MoviesGrid = () => {
@@ -56,35 +52,27 @@ const MoviesGrid = () => {
             })
     }, [])
 
-    useEffect(() => {
-        const querySearch = searchParams.get('search') || ''
-        const queryPage = Number(searchParams.get('page')) || 1
+    useEffect(
+        function manageTopRatedFetching() {
+            const querySearch = searchParams.get('search') || ''
+            if (querySearch || movieId) return
 
-        if (!querySearch && queryPage) {
-            fetchTopRatedMovies(queryPage)
-        }
-        // eslint-disable-next-line
-    }, [searchParams])
+            const queryPage = Number(searchParams.get('page')) || 1
+            const prevLoadedTopRatedPage = movies[MOVIES_TOP_RATED].details.page
+            if (prevLoadedTopRatedPage === queryPage) return
 
-    useEffect(() => {
-        const search = searchParams.get('search') || ''
-
-        if (search || movieId) {
-            if (movies.search.details?.results.length) {
-                setShowingMovies(MOVIES_SEARCH)
-            } else {
-                setShowingMovies(MOVIES_TOP_RATED)
+            const anchor = document.getElementById('back-to-top-anchor')
+            const isCorrectPage = queryPage >= 1 && queryPage < 11
+            if (isCorrectPage) {
+                anchor.scrollIntoView({
+                    behavior: 'smooth',
+                })
+                fetchTopRatedMovies(queryPage)
             }
-        } else {
-            if (movies.topRated.details?.results.length) {
-                setError(null)
-                setShowingMovies(MOVIES_TOP_RATED)
-            } else {
-                setShowingMovies(MOVIES_EMPTY)
-            }
-        }
+        },
         // eslint-disable-next-line
-    }, [searchParams, movieId, setShowingMovies])
+        [searchParams, movieId, fetchTopRatedMovies]
+    )
 
     if (error) {
         return <Error {...error} />
@@ -94,7 +82,7 @@ const MoviesGrid = () => {
         <Grid container spacing={2} display="grid" marginBottom={8}>
             {!isMoviesLoading && !error ? (
                 <Typography variant="body1" color="textPrimary">
-                    {`"${movies[showingMovies].title}" results`}
+                    {`"${movies[showingMovies].title}" results, Page - ${searchParams.get('page')}`}
                 </Typography>
             ) : (
                 <Skeleton

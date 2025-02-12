@@ -184,20 +184,22 @@ const Movie = ({ movieId }) => {
                                     </Stack>
                                 </Grid>
                             </Grid>
-                            <Grid>
-                                <Stack
-                                    direction="row"
-                                    sx={{ flexWrap: 'wrap', gap: '0.5rem' }}
-                                >
-                                    {genres.map(({ id, name }) => (
-                                        <Chip
-                                            key={id}
-                                            label={name}
-                                            color="secondary"
-                                        />
-                                    ))}
-                                </Stack>
-                            </Grid>
+                            {genres.length > 0 && (
+                                <Grid>
+                                    <Stack
+                                        direction="row"
+                                        sx={{ flexWrap: 'wrap', gap: '0.5rem' }}
+                                    >
+                                        {genres.map(({ id, name }) => (
+                                            <Chip
+                                                key={id}
+                                                label={name}
+                                                color="secondary"
+                                            />
+                                        ))}
+                                    </Stack>
+                                </Grid>
+                            )}
                             <Grid display="flex" justifyContent="center">
                                 <TwoColumnTable rows={tableInfo} />
                             </Grid>
