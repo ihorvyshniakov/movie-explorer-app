@@ -12,6 +12,7 @@ import {
     MOVIES_SEARCH,
     MOVIES_TOP_RATED,
 } from '../../../data/constants'
+import GridPagination from '../GridPagination/GridPagination'
 
 const MoviesGrid = () => {
     const {
@@ -29,9 +30,9 @@ const MoviesGrid = () => {
     const { movieId } = useParams()
     const [searchParams] = useSearchParams()
 
-    const fetchTopRatedMovies = useCallback(() => {
+    const fetchTopRatedMovies = useCallback((pageNumber) => {
         setIsMoviesLoading(true)
-        getTopRatedMovies()
+        getTopRatedMovies(pageNumber)
             .then((details) => {
                 setMovies({
                     name: 'topRated',
@@ -56,13 +57,11 @@ const MoviesGrid = () => {
     }, [])
 
     useEffect(() => {
-        const searchInputFromURL = searchParams.get('search') || ''
-        const isLoadTopRatedMovies =
-            !movies.topRated.details?.results.length &&
-            !searchInputFromURL.length
+        const querySearch = searchParams.get('search') || ''
+        const queryPage = Number(searchParams.get('page')) || 1
 
-        if (isLoadTopRatedMovies) {
-            fetchTopRatedMovies()
+        if (!querySearch && queryPage) {
+            fetchTopRatedMovies(queryPage)
         }
         // eslint-disable-next-line
     }, [searchParams])
@@ -92,7 +91,8 @@ const MoviesGrid = () => {
     }
 
     return (
-        <Grid container spacing={2}>
+        <Grid container spacing={2} display="grid">
+            <GridPagination />
             {!isMoviesLoading && !error ? (
                 <Grid>
                     <Typography variant="body1" color="textPrimary">

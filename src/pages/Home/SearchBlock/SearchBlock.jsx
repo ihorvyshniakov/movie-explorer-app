@@ -16,7 +16,6 @@ import { MOVIES_EMPTY, MOVIES_SEARCH } from '../../../data/constants'
 const SearchBlock = () => {
     const {
         searchInput,
-        movies,
         isMoviesLoading,
 
         setSearchInput,
@@ -29,11 +28,11 @@ const SearchBlock = () => {
     const inputRef = useRef(null)
 
     const getSearchMovies = useCallback(
-        (movieTitle = '') => {
+        (movieTitle, pageNumber) => {
             const searchString = movieTitle || searchInput
 
             setIsMoviesLoading(true)
-            getMoviesBySearch(searchString)
+            getMoviesBySearch(searchString, pageNumber)
                 .then((details) => {
                     setMovies({
                         name: 'search',
@@ -99,12 +98,10 @@ const SearchBlock = () => {
 
     useEffect(() => {
         const searchInputFromURL = searchParams.get('search')
+        const startingPage = Number(searchParams.get('page')) || 1
 
-        if (
-            searchInputFromURL &&
-            movies[MOVIES_SEARCH].title !== searchInputFromURL
-        ) {
-            getSearchMovies(searchInputFromURL)
+        if (searchInputFromURL) {
+            getSearchMovies(searchInputFromURL, startingPage)
         }
         // eslint-disable-next-line
     }, [searchParams, setSearchInput])
