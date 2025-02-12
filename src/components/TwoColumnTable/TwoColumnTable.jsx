@@ -7,7 +7,7 @@ import {
     TableRow,
 } from '@mui/material'
 
-import { formatIntoDollars } from '../../utils/utils'
+import { formatIntoDollars } from '../../utils'
 
 const tableStyles = {
     'tr, td': {

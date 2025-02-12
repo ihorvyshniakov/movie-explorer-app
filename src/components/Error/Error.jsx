@@ -1,5 +1,5 @@
 import { Alert, AlertTitle, Typography } from '@mui/material'
-import { isJSON } from '../../utils/utils'
+import { isJSON } from '../../utils'
 
 const Error = ({ error, message }) => {
     let status

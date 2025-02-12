@@ -1,4 +1,10 @@
-export { isJSON, numberWithCommas, formatIntoDollars, randomIntFromInterval }
+export {
+    isJSON,
+    numberWithCommas,
+    formatIntoDollars,
+    randomIntFromInterval,
+    scrollToTop,
+}
 
 function isJSON(string) {
     try {
@@ -20,4 +26,11 @@ const formatIntoDollars = (amount) => {
 function randomIntFromInterval(min, max) {
     // min and max included
     return Math.floor(Math.random() * (max - min + 1) + min)
+}
+
+function scrollToTop() {
+    const anchor = document.getElementById('back-to-top-anchor')
+    anchor.scrollIntoView({
+        behavior: 'smooth',
+    })
 }

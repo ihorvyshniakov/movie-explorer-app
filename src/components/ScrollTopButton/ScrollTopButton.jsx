@@ -1,6 +1,8 @@
 import { Box, Fab, Fade, useScrollTrigger } from '@mui/material'
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp'
 
+import { scrollToTop } from '../../utils'
+
 // https://mui.com/material-ui/react-app-bar/#back-to-top
 
 const ScrollTopButton = () => {
@@ -9,23 +11,11 @@ const ScrollTopButton = () => {
         threshold: 100,
     })
 
-    const handleClick = (event) => {
-        const anchor = (event.target.ownerDocument || document).getElementById(
-            'back-to-top-anchor'
-        )
-
-        if (anchor) {
-            anchor.scrollIntoView({
-                behavior: 'smooth',
-            })
-        }
-    }
-
     return (
         <>
             <Fade in={trigger}>
                 <Box
-                    onClick={handleClick}
+                    onClick={scrollToTop}
                     role="presentation"
                     sx={{ position: 'fixed', bottom: '3rem', right: '2rem' }}
                 >

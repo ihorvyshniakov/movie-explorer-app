@@ -9,6 +9,7 @@ import Error from '../../../components/Error/Error'
 import MoviesGridSkeleton from './MoviesGridSkeleton'
 import { MOVIES_EMPTY, MOVIES_TOP_RATED } from '../../../data/constants'
 import GridPagination from '../GridPagination/GridPagination'
+import { scrollToTop } from '../../../utils'
 
 const MoviesGrid = () => {
     const {
@@ -61,14 +62,8 @@ const MoviesGrid = () => {
             const prevLoadedTopRatedPage = movies[MOVIES_TOP_RATED].details.page
             if (prevLoadedTopRatedPage === queryPage) return
 
-            const anchor = document.getElementById('back-to-top-anchor')
-            const isCorrectPage = queryPage >= 1 && queryPage < 11
-            if (isCorrectPage) {
-                anchor.scrollIntoView({
-                    behavior: 'smooth',
-                })
-                fetchTopRatedMovies(queryPage)
-            }
+            scrollToTop()
+            fetchTopRatedMovies(queryPage)
         },
         // eslint-disable-next-line
         [searchParams, movieId, fetchTopRatedMovies]

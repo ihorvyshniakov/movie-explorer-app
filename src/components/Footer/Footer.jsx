@@ -6,9 +6,9 @@ import {
     Grid2,
     Typography,
 } from '@mui/material'
-
-import { randomIntFromInterval } from '../../utils/utils'
 import { useEffect, useState } from 'react'
+
+import { randomIntFromInterval } from '../../utils'
 
 const quotes = [
     {
