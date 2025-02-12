@@ -91,24 +91,19 @@ const MoviesGrid = () => {
     }
 
     return (
-        <Grid container spacing={2} display="grid">
-            <GridPagination />
+        <Grid container spacing={2} display="grid" marginBottom={8}>
             {!isMoviesLoading && !error ? (
-                <Grid>
-                    <Typography variant="body1" color="textPrimary">
-                        {`"${movies[showingMovies].title}" results`}
-                    </Typography>
-                </Grid>
+                <Typography variant="body1" color="textPrimary">
+                    {`"${movies[showingMovies].title}" results`}
+                </Typography>
             ) : (
-                <Grid>
-                    <Skeleton
-                        variant="rounded"
-                        height="1.5rem"
-                        sx={{
-                            width: '8rem',
-                        }}
-                    />
-                </Grid>
+                <Skeleton
+                    variant="rounded"
+                    height="1.5rem"
+                    sx={{
+                        width: '8rem',
+                    }}
+                />
             )}
             <Grid
                 container
@@ -117,9 +112,9 @@ const MoviesGrid = () => {
                 gridTemplateColumns={{
                     xs: '1fr',
                     sm: '1fr 1fr',
-                    md: '1fr 1fr 1fr',
+                    lg: '1fr 1fr 1fr 1fr',
                 }}
-                sx={{ width: '100%', marginBottom: '4rem', display: 'grid' }}
+                sx={{ width: '100%', display: 'grid' }}
             >
                 {isMoviesLoading ? (
                     <MoviesGridSkeleton />
@@ -129,6 +124,8 @@ const MoviesGrid = () => {
                     ))
                 )}
             </Grid>
+
+            <GridPagination />
         </Grid>
     )
 }

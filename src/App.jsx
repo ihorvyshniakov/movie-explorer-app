@@ -19,9 +19,12 @@ import Footer from './components/Footer/Footer'
 // - Caching: [BUG] return from modal to category jump of content
 // - Movie page: added skeleton preloader
 // - Анімація для модалки
+// - New feature: added Pagination instead of category filter
+// - Responsive: styling for pagination
 
 // TODO 👇
-// - Pagination instead of category filter
+// - correct scrolling after pagination
+// - cache/show request, if you have result(reduce requests)
 // - Refactoring + skeletons/isLoading
 
 function App() {
@@ -43,7 +46,7 @@ function App() {
             <Header />
 
             <main style={{ flexGrow: 1 }}>
-                <Container maxWidth="md">
+                <Container maxWidth="lg">
                     <Routes>
                         <Route path="/" element={<Home />}>
                             <Route path="/movie/:movieId" element={<Movie />} />

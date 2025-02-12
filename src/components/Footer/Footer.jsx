@@ -67,7 +67,7 @@ const Footer = () => {
     return (
         <footer>
             <Box sx={{ bgcolor: 'primary.main' }}>
-                <Container maxWidth="md">
+                <Container maxWidth="lg">
                     <Grid2 container spacing={4} padding="4rem 0 6rem">
                         <Grid2
                             size={12}

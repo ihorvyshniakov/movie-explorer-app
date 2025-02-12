@@ -38,13 +38,16 @@ const GridPagination = () => {
     }, [page])
 
     return (
-        <Grid display="flex" justifyContent="center">
+        <Grid display="flex" justifyContent="center" marginTop={4}>
             <Pagination
                 count={totalPages || 1}
                 page={page || 1}
                 onChange={(event, value) => setPage(value)}
                 variant="outlined"
                 shape="rounded"
+                size="large"
+                hidePrevButton={true}
+                hideNextButton={true}
             />
         </Grid>
     )

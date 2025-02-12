@@ -29,11 +29,7 @@ const TwoColumnTable = ({ rows = [] }) => {
     }
 
     return (
-        <TableContainer
-            component={Paper}
-            elevation={2}
-            sx={{ width: 'fit-content', maxWidth: '100%' }}
-        >
+        <TableContainer component={Paper} elevation={2} sx={{ width: '100%' }}>
             <Table sx={{ ...tableStyles }} aria-label="simple table">
                 <TableBody>
                     {rows.map((row) => (
@@ -44,7 +40,7 @@ const TwoColumnTable = ({ rows = [] }) => {
                                 sx={{
                                     width: {
                                         xs: 110,
-                                        md: 180,
+                                        sm: 180,
                                     },
                                 }}
                             >

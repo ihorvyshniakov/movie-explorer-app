@@ -22,7 +22,7 @@ const Header = (props) => {
         <>
             <span id="back-to-top-anchor"></span>
             <AppBar position="sticky" {...props}>
-                <Container maxWidth="md" sx={{ display: 'flex' }}>
+                <Container maxWidth="lg" sx={{ display: 'flex' }}>
                     <Toolbar disableGutters sx={{ width: '100%' }}>
                         <IconButton
                             size="large"

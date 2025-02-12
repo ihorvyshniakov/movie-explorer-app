@@ -32,7 +32,7 @@ const MovieCard = ({
             sx={{ width: '100%' }}
         >
             <Card
-                sx={{ width: '100%', maxWidth: 345, height: '100%' }}
+                sx={{ width: '100%', maxWidth: 320, height: '100%' }}
                 onClick={openMovieModal}
             >
                 <CardActionArea

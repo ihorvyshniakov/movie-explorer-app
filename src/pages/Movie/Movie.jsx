@@ -198,7 +198,7 @@ const Movie = ({ movieId }) => {
                                     ))}
                                 </Stack>
                             </Grid>
-                            <Grid>
+                            <Grid display="flex" justifyContent="center">
                                 <TwoColumnTable rows={tableInfo} />
                             </Grid>
                         </Grid>
