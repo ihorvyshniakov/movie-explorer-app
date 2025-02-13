@@ -19,6 +19,10 @@ import Footer from './components/Footer/Footer'
 // TODO 👇
 // - correct scrolling after pagination
 // - cache/show request, if you have result(reduce requests)
+// - [BUG] weird jump when open modal, clicked not full visible movie card (add scroll to element by myself)
+// useEffect(() => {
+//     history.scrollRestoration = 'manual'
+// }, [])
 // - [BUG] first load of Movie page, behind modal is shit
 // - [BUG] put wrong page number, load data
 // - Refactoring + skeletons/isLoading

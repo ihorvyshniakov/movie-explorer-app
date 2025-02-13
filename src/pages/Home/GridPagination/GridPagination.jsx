@@ -21,8 +21,9 @@ const GridPagination = () => {
     }, [movies])
 
     useEffect(() => {
-        const startingPage = Number(searchParams.get('page')) || 1
+        if (movieId) return
 
+        const startingPage = Number(searchParams.get('page')) || 1
         if (startingPage) {
             setPage(startingPage)
         }

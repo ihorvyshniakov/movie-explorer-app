@@ -55,6 +55,8 @@ const MoviesGrid = () => {
 
     useEffect(
         function manageTopRatedFetching() {
+            if (isMoviesLoading) return
+
             const querySearch = searchParams.get('search') || ''
             if (querySearch || movieId) return
 
