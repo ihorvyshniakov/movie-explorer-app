@@ -28,12 +28,12 @@ export const getMovieDetailsById = (movieID) =>
             throw new Error(error.message)
         })
 
-export const getMoviesBySearch = (searchInput, pageNumber = 1) =>
+export const getMoviesBySearch = (searchInput, pageNumber) =>
     getMoviesListWithURL(
         `https://api.themoviedb.org/3/search/movie?query=${searchInput}&page=${pageNumber}`
     )
 
-export const getTopRatedMovies = (pageNumber = 1) =>
+export const getTopRatedMovies = (pageNumber) =>
     getMoviesListWithURL(
         `https://api.themoviedb.org/3/movie/top_rated?page=${pageNumber}`
     )
@@ -53,7 +53,7 @@ const getMoviesListWithURL = async (URL) =>
             return res.json()
         })
         .then((res) => {
-            if (res.results) {
+            if (res.results.length) {
                 return res
             }
             // wrong response data

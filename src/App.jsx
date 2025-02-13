@@ -14,18 +14,12 @@ import Footer from './components/Footer/Footer'
 // - Як оптимізувати додаток? Девтулз кольорами рендери, консоль на зменшення рендерів
 
 //* DONE
-// - TopRated page: correct scrolling after pagination
+// - Pagination: added correct fetching + displaying, based on URL
 
 // TODO 👇
-// - correct scrolling after pagination
-// - cache/show request, if you have result(reduce requests)
-// - [BUG] weird jump when open modal, clicked not full visible movie card (add scroll to element by myself)
-// useEffect(() => {
-//     history.scrollRestoration = 'manual'
-// }, [])
-// - [BUG] first load of Movie page, behind modal is shit
-// - [BUG] put wrong page number, load data
-// - Refactoring + skeletons/isLoading
+// - Cache: if modal open -> don't show another grid movies
+// - Cache: don't fetch again same category, if result saved
+// - display pagination correctly
 
 function App() {
     const { mode } = useColorScheme()

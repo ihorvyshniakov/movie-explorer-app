@@ -29,14 +29,14 @@ const GridPagination = () => {
         }
     }, [searchParams])
 
-    useEffect(() => {
-        if (!movieId && page) {
-            setSearchParams((prev) => {
-                prev.set('page', page)
-                return prev
-            })
-        }
-    }, [page])
+    // useEffect(() => {
+    //     if (!movieId && page) {
+    //         setSearchParams((prev) => {
+    //             prev.set('page', page)
+    //             return prev
+    //         })
+    //     }
+    // }, [page])
 
     return (
         <Grid display="flex" justifyContent="center" marginTop={4}>

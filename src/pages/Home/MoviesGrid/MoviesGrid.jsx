@@ -1,85 +1,140 @@
-import { useCallback, useEffect } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { Grid2 as Grid, Skeleton, Typography } from '@mui/material'
 import { useParams, useSearchParams } from 'react-router'
 
 import MovieCard from '../MovieCard/MovieCard'
 import { useStoreContext } from '../../../context/StoreContext'
-import { getTopRatedMovies } from '../../../context/requests'
+import { getMoviesBySearch, getTopRatedMovies } from '../../../context/requests'
 import Error from '../../../components/Error/Error'
 import MoviesGridSkeleton from './MoviesGridSkeleton'
-import { MOVIES_EMPTY, MOVIES_TOP_RATED } from '../../../data/constants'
+import { MOVIES_TOP_RATED, MOVIES_SEARCH } from '../../../data/constants'
 import GridPagination from '../GridPagination/GridPagination'
-import { scrollToTop } from '../../../utils'
 
 const MoviesGrid = () => {
     const {
         error,
         movies,
-        showingMovies,
-        isMoviesLoading,
 
         setError,
         setMovies,
-        setShowingMovies,
         setIsMoviesLoading,
     } = useStoreContext()
+    const [show, setShow] = useState(null)
 
     const { movieId } = useParams()
     const [searchParams] = useSearchParams()
 
-    const fetchTopRatedMovies = useCallback((pageNumber) => {
-        setIsMoviesLoading(true)
-        getTopRatedMovies(pageNumber)
-            .then((details) => {
-                setMovies({
-                    name: 'topRated',
-                    value: {
-                        title: 'Top rated',
-                        details,
-                    },
+    const fetchTopRatedMovies = useCallback(
+        (pageNumber) => {
+            setError(null)
+            setIsMoviesLoading(true)
+            getTopRatedMovies(pageNumber)
+                .then((details) => {
+                    setMovies({
+                        name: MOVIES_TOP_RATED,
+                        value: {
+                            title: 'Top rated',
+                            details,
+                        },
+                    })
                 })
-                setShowingMovies(MOVIES_TOP_RATED)
-                setError(null)
-            })
-            .catch((error) => {
-                setShowingMovies(MOVIES_EMPTY)
-                setError({
-                    error: error.message,
-                    message: 'Top rated movies request failed',
+                .catch((error) => {
+                    setError({
+                        error: error.message,
+                        message: 'Top rated movies request failed',
+                    })
                 })
-            })
-            .finally(() => {
-                setIsMoviesLoading(false)
-            })
-    }, [])
+                .finally(() => {
+                    setIsMoviesLoading(false)
+                })
+        },
+        [setError, setIsMoviesLoading, setMovies]
+    )
+
+    const fetchSearchMovies = useCallback(
+        (movieTitle, pageNumber) => {
+            setError(null)
+            setIsMoviesLoading(true)
+            getMoviesBySearch(movieTitle, pageNumber)
+                .then((details) => {
+                    setMovies({
+                        name: MOVIES_SEARCH,
+                        value: {
+                            title: movieTitle,
+                            details,
+                        },
+                    })
+                })
+                .catch((error) => {
+                    setError({
+                        error: error.message,
+                        message: `We didn't find any movie with "${movieTitle}" name. \nPlease try to find other movies 🙂`,
+                    })
+                })
+                .finally(() => {
+                    setIsMoviesLoading(false)
+                })
+        },
+        [setError, setIsMoviesLoading, setMovies]
+    )
 
     useEffect(
-        function manageTopRatedFetching() {
-            if (isMoviesLoading) return
+        function showBasedOnURL() {
+            const querySearch = searchParams.get('search')
+            const queryPage = Number(searchParams.get('page'))
 
-            const querySearch = searchParams.get('search') || ''
-            if (querySearch || movieId) return
+            let movies
+            let page
+            if (querySearch === null) {
+                movies = MOVIES_TOP_RATED
+            } else {
+                movies = MOVIES_SEARCH
+            }
 
-            const queryPage = Number(searchParams.get('page')) || 1
-            const prevLoadedTopRatedPage = movies[MOVIES_TOP_RATED].details.page
-            if (prevLoadedTopRatedPage === queryPage) return
+            if (queryPage >= 10) {
+                page = 10
+            } else if (queryPage > 1) {
+                page = queryPage
+            } else {
+                page = 1
+            }
 
-            scrollToTop()
-            fetchTopRatedMovies(queryPage)
+            setShow({ movies, page })
         },
-        // eslint-disable-next-line
-        [searchParams, movieId, fetchTopRatedMovies]
+        [searchParams, movieId]
+    )
+
+    useEffect(
+        function fetchMovies() {
+            if (!show) return
+
+            const { movies, page } = show
+
+            if (movies === MOVIES_TOP_RATED) {
+                fetchTopRatedMovies(page)
+            }
+            if (movies === MOVIES_SEARCH) {
+                const querySearch = searchParams.get('search')
+                fetchSearchMovies(querySearch, page)
+            }
+        },
+        [show]
     )
 
     if (error) {
         return <Error {...error} />
     }
 
+    let showingList
+    if (show) {
+        showingList = movies[show.movies].details.results
+    }
+
     return (
         <Grid container spacing={2} display="grid" marginBottom={8}>
-            {!isMoviesLoading && !error ? (
+            {show && movies[show.movies].title.length ? (
                 <Typography variant="body1" color="textPrimary">
-                    {`"${movies[showingMovies].title}" results, Page - ${searchParams.get('page')}`}
+                    {`"${movies[show.movies].title}" movies, page - ${show.page}`}
                 </Typography>
             ) : (
                 <Skeleton
@@ -101,12 +156,12 @@ const MoviesGrid = () => {
                 }}
                 sx={{ width: '100%', display: 'grid' }}
             >
-                {isMoviesLoading ? (
-                    <MoviesGridSkeleton />
-                ) : (
-                    movies[showingMovies].details.results.map((movie) => (
+                {showingList?.length ? (
+                    showingList.map((movie) => (
                         <MovieCard key={movie.id} {...movie} />
                     ))
+                ) : (
+                    <MoviesGridSkeleton />
                 )}
             </Grid>
 
