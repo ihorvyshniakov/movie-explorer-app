@@ -1,11 +1,5 @@
 export function reducer(state, action) {
     switch (action.type) {
-        case 'set_error':
-            return {
-                ...state,
-                error: action.payload,
-            }
-
         case 'set_show': {
             const { movies, page } = action.payload
             return {
@@ -29,6 +23,15 @@ export function reducer(state, action) {
                 movies: {
                     ...state.movies,
                     [action.payload.name]: action.payload.value,
+                },
+            }
+
+        case 'set_error':
+            return {
+                ...state,
+                movies: {
+                    ...state.movies,
+                    error: action.payload,
                 },
             }
 

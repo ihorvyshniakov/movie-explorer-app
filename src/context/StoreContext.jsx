@@ -16,7 +16,6 @@ export const useStoreContext = () => {
 }
 
 const initialState = {
-    error: null,
     totalPages: 1,
     show: null,
     movies: {
@@ -38,19 +37,16 @@ const initialState = {
                 results: [],
             },
         },
+        error: null,
         isLoading: false,
     },
 }
 
 export const StoreContextProvider = ({ children }) => {
-    const [{ error, movies, show, totalPages }, dispatch] = useReducer(
+    const [{ movies, show, totalPages }, dispatch] = useReducer(
         reducer,
         initialState
     )
-
-    const setError = useCallback((error) => {
-        dispatch({ type: 'set_error', payload: error })
-    }, [])
 
     const setShow = useCallback(({ movies, page }) => {
         dispatch({ type: 'set_show', payload: { movies, page } })
@@ -64,21 +60,27 @@ export const StoreContextProvider = ({ children }) => {
         dispatch({ type: 'set_movies', payload: moviesListDetails })
     }, [])
 
+    const setError = useCallback((error) => {
+        dispatch({ type: 'set_error', payload: error })
+    }, [])
+
     const setIsMoviesLoading = useCallback((isLoading) => {
         dispatch({ type: 'set_is_movies_loading', payload: isLoading })
     }, [])
 
     const contextValue = {
-        error,
-        setError,
-        movies,
-        setMovies,
-        isMoviesLoading: movies.isLoading,
-        setIsMoviesLoading,
-        show,
-        setShow,
         totalPages,
         setTotalPages,
+
+        show,
+        setShow,
+
+        movies,
+        setMovies,
+        error: movies.error,
+        setError,
+        isMoviesLoading: movies.isLoading,
+        setIsMoviesLoading,
     }
 
     return (

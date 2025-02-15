@@ -18,7 +18,7 @@ const formatDate = (date) => {
 }
 
 const Movie = ({ movieId }) => {
-    const [error, setError] = useState(null)
+    const [movieError, setMovieError] = useState(null)
     const [movieDetails, setMovieDetails] = useState(null)
     const [isLoading, setIsLoading] = useState(false)
 
@@ -28,10 +28,10 @@ const Movie = ({ movieId }) => {
             getMovieDetailsById(movieId)
                 .then((movieDetails) => {
                     setMovieDetails(movieDetails)
-                    setError(null)
+                    setMovieError(null)
                 })
                 .catch((error) => {
-                    setError({
+                    setMovieError({
                         error: error.message,
                         message:
                             'Whoops, movie details request failed or \nDatabase do not have an extra info 🤷‍♂️',
@@ -43,8 +43,8 @@ const Movie = ({ movieId }) => {
         }
     }, [movieId])
 
-    if (error) {
-        return <Error {...error} />
+    if (movieError) {
+        return <Error {...movieError} />
     }
 
     if (movieDetails) {

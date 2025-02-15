@@ -10,7 +10,7 @@ const Image = ({
     ...props
 }) => {
     const [isLoaded, setIsLoaded] = useState(false)
-    const [error, setError] = useState(false)
+    const [imageError, setImageError] = useState(false)
 
     return (
         <Paper
@@ -26,15 +26,15 @@ const Image = ({
                 <Skeleton
                     style={{ width: '100%', height: '100%' }}
                     variant="rectangular"
-                    animation={error ? false : 'pulse'}
+                    animation={imageError ? false : 'pulse'}
                 />
             )}
-            {!error && (
+            {!imageError && (
                 <CardMedia
                     component="img"
                     image={`https://image.tmdb.org/t/p/w300${url}`}
                     alt={`${title} poster`}
-                    onError={() => setError(true)}
+                    onError={() => setImageError(true)}
                     onLoad={() => setIsLoaded(true)}
                     sx={{
                         width: '100%',
