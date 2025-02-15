@@ -1,10 +1,6 @@
 import { createContext, useCallback, useContext, useReducer } from 'react'
 
-import {
-    MOVIES_EMPTY,
-    MOVIES_SEARCH,
-    MOVIES_TOP_RATED,
-} from '../data/constants'
+import { MOVIES_SEARCH, MOVIES_TOP_RATED } from '../data/constants'
 import { reducer } from './StoreReducer'
 
 const StoreContext = createContext(null)
@@ -19,12 +15,6 @@ const initialState = {
     totalPages: 1,
     show: null,
     movies: {
-        [MOVIES_EMPTY]: {
-            title: '',
-            details: {
-                results: [],
-            },
-        },
         [MOVIES_SEARCH]: {
             title: '',
             details: {

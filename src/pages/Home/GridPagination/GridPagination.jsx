@@ -1,13 +1,12 @@
 import { Grid2 as Grid, Pagination } from '@mui/material'
-import { useParams, useSearchParams } from 'react-router'
+import { useSearchParams } from 'react-router'
 
 import { useStoreContext } from '../../../context/StoreContext'
 
 const GridPagination = () => {
     const { show, totalPages } = useStoreContext()
 
-    const { movieId } = useParams()
-    const [searchParams, setSearchParams] = useSearchParams()
+    const [, setSearchParams] = useSearchParams()
 
     const handlePageChange = (event, value) => {
         setSearchParams((prev) => {

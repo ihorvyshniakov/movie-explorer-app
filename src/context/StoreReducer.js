@@ -1,5 +1,11 @@
 export function reducer(state, action) {
     switch (action.type) {
+        case 'set_total_pages':
+            return {
+                ...state,
+                totalPages: action.payload,
+            }
+
         case 'set_show': {
             const { movies, page } = action.payload
             return {
@@ -10,12 +16,6 @@ export function reducer(state, action) {
                 },
             }
         }
-
-        case 'set_total_pages':
-            return {
-                ...state,
-                totalPages: action.payload,
-            }
 
         case 'set_movies':
             return {

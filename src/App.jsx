@@ -15,16 +15,14 @@ import Footer from './components/Footer/Footer'
 
 //* DONE
 // - Context optimization: switched 'searchInput' to useState()
+// - Context optimization: replaced 'error' to 'movies', because it's related to this
+// - Context optimization: removed 'empty' movies, not using
 
 // TODO 👇
-// Pagination
-// ? Store: replace 'totalPages'
-
 // - [BUG] while fetching 'search' result show previous
 // - Cache: if modal open -> don't show another grid movies
 // - Cache: don't fetch again same category, if result saved
 // - [BUG] first load of Movie page, behind modal is shit
-// ? Store: remove/replace 'error'
 
 // - Animation: 3d-hover offect/styling for movie card
 // - correct scrolling after pagination
