@@ -8,7 +8,7 @@ import {
 import Grid from '@mui/material/Grid2'
 
 const MoviesGridSkeleton = () => {
-    return [...new Array(6)].map((el, index) => (
+    return [...new Array(20)].map((el, index) => (
         <Grid
             key={`skeleton-${index}`}
             size={4}

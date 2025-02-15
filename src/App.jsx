@@ -20,12 +20,10 @@ import Footer from './components/Footer/Footer'
 // - Movie: removed extra request
 // - Cache: don't fetch again same category, if result saved
 // - [BUG] while fetching show only skeleton
+// - added correct scrolling after pagination + removed jumping height of page
 
 // TODO 👇
-// - [BUG] first load of Movie page, behind modal is shit
-
 // - Animation: 3d-hover offect/styling for movie card
-// - correct scrolling after pagination
 // - Refactoring + skeletons/isLoading
 
 function App() {
