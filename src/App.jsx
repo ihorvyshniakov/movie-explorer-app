@@ -15,11 +15,11 @@ import Footer from './components/Footer/Footer'
 
 //* DONE
 // - Pagination: added correct fetching + displaying, based on URL
+// - display pagination correctly
 
 // TODO 👇
 // - Cache: if modal open -> don't show another grid movies
 // - Cache: don't fetch again same category, if result saved
-// - display pagination correctly
 
 function App() {
     const { mode } = useColorScheme()

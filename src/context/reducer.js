@@ -23,6 +23,12 @@ export function reducer(state, action) {
             }
         }
 
+        case 'set_total_pages':
+            return {
+                ...state,
+                totalPages: action.payload,
+            }
+
         case 'set_movies':
             return {
                 ...state,

@@ -19,6 +19,7 @@ const MoviesGrid = () => {
         setShow,
         setError,
         setMovies,
+        setTotalPages,
         setIsMoviesLoading,
     } = useStoreContext()
 
@@ -38,6 +39,7 @@ const MoviesGrid = () => {
                             details,
                         },
                     })
+                    setTotalPages(details.total_pages)
                 })
                 .catch((error) => {
                     setError({
@@ -65,6 +67,7 @@ const MoviesGrid = () => {
                             details,
                         },
                     })
+                    setTotalPages(details.total_pages)
                 })
                 .catch((error) => {
                     setError({
