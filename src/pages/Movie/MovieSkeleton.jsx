@@ -1,4 +1,4 @@
-import { Grid2 as Grid, Paper, Skeleton, Stack } from '@mui/material'
+import { Grid2 as Grid, Paper, Skeleton } from '@mui/material'
 
 const MovieSkeleton = () => {
     return (
@@ -59,15 +59,13 @@ const MovieSkeleton = () => {
                         />
                     </Grid>
                     <Grid>
-                        <Stack direction="row" alignItems="center" gap={1}>
-                            <Skeleton
-                                variant="rounded"
-                                height="2rem"
-                                sx={{
-                                    width: 200,
-                                }}
-                            />
-                        </Stack>
+                        <Skeleton
+                            variant="rounded"
+                            height="2rem"
+                            sx={{
+                                width: 200,
+                            }}
+                        />
                     </Grid>
                 </Grid>
                 <Grid container spacing={1} direction="row" alignItems="center">

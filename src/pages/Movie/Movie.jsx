@@ -1,4 +1,4 @@
-import { Box, Chip, Stack, Typography } from '@mui/material'
+import { Box, Chip, Skeleton, Stack, Typography } from '@mui/material'
 import Grid from '@mui/material/Grid2'
 import StarsIcon from '@mui/icons-material/Stars'
 import { useEffect, useState } from 'react'
@@ -132,39 +132,64 @@ const Movie = ({ movieId }) => {
                             }}
                         >
                             <Grid>
-                                <Typography
-                                    gutterBottom
-                                    component="h1"
-                                    color="textPrimary"
-                                    sx={{
-                                        margin: 0,
-                                        typography: {
-                                            xs: 'h5',
-                                            md: 'h4',
-                                        },
-                                    }}
-                                >
-                                    {title}
-                                </Typography>
+                                {title ? (
+                                    <Typography
+                                        gutterBottom
+                                        component="h1"
+                                        color="textPrimary"
+                                        sx={{
+                                            margin: 0,
+                                            typography: {
+                                                xs: 'h5',
+                                                md: 'h4',
+                                            },
+                                        }}
+                                    >
+                                        {title}
+                                    </Typography>
+                                ) : (
+                                    <Skeleton
+                                        variant="text"
+                                        animation={false}
+                                        sx={{ fontSize: '3rem', width: 250 }}
+                                    />
+                                )}
                             </Grid>
                             <Grid>
-                                <Typography
-                                    gutterBottom
-                                    variant="body2"
-                                    color="textPrimary"
-                                >
-                                    {overview}
-                                </Typography>
+                                {overview ? (
+                                    <Typography
+                                        gutterBottom
+                                        variant="body2"
+                                        color="textPrimary"
+                                    >
+                                        {overview}
+                                    </Typography>
+                                ) : (
+                                    <Skeleton
+                                        variant="rounded"
+                                        height="80px"
+                                        animation={false}
+                                    />
+                                )}
                             </Grid>
                             <Grid container spacing={1} direction="column">
                                 <Grid>
-                                    <Typography
-                                        variant="h6"
-                                        component="p"
-                                        color="textPrimary"
-                                    >
-                                        {`Release - ${formatDate(release_date)}`}
-                                    </Typography>
+                                    {release_date ? (
+                                        <Typography
+                                            variant="h6"
+                                            component="p"
+                                            color="textPrimary"
+                                        >
+                                            {`Release - ${formatDate(release_date)}`}
+                                        </Typography>
+                                    ) : (
+                                        <Skeleton
+                                            animation={false}
+                                            variant="rounded"
+                                            height="2rem"
+                                            width="4rem"
+                                        />
+                                    )}
                                 </Grid>
                                 <Grid>
                                     <Stack
@@ -184,8 +209,13 @@ const Movie = ({ movieId }) => {
                                     </Stack>
                                 </Grid>
                             </Grid>
-                            {genres.length > 0 && (
-                                <Grid>
+                            <Grid
+                                container
+                                spacing={1}
+                                direction="row"
+                                alignItems="center"
+                            >
+                                {genres.length > 0 ? (
                                     <Stack
                                         direction="row"
                                         sx={{ flexWrap: 'wrap', gap: '0.5rem' }}
@@ -198,8 +228,22 @@ const Movie = ({ movieId }) => {
                                             />
                                         ))}
                                     </Stack>
-                                </Grid>
-                            )}
+                                ) : (
+                                    [...new Array(2)].map((el, index) => (
+                                        <Grid key={`skeleton-chip-${index}`}>
+                                            <Skeleton
+                                                animation={false}
+                                                variant="rounded"
+                                                height="2rem"
+                                                sx={{
+                                                    width: '4rem',
+                                                    borderRadius: '1rem',
+                                                }}
+                                            />
+                                        </Grid>
+                                    ))
+                                )}
+                            </Grid>
                             <Grid display="flex" justifyContent="center">
                                 <TwoColumnTable rows={tableInfo} />
                             </Grid>

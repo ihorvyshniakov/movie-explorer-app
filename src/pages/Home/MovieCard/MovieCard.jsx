@@ -11,7 +11,6 @@ import Image from '../../../components/Image/Image'
 const MovieCard = ({
     id,
     title,
-    name,
     overview,
     poster_path,
     vote_average,
@@ -43,7 +42,7 @@ const MovieCard = ({
                     }}
                 >
                     <Image
-                        title={title || name}
+                        title={title}
                         url={`https://image.tmdb.org/t/p/w300${poster_path}`}
                         preloaderHeight={400}
                     />
@@ -55,14 +54,14 @@ const MovieCard = ({
                             flexGrow: 1,
                         }}
                     >
-                        {title || name ? (
+                        {title ? (
                             <Typography
                                 gutterBottom
                                 variant="h5"
                                 sx={{ height: '4rem' }}
                                 className="ellipsis-2-lines"
                             >
-                                {title || name}
+                                {title}
                             </Typography>
                         ) : (
                             <Skeleton
@@ -86,7 +85,7 @@ const MovieCard = ({
                         ) : (
                             <Skeleton
                                 variant="rounded"
-                                height="50px"
+                                height="80px"
                                 animation={false}
                                 sx={{
                                     marginBottom: '1rem',
@@ -103,21 +102,19 @@ const MovieCard = ({
                             alignSelf="flex-end"
                         >
                             <Grid>
-                                {vote_average > 0 && (
-                                    <Stack
-                                        direction="row"
-                                        alignItems="center"
-                                        gap={1}
-                                    >
-                                        <StarsIcon color="info" />
-                                        <Typography variant="h6" component="p">
-                                            {vote_average.toFixed(2)}
-                                        </Typography>
-                                    </Stack>
-                                )}
+                                <Stack
+                                    direction="row"
+                                    alignItems="center"
+                                    gap={1}
+                                >
+                                    <StarsIcon color="info" />
+                                    <Typography variant="h6" component="p">
+                                        {vote_average.toFixed(2)}
+                                    </Typography>
+                                </Stack>
                             </Grid>
                             <Grid>
-                                {release_date && (
+                                {release_date ? (
                                     <Typography
                                         variant="h6"
                                         component="p"
@@ -125,6 +122,13 @@ const MovieCard = ({
                                     >
                                         {release_date.slice(0, 4)}
                                     </Typography>
+                                ) : (
+                                    <Skeleton
+                                        animation={false}
+                                        variant="rounded"
+                                        height="2rem"
+                                        width="4rem"
+                                    />
                                 )}
                             </Grid>
                         </Grid>

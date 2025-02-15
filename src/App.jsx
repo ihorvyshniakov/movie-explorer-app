@@ -9,10 +9,6 @@ import Home from './pages/Home/Home'
 import ScrollTopButton from './components/ScrollTopButton/ScrollTopButton'
 import Footer from './components/Footer/Footer'
 
-//? Backlog
-// - Початковий екран з привітанням і переліком того, що я використовую та демонструю у цьому проекті
-// - Як оптимізувати додаток? Девтулз кольорами рендери, консоль на зменшення рендерів
-
 //* DONE
 // - Context optimization: switched 'searchInput' to useState()
 // - Context optimization: replaced 'error' to 'movies', because it's related to this
@@ -22,10 +18,13 @@ import Footer from './components/Footer/Footer'
 // - Cache: don't fetch again same category, if result saved
 // - [BUG] while fetching show only skeleton
 // - added correct scrolling after pagination + removed jumping height of page
+// - Images: added 'no image' icon for missing images
+// - Skeletons: added to missing blocks
 
 // TODO 👇
+// - Skeletons: organization
+// - Refactoring
 // - Animation: 3d-hover offect/styling for movie card
-// - Refactoring + skeletons/isLoading(Grid page)
 
 function App() {
     const { mode } = useColorScheme()
