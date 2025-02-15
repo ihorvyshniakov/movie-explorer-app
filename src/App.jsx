@@ -18,13 +18,14 @@ import Footer from './components/Footer/Footer'
 // - Context optimization: replaced 'error' to 'movies', because it's related to this
 // - Context optimization: removed 'empty' movies, not using
 // - Movie: removed extra request
+// - Movie: fixed image preloader height
 // - Cache: don't fetch again same category, if result saved
 // - [BUG] while fetching show only skeleton
 // - added correct scrolling after pagination + removed jumping height of page
 
 // TODO 👇
 // - Animation: 3d-hover offect/styling for movie card
-// - Refactoring + skeletons/isLoading
+// - Refactoring + skeletons/isLoading(Grid page)
 
 function App() {
     const { mode } = useColorScheme()

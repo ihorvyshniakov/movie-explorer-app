@@ -16,7 +16,7 @@ const MovieSkeleton = () => {
                     sx={{
                         overflow: 'hidden',
                         width: 300,
-                        height: 400,
+                        height: 500,
                     }}
                 >
                     <Skeleton
