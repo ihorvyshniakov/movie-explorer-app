@@ -17,10 +17,10 @@ import Footer from './components/Footer/Footer'
 // - Context optimization: switched 'searchInput' to useState()
 // - Context optimization: replaced 'error' to 'movies', because it's related to this
 // - Context optimization: removed 'empty' movies, not using
+// - Movie: removed extra request
 
 // TODO 👇
 // - [BUG] while fetching 'search' result show previous
-// - Cache: if modal open -> don't show another grid movies
 // - Cache: don't fetch again same category, if result saved
 // - [BUG] first load of Movie page, behind modal is shit
 

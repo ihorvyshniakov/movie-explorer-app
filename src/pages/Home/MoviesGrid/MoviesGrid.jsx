@@ -84,6 +84,8 @@ const MoviesGrid = () => {
 
     useEffect(
         function showBasedOnURL() {
+            if (movieId) return
+
             const querySearch = searchParams.get('search')
             const queryPage = Number(searchParams.get('page'))
 
