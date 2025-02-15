@@ -6,12 +6,6 @@ export function reducer(state, action) {
                 error: action.payload,
             }
 
-        case 'set_search_input':
-            return {
-                ...state,
-                searchInput: action.payload,
-            }
-
         case 'set_show': {
             const { movies, page } = action.payload
             return {

@@ -1,4 +1,4 @@
-import { useRef } from 'react'
+import { useRef, useState } from 'react'
 import {
     Button,
     LinearProgress,
@@ -12,12 +12,9 @@ import { useSearchParams } from 'react-router'
 import { useStoreContext } from '../../../context/StoreContext'
 
 const SearchBlock = () => {
-    const {
-        searchInput,
-        isMoviesLoading,
+    const [searchInput, setSearchInput] = useState('')
+    const { isMoviesLoading } = useStoreContext()
 
-        setSearchInput,
-    } = useStoreContext()
     const [, setSearchParams] = useSearchParams()
     const inputRef = useRef(null)
 

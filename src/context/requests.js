@@ -28,9 +28,9 @@ export const getMovieDetailsById = (movieID) =>
             throw new Error(error.message)
         })
 
-export const getMoviesBySearch = (searchInput, pageNumber) =>
+export const getMoviesBySearch = (input, pageNumber) =>
     getMoviesListWithURL(
-        `https://api.themoviedb.org/3/search/movie?query=${searchInput}&page=${pageNumber}`
+        `https://api.themoviedb.org/3/search/movie?query=${input}&page=${pageNumber}`
     )
 
 export const getTopRatedMovies = (pageNumber) =>

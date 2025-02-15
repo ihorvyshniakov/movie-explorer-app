@@ -17,7 +17,6 @@ export const useStoreContext = () => {
 
 const initialState = {
     error: null,
-    searchInput: '',
     totalPages: 1,
     show: null,
     movies: {
@@ -44,15 +43,13 @@ const initialState = {
 }
 
 export const StoreContextProvider = ({ children }) => {
-    const [{ error, searchInput, movies, show, totalPages }, dispatch] =
-        useReducer(reducer, initialState)
+    const [{ error, movies, show, totalPages }, dispatch] = useReducer(
+        reducer,
+        initialState
+    )
 
     const setError = useCallback((error) => {
         dispatch({ type: 'set_error', payload: error })
-    }, [])
-
-    const setSearchInput = useCallback((input) => {
-        dispatch({ type: 'set_search_input', payload: input })
     }, [])
 
     const setShow = useCallback(({ movies, page }) => {
@@ -74,8 +71,6 @@ export const StoreContextProvider = ({ children }) => {
     const contextValue = {
         error,
         setError,
-        searchInput,
-        setSearchInput,
         movies,
         setMovies,
         isMoviesLoading: movies.isLoading,

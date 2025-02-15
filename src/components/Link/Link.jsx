@@ -1,15 +1,10 @@
 import { Link as MaterialLink } from '@mui/material'
 import { useNavigate } from 'react-router'
-import { useStoreContext } from '../../context/StoreContext'
 
 const Link = ({ url, children, ...props }) => {
     const navigate = useNavigate()
-    const { setSearchInput } = useStoreContext()
 
     const goToPage = () => {
-        if (url === '') {
-            setSearchInput('')
-        }
         navigate(url)
     }
 

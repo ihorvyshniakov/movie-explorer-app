@@ -105,7 +105,7 @@ const MoviesGrid = () => {
 
             setShow({ movies, page })
         },
-        [searchParams, movieId]
+        [searchParams, movieId, setShow]
     )
 
     useEffect(
@@ -122,7 +122,8 @@ const MoviesGrid = () => {
                 fetchSearchMovies(querySearch, page)
             }
         },
-        [show]
+        // eslint-disable-next-line
+        [show, fetchSearchMovies, fetchTopRatedMovies]
     )
 
     if (error) {

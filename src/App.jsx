@@ -14,13 +14,13 @@ import Footer from './components/Footer/Footer'
 // - Як оптимізувати додаток? Девтулз кольорами рендери, консоль на зменшення рендерів
 
 //* DONE
-// - Pagination: added correct fetching + displaying, based on URL
-// - display/toggle pagination buttons correctly
+// - Context optimization: switched 'searchInput' to useState()
 
 // TODO 👇
 // Pagination
 // ? Store: replace 'totalPages'
 
+// - [BUG] while fetching 'search' result show previous
 // - Cache: if modal open -> don't show another grid movies
 // - Cache: don't fetch again same category, if result saved
 // - [BUG] first load of Movie page, behind modal is shit
