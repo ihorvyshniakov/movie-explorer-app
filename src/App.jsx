@@ -20,6 +20,7 @@ import Footer from './components/Footer/Footer'
 // - added correct scrolling after pagination + removed jumping height of page
 // - Images: added 'no image' icon for missing images
 // - Skeletons: added to missing blocks
+// - Modal closing: console error fix
 
 // TODO 👇
 // - Skeletons: organization

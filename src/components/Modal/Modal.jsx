@@ -33,13 +33,12 @@ const closeIconStyles = {
 
 const Modal = ({ open, onClose, children }) => {
     return (
-        <ModalMUI open={open} onClose={onClose} closeAfterTransition>
+        <ModalMUI open={open} onClose={onClose}>
             <Fade in={open} timeout={500}>
                 <Box sx={modalStyle}>
                     {children}
                     <Box sx={closeIconStyles}>
                         <CancelIcon
-                            aria-hidden={false}
                             onClick={onClose}
                             fontSize="large"
                             color="secondary"

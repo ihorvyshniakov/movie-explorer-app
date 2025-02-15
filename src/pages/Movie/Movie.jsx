@@ -127,6 +127,7 @@ const Movie = ({ movieId }) => {
                             size={{ sm: 12, md: 7 }}
                             spacing={2}
                             sx={{
+                                width: '100%',
                                 display: 'grid',
                                 gridTemplateRows: 'repeat(5, min-content)',
                             }}
