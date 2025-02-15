@@ -12,11 +12,16 @@ export function reducer(state, action) {
                 searchInput: action.payload,
             }
 
-        case 'set_showing_movies':
+        case 'set_show': {
+            const { movies, page } = action.payload
             return {
                 ...state,
-                showingMovies: action.payload,
+                show: {
+                    movies: movies ? movies : state.show.movies,
+                    page: page ? page : state.show.page,
+                },
             }
+        }
 
         case 'set_movies':
             return {

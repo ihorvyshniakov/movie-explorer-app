@@ -18,7 +18,7 @@ export const useStoreContext = () => {
 const initialState = {
     error: null,
     searchInput: '',
-    showingMovies: MOVIES_EMPTY,
+    show: null,
     movies: {
         [MOVIES_EMPTY]: {
             title: '',
@@ -43,8 +43,10 @@ const initialState = {
 }
 
 export const StoreContextProvider = ({ children }) => {
-    const [{ error, searchInput, movies, showingMovies }, dispatch] =
-        useReducer(reducer, initialState)
+    const [{ error, searchInput, movies, show }, dispatch] = useReducer(
+        reducer,
+        initialState
+    )
 
     const setError = useCallback((error) => {
         dispatch({ type: 'set_error', payload: error })
@@ -54,8 +56,8 @@ export const StoreContextProvider = ({ children }) => {
         dispatch({ type: 'set_search_input', payload: input })
     }, [])
 
-    const setShowingMovies = useCallback((payload) => {
-        dispatch({ type: 'set_showing_movies', payload })
+    const setShow = useCallback(({ movies, page }) => {
+        dispatch({ type: 'set_show', payload: { movies, page } })
     }, [])
 
     const setMovies = useCallback((moviesListDetails) => {
@@ -75,8 +77,8 @@ export const StoreContextProvider = ({ children }) => {
         setMovies,
         isMoviesLoading: movies.isLoading,
         setIsMoviesLoading,
-        showingMovies,
-        setShowingMovies,
+        show,
+        setShow,
     }
 
     return (

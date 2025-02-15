@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from 'react'
+import { useCallback, useEffect } from 'react'
 import { Grid2 as Grid, Skeleton, Typography } from '@mui/material'
 import { useParams, useSearchParams } from 'react-router'
 
@@ -14,12 +14,13 @@ const MoviesGrid = () => {
     const {
         error,
         movies,
+        show,
 
+        setShow,
         setError,
         setMovies,
         setIsMoviesLoading,
     } = useStoreContext()
-    const [show, setShow] = useState(null)
 
     const { movieId } = useParams()
     const [searchParams] = useSearchParams()

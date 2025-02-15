@@ -11,23 +11,23 @@ const GridPagination = () => {
     const { movieId } = useParams()
     const [searchParams, setSearchParams] = useSearchParams()
 
-    useEffect(() => {
-        const maxPages = movies[showingMovies].details.total_pages
-        if (!maxPages) return
+    // useEffect(() => {
+    //     const maxPages = movies[showingMovies].details.total_pages
+    //     if (!maxPages) return
 
-        if (maxPages !== totalPages) {
-            setTotalPages(maxPages >= 10 ? 10 : maxPages)
-        }
-    }, [movies])
+    //     if (maxPages !== totalPages) {
+    //         setTotalPages(maxPages >= 10 ? 10 : maxPages)
+    //     }
+    // }, [movies])
 
-    useEffect(() => {
-        if (movieId) return
+    // useEffect(() => {
+    //     if (movieId) return
 
-        const startingPage = Number(searchParams.get('page')) || 1
-        if (startingPage) {
-            setPage(startingPage)
-        }
-    }, [searchParams])
+    //     const startingPage = Number(searchParams.get('page')) || 1
+    //     if (startingPage) {
+    //         setPage(startingPage)
+    //     }
+    // }, [searchParams])
 
     // useEffect(() => {
     //     if (!movieId && page) {

@@ -4,21 +4,12 @@ import { useStoreContext } from '../../context/StoreContext'
 
 const Link = ({ url, children, ...props }) => {
     const navigate = useNavigate()
-    const { setSearchInput, setMovies } = useStoreContext()
+    const { setSearchInput } = useStoreContext()
 
     const goToPage = () => {
         if (url === '') {
             setSearchInput('')
         }
-        setMovies({
-            name: 'search',
-            value: {
-                title: '',
-                details: {
-                    results: [],
-                },
-            },
-        })
         navigate(url)
     }
 
