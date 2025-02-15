@@ -51,7 +51,7 @@ const MoviesGrid = () => {
                     setIsMoviesLoading(false)
                 })
         },
-        [setError, setIsMoviesLoading, setMovies]
+        [setError, setIsMoviesLoading, setMovies, setTotalPages]
     )
 
     const fetchSearchMovies = useCallback(
@@ -79,7 +79,7 @@ const MoviesGrid = () => {
                     setIsMoviesLoading(false)
                 })
         },
-        [setError, setIsMoviesLoading, setMovies]
+        [setError, setIsMoviesLoading, setMovies, setTotalPages]
     )
 
     useEffect(
@@ -184,7 +184,7 @@ const MoviesGrid = () => {
                 }}
                 sx={{ width: '100%', display: 'grid' }}
             >
-                {showingList?.length ? (
+                {showingList?.length && !movies.isLoading ? (
                     showingList.map((movie) => (
                         <MovieCard key={movie.id} {...movie} />
                     ))

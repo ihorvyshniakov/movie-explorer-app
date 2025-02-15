@@ -19,9 +19,9 @@ import Footer from './components/Footer/Footer'
 // - Context optimization: removed 'empty' movies, not using
 // - Movie: removed extra request
 // - Cache: don't fetch again same category, if result saved
+// - [BUG] while fetching show only skeleton
 
 // TODO 👇
-// - [BUG] while fetching 'search' result show previous
 // - [BUG] first load of Movie page, behind modal is shit
 
 // - Animation: 3d-hover offect/styling for movie card
