@@ -18,10 +18,10 @@ import Footer from './components/Footer/Footer'
 // - Context optimization: replaced 'error' to 'movies', because it's related to this
 // - Context optimization: removed 'empty' movies, not using
 // - Movie: removed extra request
+// - Cache: don't fetch again same category, if result saved
 
 // TODO 👇
 // - [BUG] while fetching 'search' result show previous
-// - Cache: don't fetch again same category, if result saved
 // - [BUG] first load of Movie page, behind modal is shit
 
 // - Animation: 3d-hover offect/styling for movie card

@@ -113,15 +113,36 @@ const MoviesGrid = () => {
     useEffect(
         function fetchMovies() {
             if (!show) return
+            if (isAlreadyCached()) return
 
-            const { movies, page } = show
-
-            if (movies === MOVIES_TOP_RATED) {
-                fetchTopRatedMovies(page)
+            const { movies: showMovies, page: showPage } = show
+            if (showMovies === MOVIES_TOP_RATED) {
+                fetchTopRatedMovies(showPage)
             }
-            if (movies === MOVIES_SEARCH) {
+            if (showMovies === MOVIES_SEARCH) {
                 const querySearch = searchParams.get('search')
-                fetchSearchMovies(querySearch, page)
+                fetchSearchMovies(querySearch, showPage)
+            }
+
+            function isAlreadyCached() {
+                const { movies: showMovies, page: showPage } = show
+
+                if (showMovies === MOVIES_TOP_RATED) {
+                    const isTopRatedMoviesCached =
+                        movies[showMovies].details.page === showPage
+
+                    if (isTopRatedMoviesCached) return true
+                }
+                if (showMovies === MOVIES_SEARCH) {
+                    const querySearch = searchParams.get('search')
+                    const isSearchMoviesCached =
+                        movies[showMovies].title === querySearch &&
+                        movies[showMovies].details.page === showPage
+
+                    if (isSearchMoviesCached) return true
+                }
+
+                return false
             }
         },
         // eslint-disable-next-line
