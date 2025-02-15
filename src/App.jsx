@@ -15,11 +15,20 @@ import Footer from './components/Footer/Footer'
 
 //* DONE
 // - Pagination: added correct fetching + displaying, based on URL
-// - display pagination correctly
+// - display/toggle pagination buttons correctly
 
 // TODO 👇
+// Pagination
+// ? Store: replace 'totalPages'
+
 // - Cache: if modal open -> don't show another grid movies
 // - Cache: don't fetch again same category, if result saved
+// - [BUG] first load of Movie page, behind modal is shit
+// ? Store: remove/replace 'error'
+
+// - Animation: 3d-hover offect/styling for movie card
+// - correct scrolling after pagination
+// - Refactoring + skeletons/isLoading
 
 function App() {
     const { mode } = useColorScheme()

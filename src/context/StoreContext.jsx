@@ -5,7 +5,7 @@ import {
     MOVIES_SEARCH,
     MOVIES_TOP_RATED,
 } from '../data/constants'
-import { reducer } from './reducer'
+import { reducer } from './StoreReducer'
 
 const StoreContext = createContext(null)
 
