@@ -21,6 +21,7 @@ import Footer from './components/Footer/Footer'
 // - Images: added 'no image' icon for missing images
 // - Skeletons: added to missing blocks
 // - Modal closing: console error fix
+// - Animations: installed Framer Motion
 
 // TODO 👇
 // - Skeletons: organization
