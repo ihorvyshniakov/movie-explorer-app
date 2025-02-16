@@ -15,7 +15,11 @@ import Footer from './components/Footer/Footer'
 // TODO 👇
 // - Skeletons: organization
 // - Refactoring
+// - Refactoring: fix double routing by adding index.js for components
 // ? Animations
+// - modal opening
+// - cross clicking
+// - page appearing
 
 function App() {
     const { mode } = useColorScheme()

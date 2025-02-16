@@ -1,5 +1,5 @@
 import { useCallback, useEffect } from 'react'
-import { Grid2 as Grid, Skeleton, Typography } from '@mui/material'
+import { Grid2 as Grid } from '@mui/material'
 import { useParams, useSearchParams } from 'react-router'
 
 import MovieCard from '../MovieCard/MovieCard'
@@ -10,6 +10,7 @@ import MoviesGridSkeleton from './MoviesGridSkeleton'
 import { MOVIES_TOP_RATED, MOVIES_SEARCH } from '../../../data/constants'
 import GridPagination from '../GridPagination/GridPagination'
 import { scrollToTop } from '../../../utils'
+import SearchDetails from '../../../components/SearchDetails'
 
 const MoviesGrid = () => {
     const {
@@ -162,29 +163,19 @@ const MoviesGrid = () => {
 
     return (
         <Grid container spacing={2} display="grid" marginBottom={8}>
-            {show && movies[show.movies].title.length ? (
-                <Typography variant="body1" color="textPrimary">
-                    {`"${movies[show.movies].title}" movies, page - ${show.page}`}
-                </Typography>
-            ) : (
-                <Skeleton
-                    variant="rounded"
-                    height="1.5rem"
-                    sx={{
-                        width: '8rem',
-                    }}
-                />
-            )}
+            <SearchDetails />
+
             <Grid
                 container
                 spacing={2}
                 columns={{ xs: 4, sm: 8, md: 12 }}
+                display="grid"
                 gridTemplateColumns={{
                     xs: '1fr',
                     sm: '1fr 1fr',
                     lg: '1fr 1fr 1fr 1fr',
                 }}
-                sx={{ width: '100%', display: 'grid' }}
+                sx={{ width: '100%' }}
             >
                 {showingList?.length && !movies.isLoading ? (
                     showingList.map((movie) => (
