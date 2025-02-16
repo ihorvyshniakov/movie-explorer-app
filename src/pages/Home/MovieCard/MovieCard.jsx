@@ -7,6 +7,7 @@ import StarsIcon from '@mui/icons-material/Stars'
 import { useNavigate } from 'react-router'
 import { motion, useMotionValue, useSpring, useTransform } from 'motion/react'
 
+import './MovieCard.css'
 import Image from '../../../components/Image/Image'
 
 const MotionCard = motion.create(Card)
@@ -64,18 +65,24 @@ const MovieCard = ({
             sx={{
                 width: '100%',
                 perspective: 180,
-                transformStyle: 'preserve-3d',
             }}
         >
             <MotionCard
                 onMouseMove={handleMouseMove}
                 onMouseLeave={handleMouseLeave}
+                onClick={openMovieModal}
+                className="hover-border"
                 sx={{
                     width: '100%',
                     maxWidth: 320,
                     height: '100%',
+                    '&::before': {
+                        bgcolor: 'hoverBorder.border',
+                    },
+                    '&::after': {
+                        bgcolor: 'hoverBorder.line',
+                    },
                 }}
-                onClick={openMovieModal}
                 style={{
                     rotateX,
                     rotateY,
@@ -86,6 +93,8 @@ const MovieCard = ({
                         height: '100%',
                         display: 'flex',
                         flexDirection: 'column',
+                        overflow: 'hidden',
+                        zIndex: 2,
                     }}
                 >
                     <Image
@@ -99,6 +108,8 @@ const MovieCard = ({
                             display: 'grid',
                             gridTemplateRows: 'auto auto 1fr',
                             flexGrow: 1,
+                            bgcolor: 'background.paper',
+                            backgroundImage: 'var(--Paper-overlay)',
                         }}
                     >
                         {title ? (

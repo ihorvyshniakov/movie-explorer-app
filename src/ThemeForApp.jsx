@@ -1,4 +1,5 @@
 import { createTheme, ThemeProvider } from '@mui/material'
+import { common } from '@mui/material/colors'
 
 const blockLight = '#C2B0FF'
 const blockDark = '#1B4965'
@@ -23,6 +24,10 @@ const theme = createTheme({
                 info: {
                     main: yellow,
                 },
+                hoverBorder: {
+                    border: common.white,
+                    line: blockLight,
+                },
             },
         },
         dark: {
@@ -40,13 +45,17 @@ const theme = createTheme({
                     default: backgroundDark,
                     paper: blockDark,
                 },
+                hoverBorder: {
+                    border: blockLight,
+                    line: common.white,
+                },
             },
         },
     },
 })
 
-const ThemeForApp = ({ children }) => {
-    return <ThemeProvider theme={theme}>{children}</ThemeProvider>
-}
+const ThemeForApp = ({ children }) => (
+    <ThemeProvider theme={theme}>{children}</ThemeProvider>
+)
 
 export default ThemeForApp

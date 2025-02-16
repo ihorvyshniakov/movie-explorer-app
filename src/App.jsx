@@ -10,22 +10,9 @@ import ScrollTopButton from './components/ScrollTopButton/ScrollTopButton'
 import Footer from './components/Footer/Footer'
 
 //* DONE
-// - Context optimization: switched 'searchInput' to useState()
-// - Context optimization: replaced 'error' to 'movies', because it's related to this
-// - Context optimization: removed 'empty' movies, not using
-// - Movie: removed extra request
-// - Movie: fixed image preloader height
-// - Cache: don't fetch again same category, if result saved
-// - [BUG] while fetching show only skeleton
-// - added correct scrolling after pagination + removed jumping height of page
-// - Images: added 'no image' icon for missing images
-// - Skeletons: added to missing blocks
-// - Modal closing: console error fix
-// - Animations: installed Framer Motion
-// - Animations: added 3d-hover(tilt) effect for movie card
+// - Movie card(hover): add border styling
 
 // TODO 👇
-// - Movie card(hover): add border styling
 // - Skeletons: organization
 // - Refactoring
 // ? Animations

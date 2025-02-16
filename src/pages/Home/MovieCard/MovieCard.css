@@ -1,0 +1,57 @@
+.hover-border {
+    position: relative;
+    padding: 0.25rem;
+}
+
+.hover-border:hover {
+    cursor: pointer;
+}
+
+.hover-border:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    z-index: 0;
+    opacity: 0;
+    border-radius: inherit;
+    transition: opacity 0.2s ease-in-out;
+}
+
+.hover-border:hover:before,
+.hover-border:hover:after {
+    opacity: 1;
+}
+
+.hover-border:after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 10rem;
+    height: 0;
+    z-index: 1;
+    opacity: 0;
+    transition: opacity 0.2s ease-in-out;
+
+    animation-duration: 4s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+}
+
+.hover-border:hover:after {
+    height: 140%;
+    animation-name: rotation;
+}
+
+@keyframes rotation {
+    0% {
+        transform: translate(-50%, -50%) rotate(0deg);
+    }
+    100% {
+        transform: translate(-50%, -50%) rotate(360deg);
+    }
+}
