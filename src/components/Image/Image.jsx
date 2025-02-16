@@ -24,11 +24,11 @@ const Image = ({
                 height: preloaderHeight,
             }}
         >
-            {!isLoaded && !imageError && (
+            {!isLoaded && (
                 <Skeleton
                     style={{ width: '100%', height: '100%' }}
                     variant="rectangular"
-                    animation={'pulse'}
+                    animation={imageError ? false : 'pulse'}
                 />
             )}
             {!imageError ? (
