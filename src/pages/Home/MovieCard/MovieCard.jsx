@@ -9,6 +9,7 @@ import { motion, useMotionValue, useSpring, useTransform } from 'motion/react'
 
 import './MovieCard.css'
 import Image from '../../../components/Image/Image'
+import Title from '../../../components/Title'
 
 const MotionCard = motion.create(Card)
 
@@ -112,22 +113,18 @@ const MovieCard = ({
                             backgroundImage: 'var(--Paper-overlay)',
                         }}
                     >
-                        {title ? (
-                            <Typography
-                                gutterBottom
-                                variant="h5"
-                                sx={{ height: '4rem' }}
-                                className="ellipsis-2-lines"
-                            >
-                                {title}
-                            </Typography>
-                        ) : (
-                            <Skeleton
-                                variant="text"
-                                animation={false}
-                                sx={{ fontSize: '4rem', width: '100%' }}
-                            />
-                        )}
+                        <Title
+                            title={title}
+                            titleProps={{
+                                variant: 'h5',
+                                className: 'ellipsis-2-lines',
+                                gutterBottom: true,
+                                height: '4rem',
+                            }}
+                            SkeletonProps={{
+                                sx: { fontSize: '4rem' },
+                            }}
+                        />
                         {overview ? (
                             <Typography
                                 gutterBottom

@@ -8,6 +8,7 @@ import TwoColumnTable from '../../components/TwoColumnTable/TwoColumnTable'
 import Image from '../../components/Image/Image'
 import Error from '../../components/Error/Error'
 import MovieSkeleton from './MovieSkeleton'
+import Title from '../../components/Title'
 
 const formatDate = (date) => {
     return new Date(date).toLocaleDateString('en-US', {
@@ -133,28 +134,24 @@ const Movie = ({ movieId }) => {
                             }}
                         >
                             <Grid>
-                                {title ? (
-                                    <Typography
-                                        gutterBottom
-                                        component="h1"
-                                        color="textPrimary"
-                                        sx={{
+                                <Title
+                                    title={title}
+                                    titleProps={{
+                                        component: 'h1',
+                                        gutterBottom: true,
+                                        color: 'textPrimary',
+                                        sx: {
                                             margin: 0,
                                             typography: {
                                                 xs: 'h5',
                                                 md: 'h4',
                                             },
-                                        }}
-                                    >
-                                        {title}
-                                    </Typography>
-                                ) : (
-                                    <Skeleton
-                                        variant="text"
-                                        animation={false}
-                                        sx={{ fontSize: '3rem', width: 250 }}
-                                    />
-                                )}
+                                        },
+                                    }}
+                                    SkeletonProps={{
+                                        sx: { fontSize: '3rem', width: 250 },
+                                    }}
+                                />
                             </Grid>
                             <Grid>
                                 {overview ? (

@@ -11,6 +11,7 @@ import Footer from './components/Footer/Footer'
 
 //* DONE
 // - Movie card(hover): add border styling
+// - Skeletons: added Title
 
 // TODO 👇
 // - Skeletons: organization
