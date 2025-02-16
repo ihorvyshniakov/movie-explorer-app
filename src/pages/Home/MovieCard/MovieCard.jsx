@@ -5,8 +5,11 @@ import CardActionArea from '@mui/material/CardActionArea'
 import Grid from '@mui/material/Grid2'
 import StarsIcon from '@mui/icons-material/Stars'
 import { useNavigate } from 'react-router'
+import { motion, useMotionValue, useSpring, useTransform } from 'motion/react'
 
 import Image from '../../../components/Image/Image'
+
+const MotionCard = motion.create(Card)
 
 const MovieCard = ({
     id,
@@ -22,17 +25,61 @@ const MovieCard = ({
         navigate(`/movie/${id}`)
     }
 
+    const x = useMotionValue(0)
+    const y = useMotionValue(0)
+
+    const mouseXSpring = useSpring(x)
+    const mouseYSpring = useSpring(y)
+
+    const rotateX = useTransform(mouseYSpring, [-0.5, 0.5], ['1deg', '-1deg'])
+    const rotateY = useTransform(mouseXSpring, [-0.5, 0.5], ['-2deg', '2deg'])
+
+    const handleMouseMove = (e) => {
+        let rect = e.currentTarget.getBoundingClientRect()
+
+        const width = rect.width
+        const height = rect.height
+
+        const mouseOnElementX = e.clientX - rect.left
+        const mouseOnElementY = e.clientY - rect.top
+
+        const xPercent = mouseOnElementX / width - 0.5
+        const yPercent = mouseOnElementY / height - 0.5
+
+        x.set(xPercent)
+        y.set(yPercent)
+    }
+
+    const handleMouseLeave = () => {
+        x.set(0)
+        y.set(0)
+    }
+
     return (
         <Grid
             size={4}
             id={id}
             display="flex"
             justifyContent="center"
-            sx={{ width: '100%' }}
+            sx={{
+                width: '100%',
+                perspective: 180,
+                transformStyle: 'preserve-3d',
+            }}
         >
-            <Card
-                sx={{ width: '100%', maxWidth: 320, height: '100%' }}
+            <MotionCard
+                onMouseMove={handleMouseMove}
+                onMouseLeave={handleMouseLeave}
+                sx={{
+                    width: '100%',
+                    maxWidth: 320,
+                    height: '100%',
+                }}
                 onClick={openMovieModal}
+                style={{
+                    rotateX,
+                    rotateY,
+                }}
             >
                 <CardActionArea
                     sx={{
@@ -134,7 +181,7 @@ const MovieCard = ({
                         </Grid>
                     </CardContent>
                 </CardActionArea>
-            </Card>
+            </MotionCard>
         </Grid>
     )
 }

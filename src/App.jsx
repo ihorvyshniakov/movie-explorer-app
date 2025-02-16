@@ -22,11 +22,13 @@ import Footer from './components/Footer/Footer'
 // - Skeletons: added to missing blocks
 // - Modal closing: console error fix
 // - Animations: installed Framer Motion
+// - Animations: added 3d-hover(tilt) effect for movie card
 
 // TODO 👇
+// - Movie card(hover): add border styling
 // - Skeletons: organization
 // - Refactoring
-// - Animation: 3d-hover offect/styling for movie card
+// ? Animations
 
 function App() {
     const { mode } = useColorScheme()
