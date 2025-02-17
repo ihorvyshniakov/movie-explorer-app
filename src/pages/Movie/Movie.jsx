@@ -9,6 +9,7 @@ import Image from '../../components/Image/Image'
 import Error from '../../components/Error/Error'
 import MovieSkeleton from './MovieSkeleton'
 import Title from '../../components/Title'
+import Details from '../../components/Details'
 
 const formatDate = (date) => {
     return new Date(date).toLocaleDateString('en-US', {
@@ -136,9 +137,8 @@ const Movie = ({ movieId }) => {
                             <Grid>
                                 <Title
                                     title={title}
-                                    titleProps={{
+                                    componentProps={{
                                         component: 'h1',
-                                        gutterBottom: true,
                                         color: 'textPrimary',
                                         sx: {
                                             margin: 0,
@@ -149,26 +149,21 @@ const Movie = ({ movieId }) => {
                                         },
                                     }}
                                     SkeletonProps={{
-                                        sx: { fontSize: '3rem', width: 250 },
+                                        sx: { height: '3rem', width: 250 },
                                     }}
                                 />
                             </Grid>
                             <Grid>
-                                {overview ? (
-                                    <Typography
-                                        gutterBottom
-                                        variant="body2"
-                                        color="textPrimary"
-                                    >
-                                        {overview}
-                                    </Typography>
-                                ) : (
-                                    <Skeleton
-                                        variant="rounded"
-                                        height="80px"
-                                        animation={false}
-                                    />
-                                )}
+                                <Details
+                                    overview={overview}
+                                    componentProps={{
+                                        variant: 'body2',
+                                        color: 'textPrimary',
+                                    }}
+                                    SkeletonProps={{
+                                        height: '5rem',
+                                    }}
+                                />
                             </Grid>
                             <Grid container spacing={1} direction="column">
                                 <Grid>

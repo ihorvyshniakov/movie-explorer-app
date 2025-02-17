@@ -1,11 +1,11 @@
 import { Skeleton, Typography } from '@mui/material'
 
-export default function Title({ title, componentProps, SkeletonProps }) {
-    if (!title) {
+export default function Details({ overview, componentProps, SkeletonProps }) {
+    if (!overview) {
         return (
             <Skeleton variant="rounded" animation={false} {...SkeletonProps} />
         )
     }
 
-    return <Typography {...componentProps}>{title}</Typography>
+    return <Typography {...componentProps}>{overview}</Typography>
 }

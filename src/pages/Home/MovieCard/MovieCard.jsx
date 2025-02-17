@@ -10,6 +10,7 @@ import { motion, useMotionValue, useSpring, useTransform } from 'motion/react'
 import './MovieCard.css'
 import Image from '../../../components/Image/Image'
 import Title from '../../../components/Title'
+import Details from '../../../components/Details'
 
 const MotionCard = motion.create(Card)
 
@@ -109,44 +110,33 @@ const MovieCard = ({
                             display: 'grid',
                             gridTemplateRows: 'auto auto 1fr',
                             flexGrow: 1,
+                            gap: '1rem',
                             bgcolor: 'background.paper',
                             backgroundImage: 'var(--Paper-overlay)',
                         }}
                     >
                         <Title
                             title={title}
-                            titleProps={{
+                            componentProps={{
                                 variant: 'h5',
                                 className: 'ellipsis-2-lines',
-                                gutterBottom: true,
                                 height: '4rem',
                             }}
                             SkeletonProps={{
-                                sx: { fontSize: '4rem' },
+                                height: '4rem',
                             }}
                         />
-                        {overview ? (
-                            <Typography
-                                gutterBottom
-                                variant="body2"
-                                sx={{
-                                    color: 'text.secondary',
-                                    marginBottom: '1rem',
-                                }}
-                                className="ellipsis-4-lines"
-                            >
-                                {overview}
-                            </Typography>
-                        ) : (
-                            <Skeleton
-                                variant="rounded"
-                                height="80px"
-                                animation={false}
-                                sx={{
-                                    marginBottom: '1rem',
-                                }}
-                            />
-                        )}
+                        <Details
+                            overview={overview}
+                            componentProps={{
+                                variant: 'body2',
+                                className: 'ellipsis-4-lines',
+                                color: 'text.secondary',
+                            }}
+                            SkeletonProps={{
+                                height: '5rem',
+                            }}
+                        />
 
                         <Grid
                             container
