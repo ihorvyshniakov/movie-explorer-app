@@ -12,6 +12,9 @@ import Footer from './components/Footer/Footer'
 //* DONE
 // - Movie card(hover): add border styling
 // - Skeletons: added Title
+// - Skeletons: added Details
+// - Skeletons: added ReleaseDate
+// - Refactoring: fixed imports for 'WithSkeleton' components
 
 // TODO 👇
 // - Skeletons: organization

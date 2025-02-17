@@ -5,12 +5,9 @@ import { useEffect, useState } from 'react'
 
 import { getMovieDetailsById } from '../../context/requests'
 import TwoColumnTable from '../../components/TwoColumnTable/TwoColumnTable'
-import Image from '../../components/Image/Image'
 import Error from '../../components/Error/Error'
 import MovieSkeleton from './MovieSkeleton'
-import Title from '../../components/Title'
-import Details from '../../components/Details'
-import ReleaseDate from '../../components/ReleaseDate'
+import { Title, Details, ReleaseDate, Image } from '../../components'
 
 const formatDate = (date) => {
     return new Date(date).toLocaleDateString('en-US', {

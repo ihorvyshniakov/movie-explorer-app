@@ -8,10 +8,7 @@ import { useNavigate } from 'react-router'
 import { motion, useMotionValue, useSpring, useTransform } from 'motion/react'
 
 import './MovieCard.css'
-import Image from '../../../components/Image/Image'
-import Title from '../../../components/Title'
-import Details from '../../../components/Details'
-import ReleaseDate from '../../../components/ReleaseDate'
+import { Title, Details, ReleaseDate, Image } from '../../../components'
 
 const MotionCard = motion.create(Card)
 
