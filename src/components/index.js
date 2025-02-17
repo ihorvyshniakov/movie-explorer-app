@@ -1,4 +1,4 @@
-import { Title, ReleaseDate, Details, Image } from './_WithSkeleton'
+import { Title, ReleaseDate, Details, Image, ChipsList } from './_WithSkeleton'
 import Error from './Error/Error'
 import Footer from './Footer/Footer'
 import Header from './Header/Header'
@@ -21,4 +21,5 @@ export {
     ScrollTopButton,
     SearchDetails,
     TwoColumnTable,
+    ChipsList,
 }

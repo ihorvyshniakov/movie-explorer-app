@@ -2,7 +2,6 @@ import { Route, Routes } from 'react-router'
 import { Box, Container, useColorScheme } from '@mui/material'
 
 import './App.css'
-
 import { Home, Movie } from './pages'
 import { Footer, Header, ScrollTopButton } from './components'
 
@@ -11,6 +10,7 @@ import { Footer, Header, ScrollTopButton } from './components'
 // - Skeletons: added Title
 // - Skeletons: added Details
 // - Skeletons: added ReleaseDate
+// - Skeletons: added ChipsList
 // - Refactoring: fixed imports for 'WithSkeleton' components
 // - Refactoring: fixed imports for all components
 

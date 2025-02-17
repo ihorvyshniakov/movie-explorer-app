@@ -1,4 +1,4 @@
-import { Box, Chip, Skeleton, Stack, Typography } from '@mui/material'
+import { Box, Stack, Typography } from '@mui/material'
 import Grid from '@mui/material/Grid2'
 import StarsIcon from '@mui/icons-material/Stars'
 import { useEffect, useState } from 'react'
@@ -10,6 +10,7 @@ import {
     Image,
     Error,
     TwoColumnTable,
+    ChipsList,
 } from '../../components'
 import MovieSkeleton from './MovieSkeleton'
 import { getMovieDetailsById } from '../../context/requests'
@@ -205,41 +206,21 @@ const Movie = ({ movieId }) => {
                                     </Stack>
                                 </Grid>
                             </Grid>
-                            <Grid
-                                container
-                                spacing={1}
-                                direction="row"
-                                alignItems="center"
-                            >
-                                {genres.length > 0 ? (
-                                    <Stack
-                                        direction="row"
-                                        sx={{ flexWrap: 'wrap', gap: '0.5rem' }}
-                                    >
-                                        {genres.map(({ id, name }) => (
-                                            <Chip
-                                                key={id}
-                                                label={name}
-                                                color="secondary"
-                                            />
-                                        ))}
-                                    </Stack>
-                                ) : (
-                                    [...new Array(2)].map((el, index) => (
-                                        <Grid key={`skeleton-chip-${index}`}>
-                                            <Skeleton
-                                                animation={false}
-                                                variant="rounded"
-                                                height="2rem"
-                                                sx={{
-                                                    width: '4rem',
-                                                    borderRadius: '1rem',
-                                                }}
-                                            />
-                                        </Grid>
-                                    ))
-                                )}
-                            </Grid>
+                            <ChipsList
+                                list={genres}
+                                qty={genres.length}
+                                componentProps={{
+                                    direction: 'row',
+                                    sx: { flexWrap: 'wrap', gap: '0.5rem' },
+                                }}
+                                SkeletonProps={{
+                                    height: '2rem',
+                                    width: '4rem',
+                                    sx: {
+                                        borderRadius: '1rem',
+                                    },
+                                }}
+                            />
                             <Grid display="flex" justifyContent="center">
                                 <TwoColumnTable rows={tableInfo} />
                             </Grid>
