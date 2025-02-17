@@ -1,4 +1,4 @@
-import { Skeleton, Stack, Typography } from '@mui/material'
+import { Stack, Typography } from '@mui/material'
 import Card from '@mui/material/Card'
 import CardContent from '@mui/material/CardContent'
 import CardActionArea from '@mui/material/CardActionArea'
@@ -11,6 +11,7 @@ import './MovieCard.css'
 import Image from '../../../components/Image/Image'
 import Title from '../../../components/Title'
 import Details from '../../../components/Details'
+import ReleaseDate from '../../../components/ReleaseDate'
 
 const MotionCard = motion.create(Card)
 
@@ -159,22 +160,18 @@ const MovieCard = ({
                                 </Stack>
                             </Grid>
                             <Grid>
-                                {release_date ? (
-                                    <Typography
-                                        variant="h6"
-                                        component="p"
-                                        align="right"
-                                    >
-                                        {release_date.slice(0, 4)}
-                                    </Typography>
-                                ) : (
-                                    <Skeleton
-                                        animation={false}
-                                        variant="rounded"
-                                        height="2rem"
-                                        width="4rem"
-                                    />
-                                )}
+                                <ReleaseDate
+                                    releaseDate={release_date.slice(0, 4)}
+                                    componentProps={{
+                                        variant: 'h6',
+                                        component: 'p',
+                                        align: 'right',
+                                    }}
+                                    SkeletonProps={{
+                                        height: '2rem',
+                                        width: '4rem',
+                                    }}
+                                />
                             </Grid>
                         </Grid>
                     </CardContent>

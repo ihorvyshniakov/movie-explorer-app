@@ -10,6 +10,7 @@ import Error from '../../components/Error/Error'
 import MovieSkeleton from './MovieSkeleton'
 import Title from '../../components/Title'
 import Details from '../../components/Details'
+import ReleaseDate from '../../components/ReleaseDate'
 
 const formatDate = (date) => {
     return new Date(date).toLocaleDateString('en-US', {
@@ -167,22 +168,22 @@ const Movie = ({ movieId }) => {
                             </Grid>
                             <Grid container spacing={1} direction="column">
                                 <Grid>
-                                    {release_date ? (
-                                        <Typography
-                                            variant="h6"
-                                            component="p"
-                                            color="textPrimary"
-                                        >
-                                            {`Release - ${formatDate(release_date)}`}
-                                        </Typography>
-                                    ) : (
-                                        <Skeleton
-                                            animation={false}
-                                            variant="rounded"
-                                            height="2rem"
-                                            width="4rem"
-                                        />
-                                    )}
+                                    <ReleaseDate
+                                        releaseDate={
+                                            release_date
+                                                ? `Release - ${formatDate(release_date)}`
+                                                : null
+                                        }
+                                        componentProps={{
+                                            variant: 'h6',
+                                            component: 'p',
+                                            color: 'textPrimary',
+                                        }}
+                                        SkeletonProps={{
+                                            height: '2rem',
+                                            width: '4rem',
+                                        }}
+                                    />
                                 </Grid>
                                 <Grid>
                                     <Stack
