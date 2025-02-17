@@ -3,11 +3,8 @@ import { Box, Container, useColorScheme } from '@mui/material'
 
 import './App.css'
 
-import Header from './components/Header/Header'
-import Movie from './pages/Movie/Movie'
-import Home from './pages/Home/Home'
-import ScrollTopButton from './components/ScrollTopButton/ScrollTopButton'
-import Footer from './components/Footer/Footer'
+import { Home, Movie } from './pages'
+import { Footer, Header, ScrollTopButton } from './components'
 
 //* DONE
 // - Movie card(hover): add border styling
@@ -15,11 +12,11 @@ import Footer from './components/Footer/Footer'
 // - Skeletons: added Details
 // - Skeletons: added ReleaseDate
 // - Refactoring: fixed imports for 'WithSkeleton' components
+// - Refactoring: fixed imports for all components
 
 // TODO 👇
 // - Skeletons: organization
 // - Refactoring
-// - Refactoring: fix double routing by adding index.js for components
 // ? Animations
 // - modal opening
 // - cross clicking

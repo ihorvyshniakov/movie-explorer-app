@@ -2,15 +2,14 @@ import { useCallback, useEffect } from 'react'
 import { Grid2 as Grid } from '@mui/material'
 import { useParams, useSearchParams } from 'react-router'
 
+import { Error, SearchDetails } from '../../../components'
 import MovieCard from '../MovieCard/MovieCard'
+import GridPagination from '../GridPagination/GridPagination'
+import MoviesGridSkeleton from './MoviesGridSkeleton'
 import { useStoreContext } from '../../../context/StoreContext'
 import { getMoviesBySearch, getTopRatedMovies } from '../../../context/requests'
-import Error from '../../../components/Error/Error'
-import MoviesGridSkeleton from './MoviesGridSkeleton'
 import { MOVIES_TOP_RATED, MOVIES_SEARCH } from '../../../data/constants'
-import GridPagination from '../GridPagination/GridPagination'
 import { scrollToTop } from '../../../utils'
-import SearchDetails from '../../../components/SearchDetails'
 
 const MoviesGrid = () => {
     const {

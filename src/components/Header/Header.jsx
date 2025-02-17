@@ -8,8 +8,7 @@ import {
 } from '@mui/material'
 import GitHubIcon from '@mui/icons-material/GitHub'
 import Brightness6Icon from '@mui/icons-material/Brightness6'
-
-import Link from '../Link/Link'
+import { Link } from '../index'
 
 const Header = (props) => {
     const { mode, setMode } = useColorScheme()

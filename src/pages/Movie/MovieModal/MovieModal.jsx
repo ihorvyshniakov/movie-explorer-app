@@ -2,7 +2,7 @@ import { useNavigate, useParams } from 'react-router'
 import { useEffect, useState } from 'react'
 
 import Movie from '../Movie'
-import Modal from '../../../components/Modal/Modal'
+import { Modal } from '../../../components'
 
 const MovieModal = () => {
     const [isModalOpen, setIsModalOpen] = useState(false)

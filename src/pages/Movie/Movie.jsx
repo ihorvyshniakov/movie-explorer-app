@@ -3,11 +3,16 @@ import Grid from '@mui/material/Grid2'
 import StarsIcon from '@mui/icons-material/Stars'
 import { useEffect, useState } from 'react'
 
-import { getMovieDetailsById } from '../../context/requests'
-import TwoColumnTable from '../../components/TwoColumnTable/TwoColumnTable'
-import Error from '../../components/Error/Error'
+import {
+    Title,
+    Details,
+    ReleaseDate,
+    Image,
+    Error,
+    TwoColumnTable,
+} from '../../components'
 import MovieSkeleton from './MovieSkeleton'
-import { Title, Details, ReleaseDate, Image } from '../../components'
+import { getMovieDetailsById } from '../../context/requests'
 
 const formatDate = (date) => {
     return new Date(date).toLocaleDateString('en-US', {
