@@ -8,8 +8,12 @@ import {
 } from '@mui/material'
 import Grid from '@mui/material/Grid2'
 import { useSearchParams } from 'react-router'
+import { motion } from 'motion/react'
 
 import { useStoreContext } from '../../../context/StoreContext'
+
+const MotionTypography = motion.create(Typography)
+const MotionTextField = motion.create(TextField)
 
 const SearchBlock = () => {
     const [searchInput, setSearchInput] = useState('')
@@ -41,7 +45,7 @@ const SearchBlock = () => {
     return (
         <Grid container spacing={2} sx={{ margin: '2rem 0 1rem' }}>
             <Grid size={12}>
-                <Typography
+                <MotionTypography
                     component="h3"
                     align="center"
                     color="textPrimary"
@@ -51,20 +55,29 @@ const SearchBlock = () => {
                             md: 'h4',
                         },
                     }}
+                    viewport={{ once: true }}
+                    initial={{ scale: 1 }}
+                    whileInView={{ scale: [1, 1.1, 1] }}
+                    transition={{ delay: 1.9 }}
                 >
                     Find your favorite movie 🔍
-                </Typography>
+                </MotionTypography>
             </Grid>
             <Grid size={12}>
                 <form onSubmit={handleSubmit}>
                     <Stack direction="row" spacing={2}>
-                        <TextField
+                        <MotionTextField
                             fullWidth
                             label="Search..."
                             color="primary"
                             ref={inputRef}
                             value={searchInput}
                             onChange={handleInputChange}
+                            viewport={{ once: true }}
+                            initial={{ scale: 1, y: 0 }}
+                            whileTap={{ scale: 0.95 }}
+                            whileInView={{ y: [0, -8, 6, -4, 2, 0] }}
+                            transition={{ y: { delay: 3 } }}
                         />
                         <Button
                             variant="contained"

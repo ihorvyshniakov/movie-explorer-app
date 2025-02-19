@@ -15,8 +15,10 @@ import { Footer, Header, ScrollTopButton } from './components'
 // - Refactoring: changed format logic for 'year' getting
 // - Animations: appearing for Header
 // - Animations: added clicking for Header 'home' link
+// - Animations: animated 'SearchBlock' appear + input click
 
 // TODO 👇
+// - Responsive: width of 'find' button
 // ? Animations
 // - modal opening | https://examples.motion.dev/react/modal
 // - cross clicking

@@ -60,7 +60,7 @@ const Header = (props) => {
                                 whileInView={{
                                     scale: [0, 1],
                                 }}
-                                transition={{ type: 'spring', delay: 1.3 }}
+                                transition={{ type: 'spring', delay: 1.1 }}
                             >
                                 <Brightness6Icon />
                             </MotionIconButton>
@@ -95,7 +95,7 @@ const Header = (props) => {
                                 whileInView={{
                                     scale: [0, 1],
                                 }}
-                                transition={{ type: 'spring', delay: 1.3 }}
+                                transition={{ type: 'spring', delay: 1.1 }}
                             >
                                 <GitHubIcon />
                             </MotionIconButton>
