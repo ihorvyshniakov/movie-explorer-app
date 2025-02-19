@@ -10,6 +10,7 @@ import { Footer, Header, ScrollTopButton } from './components'
 // - Chips: little code optimization fix
 // - Refactoring: added hook - useFetchMovies
 // - Refactoring: added hook - useHoverTilt
+// - Refactoring: replaced 'quotes' array to /data/constants
 
 // TODO 👇
 // - Skeletons: organization
