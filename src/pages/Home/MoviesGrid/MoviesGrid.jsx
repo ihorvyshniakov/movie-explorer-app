@@ -1,4 +1,4 @@
-import { useCallback, useEffect } from 'react'
+import { useEffect } from 'react'
 import { Grid2 as Grid } from '@mui/material'
 import { useParams, useSearchParams } from 'react-router'
 
@@ -7,9 +7,9 @@ import MovieCard from '../MovieCard/MovieCard'
 import GridPagination from '../GridPagination/GridPagination'
 import MoviesGridSkeleton from './MoviesGridSkeleton'
 import { useStoreContext } from '../../../context/StoreContext'
-import { getMoviesBySearch, getTopRatedMovies } from '../../../context/requests'
 import { MOVIES_TOP_RATED, MOVIES_SEARCH } from '../../../data/constants'
 import { scrollToTop } from '../../../utils'
+import useFetchMovies from '../../../hooks/useFetchMovies'
 
 const MoviesGrid = () => {
     const {
@@ -18,70 +18,11 @@ const MoviesGrid = () => {
         show,
 
         setShow,
-        setError,
-        setMovies,
-        setTotalPages,
-        setIsMoviesLoading,
     } = useStoreContext()
+    const { fetchTopRatedMovies, fetchSearchMovies } = useFetchMovies()
 
     const { movieId } = useParams()
     const [searchParams] = useSearchParams()
-
-    const fetchTopRatedMovies = useCallback(
-        (pageNumber) => {
-            setError(null)
-            setIsMoviesLoading(true)
-            getTopRatedMovies(pageNumber)
-                .then((details) => {
-                    setMovies({
-                        name: MOVIES_TOP_RATED,
-                        value: {
-                            title: 'Top rated',
-                            details,
-                        },
-                    })
-                    setTotalPages(details.total_pages)
-                })
-                .catch((error) => {
-                    setError({
-                        error: error.message,
-                        message: 'Top rated movies request failed',
-                    })
-                })
-                .finally(() => {
-                    setIsMoviesLoading(false)
-                })
-        },
-        [setError, setIsMoviesLoading, setMovies, setTotalPages]
-    )
-
-    const fetchSearchMovies = useCallback(
-        (movieTitle, pageNumber) => {
-            setError(null)
-            setIsMoviesLoading(true)
-            getMoviesBySearch(movieTitle, pageNumber)
-                .then((details) => {
-                    setMovies({
-                        name: MOVIES_SEARCH,
-                        value: {
-                            title: movieTitle,
-                            details,
-                        },
-                    })
-                    setTotalPages(details.total_pages)
-                })
-                .catch((error) => {
-                    setError({
-                        error: error.message,
-                        message: `We didn't find any movie with "${movieTitle}" name. \nPlease try to find other movies 🙂`,
-                    })
-                })
-                .finally(() => {
-                    setIsMoviesLoading(false)
-                })
-        },
-        [setError, setIsMoviesLoading, setMovies, setTotalPages]
-    )
 
     useEffect(
         function showBasedOnURL() {

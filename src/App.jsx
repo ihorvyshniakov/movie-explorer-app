@@ -8,6 +8,7 @@ import { Footer, Header, ScrollTopButton } from './components'
 //* DONE
 // - Tooltips: added to Header icons
 // - Chips: little code optimization fix
+// - Refactoring: added hook - useFetchMovies
 
 // TODO 👇
 // - Skeletons: organization
