@@ -11,6 +11,7 @@ import { Footer, Header, ScrollTopButton } from './components'
 // - Refactoring: added hook - useFetchMovies
 // - Refactoring: added hook - useHoverTilt
 // - Refactoring: replaced 'quotes' array to /data/constants
+// - Refactoring: added hook - useFetchMovieById + util func generateArrayForTable() + formatDate() to utils
 
 // TODO 👇
 // - Skeletons: organization

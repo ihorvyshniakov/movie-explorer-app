@@ -4,6 +4,8 @@ export {
     formatIntoDollars,
     randomIntFromInterval,
     scrollToTop,
+    formatDate,
+    generateArrayForTable,
 }
 
 function isJSON(string) {
@@ -33,4 +35,45 @@ function scrollToTop() {
     anchor.scrollIntoView({
         behavior: 'smooth',
     })
+}
+
+const formatDate = (date) => {
+    return new Date(date).toLocaleDateString('en-US', {
+        day: 'numeric',
+        month: 'short',
+        year: 'numeric',
+    })
+}
+
+function generateArrayForTable(data) {
+    if (!data) return null
+
+    const { production_companies, production_countries, budget, revenue } = data
+
+    return [
+        {
+            name: 'Production companies',
+            value:
+                production_companies.reduce((stack, el) => {
+                    if (stack.length === 0) {
+                        return el.name
+                    } else {
+                        return `${stack}, ${el.name}`
+                    }
+                }, '') || 'Unknown',
+        },
+        {
+            name: 'Production countries',
+            value:
+                production_countries.reduce((stack, el) => {
+                    if (stack.length === 0) {
+                        return el.name
+                    } else {
+                        return `${stack}, ${el.name}`
+                    }
+                }, '') || 'Unknown',
+        },
+        { name: 'Budget', value: budget || 0 },
+        { name: 'Revenue', value: revenue || 0 },
+    ]
 }

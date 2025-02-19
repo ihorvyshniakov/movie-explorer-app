@@ -1,7 +1,7 @@
 import { Box, Stack, Typography } from '@mui/material'
 import Grid from '@mui/material/Grid2'
 import StarsIcon from '@mui/icons-material/Stars'
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 
 import {
     Title,
@@ -13,87 +13,20 @@ import {
     ChipsList,
 } from '../../components'
 import MovieSkeleton from './MovieSkeleton'
-import { getMovieDetailsById } from '../../context/requests'
-
-const formatDate = (date) => {
-    return new Date(date).toLocaleDateString('en-US', {
-        day: 'numeric',
-        month: 'short',
-        year: 'numeric',
-    })
-}
+import useFetchMovieById from '../../hooks/useFetchMovieById'
+import { formatDate, generateArrayForTable } from '../../utils'
 
 const Movie = ({ movieId }) => {
-    const [movieError, setMovieError] = useState(null)
-    const [movieDetails, setMovieDetails] = useState(null)
-    const [isLoading, setIsLoading] = useState(false)
+    const { data, error, isLoading, fetchMovieById } = useFetchMovieById()
 
     useEffect(() => {
         if (movieId) {
-            setIsLoading(true)
-            getMovieDetailsById(movieId)
-                .then((movieDetails) => {
-                    setMovieDetails(movieDetails)
-                    setMovieError(null)
-                })
-                .catch((error) => {
-                    setMovieError({
-                        error: error.message,
-                        message:
-                            'Whoops, movie details request failed or \nDatabase do not have an extra info 🤷‍♂️',
-                    })
-                })
-                .finally(() => {
-                    setIsLoading(false)
-                })
+            fetchMovieById(movieId)
         }
-    }, [movieId])
+    }, [movieId, fetchMovieById])
 
-    if (movieError) {
-        return <Error {...movieError} />
-    }
-
-    if (movieDetails) {
-        var {
-            title,
-            overview,
-            poster_path,
-            vote_average,
-            vote_count,
-            release_date,
-            genres,
-            production_companies,
-            production_countries,
-            budget,
-            revenue,
-        } = movieDetails
-
-        var tableInfo = [
-            {
-                name: 'Production companies',
-                value:
-                    production_companies.reduce((stack, el) => {
-                        if (stack.length === 0) {
-                            return el.name
-                        } else {
-                            return `${stack}, ${el.name}`
-                        }
-                    }, '') || 'Unknown',
-            },
-            {
-                name: 'Production countries',
-                value:
-                    production_countries.reduce((stack, el) => {
-                        if (stack.length === 0) {
-                            return el.name
-                        } else {
-                            return `${stack}, ${el.name}`
-                        }
-                    }, '') || 'Unknown',
-            },
-            { name: 'Budget', value: budget || 0 },
-            { name: 'Revenue', value: revenue || 0 },
-        ]
+    if (error) {
+        return <Error {...error} />
     }
 
     return (
@@ -109,7 +42,7 @@ const Movie = ({ movieId }) => {
                 }}
             >
                 {isLoading && <MovieSkeleton />}
-                {movieDetails && (
+                {data && (
                     <>
                         <Grid
                             size={{ sm: 12, md: 5 }}
@@ -120,8 +53,8 @@ const Movie = ({ movieId }) => {
                         >
                             <Box sx={{ minWidth: 300 }}>
                                 <Image
-                                    title={title}
-                                    url={`https://image.tmdb.org/t/p/w500${poster_path}`}
+                                    title={data.title}
+                                    url={`https://image.tmdb.org/t/p/w500${data.poster_path}`}
                                     preloaderHeight={500}
                                     elevation={3}
                                     square={false}
@@ -140,7 +73,7 @@ const Movie = ({ movieId }) => {
                         >
                             <Grid>
                                 <Title
-                                    title={title}
+                                    title={data.title}
                                     componentProps={{
                                         component: 'h1',
                                         color: 'textPrimary',
@@ -159,7 +92,7 @@ const Movie = ({ movieId }) => {
                             </Grid>
                             <Grid>
                                 <Details
-                                    overview={overview}
+                                    overview={data.overview}
                                     componentProps={{
                                         variant: 'body2',
                                         color: 'textPrimary',
@@ -173,8 +106,8 @@ const Movie = ({ movieId }) => {
                                 <Grid>
                                     <ReleaseDate
                                         releaseDate={
-                                            release_date
-                                                ? `Release - ${formatDate(release_date)}`
+                                            data.release_date
+                                                ? `Release - ${formatDate(data.release_date)}`
                                                 : null
                                         }
                                         componentProps={{
@@ -200,14 +133,14 @@ const Movie = ({ movieId }) => {
                                             component="p"
                                             color="textPrimary"
                                         >
-                                            {vote_average.toFixed(2)}
-                                            {` (${vote_count} votes)`}
+                                            {data.vote_average.toFixed(2)}
+                                            {` (${data.vote_count} votes)`}
                                         </Typography>
                                     </Stack>
                                 </Grid>
                             </Grid>
                             <ChipsList
-                                list={genres}
+                                list={data.genres}
                                 componentProps={{
                                     direction: 'row',
                                     sx: { flexWrap: 'wrap', gap: '0.5rem' },
@@ -221,7 +154,9 @@ const Movie = ({ movieId }) => {
                                 }}
                             />
                             <Grid display="flex" justifyContent="center">
-                                <TwoColumnTable rows={tableInfo} />
+                                <TwoColumnTable
+                                    rows={generateArrayForTable(data)}
+                                />
                             </Grid>
                         </Grid>
                     </>
