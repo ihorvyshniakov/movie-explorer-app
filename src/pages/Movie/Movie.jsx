@@ -208,7 +208,6 @@ const Movie = ({ movieId }) => {
                             </Grid>
                             <ChipsList
                                 list={genres}
-                                qty={genres.length}
                                 componentProps={{
                                     direction: 'row',
                                     sx: { flexWrap: 'wrap', gap: '0.5rem' },
