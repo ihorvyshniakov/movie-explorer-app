@@ -9,7 +9,12 @@ import {
 } from '@mui/material'
 import GitHubIcon from '@mui/icons-material/GitHub'
 import Brightness6Icon from '@mui/icons-material/Brightness6'
+import { motion } from 'motion/react'
+
 import { Link } from '../index'
+
+const MotionIconButton = motion.create(IconButton)
+const MotionTypography = motion.create(Typography)
 
 const Header = (props) => {
     const { mode, setMode } = useColorScheme()
@@ -25,14 +30,19 @@ const Header = (props) => {
                 <Container maxWidth="lg" sx={{ display: 'flex' }}>
                     <Toolbar disableGutters sx={{ width: '100%' }}>
                         <Tooltip title="Change Dark/Light mode">
-                            <IconButton
+                            <MotionIconButton
                                 size="large"
                                 aria-label="change mode button"
                                 color="inherit"
                                 onClick={handleModeChange}
+                                initial={{ scale: 0 }}
+                                whileInView={{
+                                    scale: [0, 1],
+                                }}
+                                transition={{ type: 'spring', delay: 1.3 }}
                             >
                                 <Brightness6Icon />
-                            </IconButton>
+                            </MotionIconButton>
                         </Tooltip>
 
                         <Link
@@ -41,26 +51,36 @@ const Header = (props) => {
                                 flexGrow: 1,
                             }}
                         >
-                            <Typography
+                            <MotionTypography
                                 align="center"
                                 variant="h6"
                                 noWrap
                                 component="p"
                                 sx={{ userSelect: 'none' }}
+                                initial={{ scale: 0 }}
+                                whileInView={{
+                                    scale: [0, 1],
+                                }}
+                                transition={{ type: 'spring', delay: 0.5 }}
                             >
                                 Movie Explorer
-                            </Typography>
+                            </MotionTypography>
                         </Link>
 
                         <Tooltip title="Project code on Github">
-                            <IconButton
+                            <MotionIconButton
                                 size="large"
                                 aria-label="github link"
                                 color="inherit"
                                 href="#"
+                                initial={{ scale: 0 }}
+                                whileInView={{
+                                    scale: [0, 1],
+                                }}
+                                transition={{ type: 'spring', delay: 1.3 }}
                             >
                                 <GitHubIcon />
-                            </IconButton>
+                            </MotionIconButton>
                         </Tooltip>
                     </Toolbar>
                 </Container>
