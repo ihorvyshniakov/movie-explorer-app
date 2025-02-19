@@ -131,7 +131,9 @@ const MovieCard = ({
                             </Grid>
                             <Grid>
                                 <ReleaseDate
-                                    releaseDate={release_date.slice(0, 4)}
+                                    releaseDate={new Date(
+                                        release_date
+                                    ).getFullYear()}
                                     componentProps={{
                                         variant: 'h6',
                                         component: 'p',

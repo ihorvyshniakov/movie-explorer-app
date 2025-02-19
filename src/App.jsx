@@ -12,10 +12,9 @@ import { Footer, Header, ScrollTopButton } from './components'
 // - Refactoring: added hook - useHoverTilt
 // - Refactoring: replaced 'quotes' array to /data/constants
 // - Refactoring: added hook - useFetchMovieById + util func generateArrayForTable() + formatDate() to utils
+// - Refactoring: changed format logic for 'year' getting
 
 // TODO 👇
-// - Skeletons: organization
-// - Refactoring
 // ? Animations
 // - modal opening
 // - cross clicking
