@@ -18,13 +18,10 @@ import { Footer, Header, ScrollTopButton } from './components'
 // - Animations: animated 'SearchBlock' appear + input click
 // - Animations: Footer message appearing
 // - Animations: added onClick 'ScrollTopButton'
+// - Animations: added sliding on modal opening
 
 // TODO 👇
 // - Responsive: width of 'find' button
-// ? Animations
-// - modal opening | https://examples.motion.dev/react/modal
-// - cross clicking
-// - page appearing
 
 function App() {
     const { mode } = useColorScheme()

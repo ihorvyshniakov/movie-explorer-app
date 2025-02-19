@@ -44,7 +44,6 @@ const Header = (props) => {
                                 <Brightness6Icon />
                             </MotionIconButton>
                         </Tooltip>
-
                         <Link
                             url=""
                             sx={{
@@ -78,7 +77,7 @@ const Header = (props) => {
                                 size="large"
                                 aria-label="github link"
                                 color="inherit"
-                                href="#"
+                                href="https://github.com/ihorvyshniakov/movie-explorer-app"
                                 initial={{ scale: 0 }}
                                 whileInView={{
                                     scale: [0, 1],

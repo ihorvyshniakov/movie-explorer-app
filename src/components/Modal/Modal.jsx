@@ -1,11 +1,13 @@
-import { Box, Fade, Modal as ModalMUI } from '@mui/material'
+import { Box, Modal as ModalMUI, Slide } from '@mui/material'
 import CancelIcon from '@mui/icons-material/Cancel'
+import { motion } from 'motion/react'
+
+import './Modal.css'
+
+const MotionBox = motion.create(Box)
 
 const modalStyle = {
     position: 'absolute',
-    top: '10vh',
-    left: '50%',
-    transform: 'translateX(-50%)',
     width: '90vw',
     maxWidth: '900px',
     maxHeight: '80vh',
@@ -23,8 +25,8 @@ const closeIconStyles = {
     bgcolor: 'background.paper',
     borderRadius: '50%',
     position: 'absolute',
-    top: '0rem',
-    right: '0rem',
+    top: '-10px',
+    right: '-10px',
     transform: 'translate(30%, -30%)',
     '&:hover': {
         cursor: 'pointer',
@@ -34,18 +36,36 @@ const closeIconStyles = {
 const Modal = ({ open, onClose, children }) => {
     return (
         <ModalMUI open={open} onClose={onClose}>
-            <Fade in={open} timeout={500}>
-                <Box sx={modalStyle}>
+            <Slide
+                direction="up"
+                in={open}
+                timeout={300}
+                mountOnEnter
+                unmountOnExit
+            >
+                <Box
+                    sx={{
+                        ...modalStyle,
+                        marginTop: {
+                            sm: '0',
+                            md: '-10vh',
+                        },
+                    }}
+                >
                     {children}
-                    <Box sx={closeIconStyles}>
+                    <MotionBox
+                        sx={closeIconStyles}
+                        initial={{ scale: 1 }}
+                        whileTap={{ scale: 0.6 }}
+                    >
                         <CancelIcon
                             onClick={onClose}
                             fontSize="large"
                             color="secondary"
                         />
-                    </Box>
+                    </MotionBox>
                 </Box>
-            </Fade>
+            </Slide>
         </ModalMUI>
     )
 }
