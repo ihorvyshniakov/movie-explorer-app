@@ -17,6 +17,7 @@ import { Footer, Header, ScrollTopButton } from './components'
 // - Animations: added clicking for Header 'home' link
 // - Animations: animated 'SearchBlock' appear + input click
 // - Animations: Footer message appearing
+// - Animations: added onClick 'ScrollTopButton'
 
 // TODO 👇
 // - Responsive: width of 'find' button
