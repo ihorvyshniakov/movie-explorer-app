@@ -29,7 +29,7 @@ const Header = (props) => {
             <AppBar position="sticky" {...props}>
                 <Container maxWidth="lg" sx={{ display: 'flex' }}>
                     <Toolbar disableGutters sx={{ width: '100%' }}>
-                        <Tooltip title="Change Dark/Light mode">
+                        <Tooltip title="Dark / Light mode">
                             <MotionIconButton
                                 size="large"
                                 aria-label="change mode button"

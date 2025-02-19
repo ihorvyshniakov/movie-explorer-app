@@ -43,7 +43,12 @@ const SearchBlock = () => {
     }
 
     return (
-        <Grid container spacing={2} sx={{ margin: '2rem 0 1rem' }}>
+        <Grid
+            container
+            spacing={2}
+            sx={{ margin: '2rem 0 1rem' }}
+            justifyContent="center"
+        >
             <Grid size={12}>
                 <MotionTypography
                     component="h3"
@@ -63,12 +68,13 @@ const SearchBlock = () => {
                     Find your favorite movie 🔍
                 </MotionTypography>
             </Grid>
-            <Grid size={12}>
+            <Grid size={{ xs: 12, sm: 12, md: 8 }}>
                 <form onSubmit={handleSubmit}>
                     <Stack direction="row" spacing={2}>
                         <MotionTextField
+                            required
                             fullWidth
-                            label="Search..."
+                            label="Movie name"
                             color="primary"
                             ref={inputRef}
                             value={searchInput}
@@ -83,6 +89,12 @@ const SearchBlock = () => {
                             variant="contained"
                             type="submit"
                             color="secondary"
+                            sx={{
+                                width: {
+                                    xs: 'auto',
+                                    sm: '8rem',
+                                },
+                            }}
                         >
                             FIND
                         </Button>

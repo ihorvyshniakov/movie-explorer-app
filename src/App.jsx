@@ -19,9 +19,9 @@ import { Footer, Header, ScrollTopButton } from './components'
 // - Animations: Footer message appearing
 // - Animations: added onClick 'ScrollTopButton'
 // - Animations: added sliding on modal opening
+// - Responsive: width of 'find' button
 
 // TODO 👇
-// - Responsive: width of 'find' button
 
 function App() {
     const { mode } = useColorScheme()
