@@ -7,9 +7,12 @@ import {
     Typography,
 } from '@mui/material'
 import { useEffect, useState } from 'react'
+import { motion } from 'motion/react'
 
 import { randomIntFromInterval } from '../../utils'
 import { QUOTES } from '../../data/constants'
+
+const MotionAlert = motion.create(Alert)
 
 const Footer = () => {
     const [randomQuote, setRandomQuote] = useState(null)
@@ -48,7 +51,7 @@ const Footer = () => {
                             </Typography>
 
                             {randomQuote && (
-                                <Alert
+                                <MotionAlert
                                     icon={false}
                                     sx={{
                                         minWidth: {
@@ -57,12 +60,18 @@ const Footer = () => {
                                         },
                                         bgcolor: 'background.default',
                                     }}
+                                    initial={{ opacity: 0, y: 50 }}
+                                    whileInView={{
+                                        opacity: 1,
+                                        y: [50, -8, 4, 0],
+                                    }}
+                                    transition={{ delay: 0.2 }}
                                 >
                                     <AlertTitle color="textPrimary">
                                         {randomQuote.quote}
                                     </AlertTitle>
                                     {randomQuote.movie}
-                                </Alert>
+                                </MotionAlert>
                             )}
                             <Typography
                                 align="center"
