@@ -13,11 +13,7 @@ export default function ChipsList({ list, componentProps, SkeletonProps }) {
             ) : (
                 [...new Array(2)].map((el, index) => (
                     <Grid key={`skeleton-chip-${index}`}>
-                        <Skeleton
-                            animation={false}
-                            variant="rounded"
-                            {...SkeletonProps}
-                        />
+                        <Skeleton variant="rounded" {...SkeletonProps} />
                     </Grid>
                 ))
             )}

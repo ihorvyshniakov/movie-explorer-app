@@ -1,27 +1,35 @@
-import { Skeleton, Typography } from '@mui/material'
-
 import { useStoreContext } from '../../context/StoreContext'
+import { ChipsList } from '../_WithSkeleton'
 
 export default function SearchDetails() {
     const { movies, show } = useStoreContext()
 
-    if (!show) return null
-
-    if (!movies[show.movies].title.length) {
-        return (
-            <Skeleton
-                variant="rounded"
-                height="1.5rem"
-                sx={{
-                    width: '8rem',
-                }}
-            />
-        )
+    let list
+    if (!show || !movies[show.movies].title.length || movies.isLoading) {
+        list = []
+    } else {
+        list = [
+            { id: 1, name: `Page ${show.page}` },
+            { id: 2, name: movies[show.movies].title },
+        ]
     }
 
     return (
-        <Typography variant="body1" color="textPrimary">
-            {`"${movies[show.movies].title}" movies, page - ${show.page}`}
-        </Typography>
+        <>
+            <ChipsList
+                list={list}
+                componentProps={{
+                    direction: 'row',
+                    sx: { flexWrap: 'wrap', gap: '0.5rem' },
+                }}
+                SkeletonProps={{
+                    height: '2rem',
+                    width: '4rem',
+                    sx: {
+                        borderRadius: '1rem',
+                    },
+                }}
+            />
+        </>
     )
 }

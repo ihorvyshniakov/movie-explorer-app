@@ -20,8 +20,12 @@ import { Footer, Header, ScrollTopButton } from './components'
 // - Animations: added onClick 'ScrollTopButton'
 // - Animations: added sliding on modal opening
 // - Responsive: width of 'find' button
+// - Search details: text -> Chips UI components
 
 // TODO 👇
+// - Deploy
+// - Made beautiful pictures for Portfolio description
+// - Write the description for this project
 
 function App() {
     const { mode } = useColorScheme()

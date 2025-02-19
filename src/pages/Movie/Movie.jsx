@@ -151,6 +151,7 @@ const Movie = ({ movieId }) => {
                                     sx: {
                                         borderRadius: '1rem',
                                     },
+                                    animation: false,
                                 }}
                             />
                             <Grid display="flex" justifyContent="center">
