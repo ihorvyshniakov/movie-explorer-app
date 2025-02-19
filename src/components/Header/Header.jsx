@@ -5,6 +5,7 @@ import {
     Toolbar,
     IconButton,
     Typography,
+    Tooltip,
 } from '@mui/material'
 import GitHubIcon from '@mui/icons-material/GitHub'
 import Brightness6Icon from '@mui/icons-material/Brightness6'
@@ -23,14 +24,17 @@ const Header = (props) => {
             <AppBar position="sticky" {...props}>
                 <Container maxWidth="lg" sx={{ display: 'flex' }}>
                     <Toolbar disableGutters sx={{ width: '100%' }}>
-                        <IconButton
-                            size="large"
-                            aria-label="change mode button"
-                            color="inherit"
-                            onClick={handleModeChange}
-                        >
-                            <Brightness6Icon />
-                        </IconButton>
+                        <Tooltip title="Change Dark/Light mode">
+                            <IconButton
+                                size="large"
+                                aria-label="change mode button"
+                                color="inherit"
+                                onClick={handleModeChange}
+                            >
+                                <Brightness6Icon />
+                            </IconButton>
+                        </Tooltip>
+
                         <Link
                             url=""
                             sx={{
@@ -48,14 +52,16 @@ const Header = (props) => {
                             </Typography>
                         </Link>
 
-                        <IconButton
-                            size="large"
-                            aria-label="github link"
-                            color="inherit"
-                            href="#"
-                        >
-                            <GitHubIcon />
-                        </IconButton>
+                        <Tooltip title="Project code on Github">
+                            <IconButton
+                                size="large"
+                                aria-label="github link"
+                                color="inherit"
+                                href="#"
+                            >
+                                <GitHubIcon />
+                            </IconButton>
+                        </Tooltip>
                     </Toolbar>
                 </Container>
             </AppBar>

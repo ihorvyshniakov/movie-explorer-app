@@ -6,13 +6,7 @@ import { Home, Movie } from './pages'
 import { Footer, Header, ScrollTopButton } from './components'
 
 //* DONE
-// - Movie card(hover): add border styling
-// - Skeletons: added Title
-// - Skeletons: added Details
-// - Skeletons: added ReleaseDate
-// - Skeletons: added ChipsList
-// - Refactoring: fixed imports for 'WithSkeleton' components
-// - Refactoring: fixed imports for all components
+// - Tooltips: added to Header icons
 
 // TODO 👇
 // - Skeletons: organization
