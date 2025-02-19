@@ -14,10 +14,11 @@ import { Footer, Header, ScrollTopButton } from './components'
 // - Refactoring: added hook - useFetchMovieById + util func generateArrayForTable() + formatDate() to utils
 // - Refactoring: changed format logic for 'year' getting
 // - Animations: appearing for Header
+// - Animations: added clicking for Header 'home' link
 
 // TODO 👇
 // ? Animations
-// - modal opening
+// - modal opening | https://examples.motion.dev/react/modal
 // - cross clicking
 // - page appearing
 

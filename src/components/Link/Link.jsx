@@ -19,6 +19,7 @@ const Link = ({ url, children, ...props }) => {
                     cursor: 'pointer',
                 },
             }}
+            {...props}
         >
             {children}
         </MaterialLink>
