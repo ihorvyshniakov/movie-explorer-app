@@ -1,6 +1,6 @@
 ## [Movie Explorer App](https://movie-explorer-app-rust.vercel.app)
 
-<br>Routing. Pagination. Dark / Light mode. Animations.
+Routing. Pagination. Dark / Light mode. Animations.
 <br>React Hooks API. Context API. Modals. Error handling.
 
 [`react`](https://github.com/facebook/react) [`react-router`](https://github.com/remix-run/react-router) [`material-ui`](https://github.com/mui/material-ui) [`motion`](https://github.com/motiondivision/motion)
