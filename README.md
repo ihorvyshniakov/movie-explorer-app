@@ -3,7 +3,7 @@
 Routing. Pagination. Dark / Light mode. Animations.
 <br>React Hooks API. Context API. Modals. Error handling.
 
-[`react`](https://github.com/facebook/react) [`react-router`](https://github.com/remix-run/react-router) [`material-ui`](https://github.com/mui/material-ui) [`motion`](https://github.com/motiondivision/motion)
+[`react`](https://github.com/facebook/react) [`react-router`](https://github.com/remix-run/react-router) [`material-ui`](https://github.com/mui/material-ui) [`motion`](https://github.com/motiondivision/motion) [`vite`](https://github.com/vitejs/vite)
 <br>
 
 **Movies API -** [TMDB API](https://developer.themoviedb.org/)
@@ -20,6 +20,7 @@ Routing. Pagination. Dark / Light mode. Animations.
   | [`react-router`](https://github.com/remix-run/react-router)                  | Routing |
   | [`material-ui`](https://github.com/mui/material-ui)                          | UI system |
   | [`motion`](https://github.com/motiondivision/motion)                         | Animations |
+  | [`vite`](https://github.com/vitejs/vite)                                     | Project build tool |
 </details>
 
 <p align="center">
