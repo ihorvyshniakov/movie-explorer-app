@@ -5,13 +5,8 @@ import './App.css'
 import { Home, Movie } from './pages'
 import { Footer, Header, ScrollTopButton } from './components'
 
-//* DONE
-// - Deployed
-// - [Bug]: returning from 'splash' wrong totalPages in pagination
-
 // TODO 👇
-// - Made beautiful pictures for Portfolio description
-// - Write the description for this project
+// - [Bug] Mobile: 'splash' scroll middle, return home not scroll to top
 
 function App() {
     const { mode } = useColorScheme()
