@@ -7,12 +7,12 @@
 <br>
 **Project code -** [here](https://github.com/ihorvyshniakov/movie-explorer-app)
 
-[`react`](https://github.com/facebook/react) [`react-router`](https://github.com/remix-run/react-router) [`material-ui`](https://github.com/mui/material-ui) [`motion`](https://github.com/motiondivision/motion)
+[`react`](https://github.com/facebook/react) [`react-router`](https://github.com/remix-run/react-router) [`material-ui`](https://github.com/mui/material-ui) [`motion`](https://github.com/motiondivision/motion) [`vite`](https://github.com/vitejs/vite) 
 <br>
 
 <details>
     <br>
-    <summary><b>Extra libraries</b></summary>
+    <summary><b>Libraries details</b></summary>
   
   | Library name | Description |
   | --- | --- |
@@ -20,6 +20,7 @@
   | [`react-router`](https://github.com/remix-run/react-router)                  | Routing |
   | [`material-ui`](https://github.com/mui/material-ui)                          | UI system |
   | [`motion`](https://github.com/motiondivision/motion)                         | Animations |
+  | [`vite`](https://github.com/vitejs/vite)                                     | Project build tool |
 </details>
 
 <p align="center">
