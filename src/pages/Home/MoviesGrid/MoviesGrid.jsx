@@ -18,6 +18,7 @@ const MoviesGrid = () => {
         show,
 
         setShow,
+        setTotalPages,
     } = useStoreContext()
     const { fetchTopRatedMovies, fetchSearchMovies } = useFetchMovies()
 
@@ -55,7 +56,11 @@ const MoviesGrid = () => {
     useEffect(
         function fetchMovies() {
             if (!show) return
-            if (isAlreadyCached()) return
+
+            if (isAlreadyCached()) {
+                setTotalPages(movies[show.movies].details.total_pages)
+                return
+            }
             scrollToTop()
 
             const { movies: showMovies, page: showPage } = show

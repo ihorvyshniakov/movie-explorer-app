@@ -6,24 +6,10 @@ import { Home, Movie } from './pages'
 import { Footer, Header, ScrollTopButton } from './components'
 
 //* DONE
-// - Tooltips: added to Header icons
-// - Chips: little code optimization fix
-// - Refactoring: added hook - useFetchMovies
-// - Refactoring: added hook - useHoverTilt
-// - Refactoring: replaced 'quotes' array to /data/constants
-// - Refactoring: added hook - useFetchMovieById + util func generateArrayForTable() + formatDate() to utils
-// - Refactoring: changed format logic for 'year' getting
-// - Animations: appearing for Header
-// - Animations: added clicking for Header 'home' link
-// - Animations: animated 'SearchBlock' appear + input click
-// - Animations: Footer message appearing
-// - Animations: added onClick 'ScrollTopButton'
-// - Animations: added sliding on modal opening
-// - Responsive: width of 'find' button
-// - Search details: text -> Chips UI components
+// - Deployed
+// - [Bug]: returning from 'splash' wrong totalPages in pagination
 
 // TODO 👇
-// - Deploy
 // - Made beautiful pictures for Portfolio description
 // - Write the description for this project
 
